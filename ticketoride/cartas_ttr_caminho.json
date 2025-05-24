@@ -1,0 +1,49 @@
+{
+	"PILHA_TREM": [
+		{
+			"cor": "vermelho",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "azul",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "verde",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "laranja",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "amarelo",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "roxo",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "branco",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "preto",
+			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"quantidade": 12
+		},
+		{
+			"id": "coringa",
+			"imagem": "res://assets/TremCoringaPlaceHolder2.png",
+			"quantidade": 14
+		}
+	]
+}

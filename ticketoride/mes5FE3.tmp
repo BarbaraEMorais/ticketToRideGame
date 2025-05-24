@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://eifoucjqk2ut"]
+
+[ext_resource type="Script" path="res://mesa.gd" id="1_x3x8w"]
+[ext_resource type="PackedScene" uid="uid://pylxfilywjh2" path="res://pilha_trem.tscn" id="2_83gun"]
+[ext_resource type="PackedScene" uid="uid://mnuvnvkueu3j" path="res://cartaTrem.tscn" id="3_efnc7"]
+[ext_resource type="PackedScene" uid="uid://cefgcup4ntiob" path="res://cartaDestino.tscn" id="4_p6r0m"]
+[ext_resource type="Script" path="res://cartaDestino.gd" id="5_pyx6r"]
+
+[node name="Mesa" type="Node2D"]
+script = ExtResource("1_x3x8w")
+
+[node name="PilhaTrem" parent="." instance=ExtResource("2_83gun")]
+
+[node name="Carta" parent="." instance=ExtResource("3_efnc7")]
+
+[node name="PilhaDestino" parent="." instance=ExtResource("2_83gun")]
+
+[node name="Carta3" parent="." instance=ExtResource("4_p6r0m")]
+position = Vector2(1018.43, 466.957)
+script = ExtResource("5_pyx6r")
