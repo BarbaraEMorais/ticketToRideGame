@@ -6,42 +6,42 @@
 			"quantidade": 12
 		},
 		{
-			"id": "azul",
+			"cor": "azul",
 			"imagem": "res://assets/TremAzulPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
-			"id": "verde",
+			"cor": "verde",
 			"imagem": "res://assets/TremAzulPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
-			"id": "laranja",
+			"cor": "laranja",
 			"imagem": "res://assets/TremAzulPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
-			"id": "amarelo",
+			"cor": "amarelo",
 			"imagem": "res://assets/TremAzulPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
-			"id": "roxo",
+			"cor": "roxo",
 			"imagem": "res://assets/TremAzulPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
-			"id": "branco",
+			"cor": "branco",
 			"imagem": "res://assets/TremAzulPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
-			"id": "preto",
+			"cor": "preto",
 			"imagem": "res://assets/TremAzulPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
-			"id": "coringa",
+			"cor": "coringa",
 			"imagem": "res://assets/TremCoringaPlaceHolder2.png",
 			"quantidade": 14
 		}

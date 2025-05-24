@@ -14,7 +14,7 @@ visible = false
 position = Vector2(-75, -186)
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
-position = Vector2(142, 462)
+position = Vector2(100, 324)
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
 position = Vector2(1020, 533)
