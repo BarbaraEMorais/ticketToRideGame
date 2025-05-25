@@ -18,23 +18,38 @@ text = "Cadastro de Jogador"
 
 [node name="NomeJogador" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 383.0
-offset_top = 190.0
-offset_right = 723.0
-offset_bottom = 221.0
+offset_left = 390.0
+offset_top = 263.0
+offset_right = 730.0
+offset_bottom = 294.0
 placeholder_text = "Digite seu nome"
 
 [node name="ButtonCadastroJogador" type="Button" parent="."]
 layout_mode = 0
-offset_left = 498.0
-offset_top = 257.0
-offset_right = 582.0
-offset_bottom = 288.0
+offset_left = 505.0
+offset_top = 330.0
+offset_right = 589.0
+offset_bottom = 361.0
 text = "Cadastrar"
 
 [node name="FeedbackCadastro" type="Label" parent="."]
 layout_mode = 0
-offset_left = 383.0
-offset_top = 324.0
-offset_right = 722.0
-offset_bottom = 355.0
+offset_left = 390.0
+offset_top = 397.0
+offset_right = 729.0
+offset_bottom = 428.0
+
+[node name="QuantidadeJogadores" type="SpinBox" parent="."]
+layout_mode = 0
+offset_left = 646.0
+offset_top = 189.0
+offset_right = 729.062
+offset_bottom = 220.0
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 190.0
+offset_right = 565.0
+offset_bottom = 213.0
+text = "Número de Jogadores:"
