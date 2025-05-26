@@ -2,7 +2,7 @@
 	"PILHA_TREM": [
 		{
 			"cor": "vermelho",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/TremVermelhoPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{

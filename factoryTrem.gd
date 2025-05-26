@@ -128,6 +128,7 @@ static func criar_cartas_da_pilha(pilha_nome : String) -> Array[Carta]:
 				carta_criada = criar_carta(definicao_item, pilha_nome) 
 				if carta_criada:
 					ret.push_back(carta_criada)
+			ret.shuffle()
 		elif pilha_nome == "PILHA_DESTINO":
 			carta_criada = criar_carta(definicao_item, pilha_nome) 
 			if carta_criada:
@@ -142,4 +143,5 @@ static func _criar_todas_as_cartas_tt_ride_como_array_base() -> Array[Carta]: # 
 	if arquivo_cartas and arquivo_cartas.data:
 		for nome_da_pilha in arquivo_cartas.data:
 			todas_as_cartas.append_array(criar_cartas_da_pilha(nome_da_pilha))
+		todas_as_cartas.shuffle()
 	return todas_as_cartas
