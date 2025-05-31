@@ -59,7 +59,7 @@ static func criar_pilha_destino() -> Array[CartaDestino]:
 		return ret
 	
 
-	var dados_da_pilha = arquivo_cartas_destino
+	var dados_da_pilha = arquivo_cartas_destino.data
 	if not dados_da_pilha is Array:
 		printerr("FactoryCarta: JSON da pilha de destina não é um Array.")
 		return ret
