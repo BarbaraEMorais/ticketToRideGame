@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://b5nr4prodiiq4" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
 [ext_resource type="PackedScene" uid="uid://rdsbsl6ag741" path="res://cenas/cartaTrem.tscn" id="3_gaxdi"]
 [ext_resource type="PackedScene" uid="uid://dbrmi6ca20idk" path="res://cenas/pilhaTrem.tscn" id="4_btbph"]
-[ext_resource type="Script" path="res://cartaTrem.gd" id="4_nk80x"]
 [ext_resource type="PackedScene" uid="uid://bmt651m6ir3re" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
+[ext_resource type="PackedScene" uid="uid://7cj2xe4th8g2" path="res://cenas/pilhaDestino.tscn" id="6_8ppmq"]
 
 [node name="Mesa" type="Node2D"]
 script = ExtResource("1_hxkmd")
@@ -16,11 +16,12 @@ position = Vector2(-75, -186)
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
 position = Vector2(100, 324)
-script = ExtResource("4_nk80x")
-drag_enabled = true
-cancela_arrasto = false
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
 position = Vector2(1020, 533)
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
+position = Vector2(329, 158)
+
+[node name="PilhaDestino" parent="." instance=ExtResource("6_8ppmq")]
+position = Vector2(818, 532)

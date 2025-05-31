@@ -1,13 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmt651m6ir3re"]
+[gd_scene load_steps=5 format=3 uid="uid://bmt651m6ir3re"]
 
 [ext_resource type="Script" path="res://cartaDestino.gd" id="1_ef62c"]
+[ext_resource type="Texture2D" uid="uid://covgpuum661t8" path="res://assets/BaseCartaDestino.png" id="2_y7ut4"]
+[ext_resource type="FontFile" uid="uid://c2ljl2mm6efoo" path="res://assets/fonts/NovaSquare-Regular.ttf" id="3_k5hwr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aicb3"]
+size = Vector2(226.5, 335.5)
 
 [node name="CartaDestino" type="Node2D"]
 script = ExtResource("1_ef62c")
 
 [node name="Area2D" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(113, 168)
+texture = ExtResource("2_y7ut4")
+metadata/_edit_lock_ = true
+
+[node name="Origem" type="Label" parent="Area2D/Sprite2D"]
+offset_left = -64.0
+offset_top = -163.0
+offset_right = 262.0
+offset_bottom = -117.0
+rotation = 1.5708
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_k5hwr")
+theme_override_font_sizes/font_size = 26
+text = "Placeholder"
+vertical_alignment = 2
+
+[node name="Destino" type="Label" parent="Area2D/Sprite2D"]
+offset_left = 60.0
+offset_top = 164.0
+offset_right = 386.0
+offset_bottom = 210.0
+rotation = -1.5708
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_k5hwr")
+theme_override_font_sizes/font_size = 26
+text = "Placeholder"
+vertical_alignment = 2
+
+[node name="Pontuação" type="Label" parent="Area2D/Sprite2D"]
+offset_left = -29.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_k5hwr")
+theme_override_font_sizes/font_size = 32
+text = "99
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(114, 169)
 shape = SubResource("RectangleShape2D_aicb3")
+metadata/_edit_lock_ = true

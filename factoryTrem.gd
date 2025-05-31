@@ -3,6 +3,7 @@ extends Node
 class_name FactoryCarta 
 
 static var arquivo_cartas := preload("res://cartas_ttr_caminho.json") 
+static var arquivo_cartas_destino := preload("res://assets/json/Destino.json")
 
 const _TEMPLATE_CARTA_TREM : PackedScene = preload("res://cenas/cartaTrem.tscn") 
 const _TEMPLATE_CARTA_DESTINO : PackedScene = preload("res://cenas/cartaDestino.tscn") 
@@ -21,7 +22,7 @@ func _ready() -> void:
 		else:
 			cartas.append({"Pilha": "PILHA_TREM", "CartaNode": carta_b, "Erro": "Não é CartaTrem."})
 			
-	r_cartas_base = criar_cartas_da_pilha("PILHA_DESTINO")
+	r_cartas_base = criar_pilha_destino() as Array[Carta]
 	for carta_b in r_cartas_base:
 		if carta_b is CartaDestino:
 			var cd = carta_b as CartaDestino
@@ -40,6 +41,36 @@ static func int_if_not_empty(value, default_val : int = 0) -> int:
 		elif value.is_valid_float(): return int(value.to_float())
 	return default_val
 
+static func criar_carta_destino(dados_entrada: Dictionary) -> CartaDestino:
+	var nova_carta := _TEMPLATE_CARTA_DESTINO.instantiate()
+	nova_carta.initialize(
+		dados_entrada.get("origem"),
+		dados_entrada.get("destino"),
+		dados_entrada.get("pontos")
+	)
+	
+	return nova_carta
+
+static func criar_pilha_destino() -> Array[CartaDestino]:
+	var ret : Array[CartaDestino]
+	
+	if arquivo_cartas_destino == null or not arquivo_cartas_destino.data:
+		printerr("FactoryCarta: 'arquivo_cartas' não carregado ou JSON global mal formatado.")
+		return ret
+	
+
+	var dados_da_pilha = arquivo_cartas_destino.data
+	if not dados_da_pilha is Array:
+		printerr("FactoryCarta: JSON da pilha de destina não é um Array.")
+		return ret
+
+	for definicao_item in dados_da_pilha:
+		if not definicao_item is Dictionary:
+			printerr("FactoryCarta: Item na pilha de destino não é um dicionário: " % definicao_item)
+			continue
+	
+		ret.append(criar_carta_destino(definicao_item))
+	return ret
 
 static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Carta:
 	var nova_carta_base : Carta = null 
@@ -128,10 +159,6 @@ static func criar_cartas_da_pilha(pilha_nome : String) -> Array[Carta]:
 				carta_criada = criar_carta(definicao_item, pilha_nome) 
 				if carta_criada:
 					ret.push_back(carta_criada)
-		elif pilha_nome == "PILHA_DESTINO":
-			carta_criada = criar_carta(definicao_item, pilha_nome) 
-			if carta_criada:
-				ret.push_back(carta_criada)
 		
 
 	return ret 
