@@ -7,7 +7,9 @@ var completado: bool
 var cidade_origem: String
 var cidade_destino: String
 
-func _init(_pontos: int=0, _img_path: String = "res://assets/exodia.jpeg") -> void:
+func _init(origem : String, destido: String, _pontos: int=0, ) -> void:
 	pontos= _pontos
+	cidade_origem = origem
+	cidade_destino = cidade_destino
 	completado = false
 	
