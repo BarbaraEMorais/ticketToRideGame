@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://2y7hoampueip"]
+
+[ext_resource type="Script" path="res://selecaoDestino.gd" id="1_g56de"]
+
+[node name="SeleçãoDestinoUI" type="CanvasLayer"]
+script = ExtResource("1_g56de")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 12.1586
+anchor_top = 13.0737
+anchor_right = 12.5425
+anchor_bottom = 13.4333
+offset_left = -22770.5
+offset_top = -13903.6
+offset_right = -22769.6
+offset_bottom = -13904.0
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Slot1" type="Node2D" parent="Panel"]
+position = Vector2(123, 163)
+
+[node name="Slot2" type="Node2D" parent="Panel"]
+position = Vector2(360, 165)
+
+[node name="Slot3" type="Node2D" parent="Panel"]
+position = Vector2(617, 163)
+
+[node name="botaoContinuar" type="Button" parent="."]
+offset_left = 852.0
+offset_top = 729.0
+offset_right = 1059.0
+offset_bottom = 802.0
+text = "Selecionar
+"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="botaoContinuar" to="." method="_on_botao_continuar_pressionado"]

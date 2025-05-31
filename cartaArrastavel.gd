@@ -76,6 +76,7 @@ func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: 
 	
 		if was_click:
 			print("CARTA ('%s') - Foi um clique curto. Emitindo carta_clicada." % name) # DEBUG
+			print("AAAAAAAAAAAAAAAAAAAA")
 			carta_clicada.emit(self)
 		else:
 			print("CARTA ('%s') - Não foi um clique curto (foi um arrasto ou nada)." % name) # DEBUG
