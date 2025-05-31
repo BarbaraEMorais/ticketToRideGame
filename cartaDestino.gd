@@ -11,7 +11,7 @@ var cidade_destino: String
 @onready var LabelDestino = $"Area2D/Sprite2D/Destino"
 @onready var LabelPontos = $"Area2D/Sprite2D/Pontuação"
 
-func _init(origem : String, destido: String, _pontos: int=0, ) -> void:
+func initialize(origem : String, destino: String, _pontos: int=0, ) -> void:
 	pontos= _pontos
 	cidade_origem = origem
 	cidade_destino = cidade_destino
@@ -22,4 +22,4 @@ func _init(origem : String, destido: String, _pontos: int=0, ) -> void:
 func _ready() -> void:
 	LabelOrigem.text = cidade_origem.capitalize()
 	LabelDestino.text = cidade_destino.capitalize()
-	LabelPontos.text = pontos
+	LabelPontos.text = str(pontos)

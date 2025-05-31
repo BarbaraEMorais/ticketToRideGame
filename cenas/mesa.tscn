@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://eifoucjqk2ut"]
+[gd_scene load_steps=6 format=3 uid="uid://eifoucjqk2ut"]
 
 [ext_resource type="Script" path="res://mesa.gd" id="1_hxkmd"]
 [ext_resource type="PackedScene" uid="uid://b5nr4prodiiq4" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
 [ext_resource type="PackedScene" uid="uid://rdsbsl6ag741" path="res://cenas/cartaTrem.tscn" id="3_gaxdi"]
 [ext_resource type="PackedScene" uid="uid://dbrmi6ca20idk" path="res://cenas/pilhaTrem.tscn" id="4_btbph"]
-[ext_resource type="Script" path="res://cartaTrem.gd" id="4_nk80x"]
 [ext_resource type="PackedScene" uid="uid://bmt651m6ir3re" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
 
 [node name="Mesa" type="Node2D"]
@@ -16,9 +15,6 @@ position = Vector2(-75, -186)
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
 position = Vector2(100, 324)
-script = ExtResource("4_nk80x")
-drag_enabled = true
-cancela_arrasto = false
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
 position = Vector2(1020, 533)
