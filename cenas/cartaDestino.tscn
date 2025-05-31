@@ -18,7 +18,7 @@ position = Vector2(113, 168)
 texture = ExtResource("2_y7ut4")
 metadata/_edit_lock_ = true
 
-[node name="Destino 1" type="Label" parent="Area2D/Sprite2D"]
+[node name="Origem" type="Label" parent="Area2D/Sprite2D"]
 offset_left = -64.0
 offset_top = -163.0
 offset_right = 262.0
@@ -30,7 +30,7 @@ theme_override_font_sizes/font_size = 26
 text = "Placeholder"
 vertical_alignment = 2
 
-[node name="Destino 2" type="Label" parent="Area2D/Sprite2D"]
+[node name="Destino" type="Label" parent="Area2D/Sprite2D"]
 offset_left = 60.0
 offset_top = 164.0
 offset_right = 386.0
