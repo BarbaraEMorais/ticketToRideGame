@@ -118,10 +118,18 @@ static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Ca
 			script_carta_destino.configurar_dados(dados_entrada)
 		else:
 			printerr("FactoryCarta (Destino): Script 'CartaDestino' não tem 'configurar_dados(dados)'.")
+		var caminho_img : String = dados_entrada.get("imagem", "")
+		var sprite_node = script_carta_destino.get_node_or_null("Sprite2D")
+		if sprite_node and sprite_node is Sprite2D:
+			if not caminho_img.is_empty():
+				var tex : Texture2D = load(caminho_img)
+				if tex: (sprite_node as Sprite2D).texture = tex
+				else: printerr("FactoryCarta (Destino): Falha ao carregar textura: ", caminho_img)
+		elif not caminho_img.is_empty():
+			printerr("FactoryCarta (Trem): 'SpriteVisual' não encontrado ou não é Sprite2D.")
 	else:
 		printerr("FactoryCarta: Contexto de pilha desconhecido em criar_carta: ", contexto_pilha)
 		return null
-	
 	
 	if nova_carta_base and "visible" in nova_carta_base:
 		nova_carta_base.visible = false
@@ -159,6 +167,12 @@ static func criar_cartas_da_pilha(pilha_nome : String) -> Array[Carta]:
 				carta_criada = criar_carta(definicao_item, pilha_nome) 
 				if carta_criada:
 					ret.push_back(carta_criada)
+			ret.shuffle()
+		elif pilha_nome == "PILHA_DESTINO":
+			carta_criada = criar_carta(definicao_item, pilha_nome) 
+			if carta_criada:
+				ret.push_back(carta_criada)
+
 		
 
 	return ret 
@@ -169,4 +183,5 @@ static func _criar_todas_as_cartas_tt_ride_como_array_base() -> Array[Carta]: # 
 	if arquivo_cartas and arquivo_cartas.data:
 		for nome_da_pilha in arquivo_cartas.data:
 			todas_as_cartas.append_array(criar_cartas_da_pilha(nome_da_pilha))
+		todas_as_cartas.shuffle()
 	return todas_as_cartas

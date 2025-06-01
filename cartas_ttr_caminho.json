@@ -2,7 +2,7 @@
 	"PILHA_TREM": [
 		{
 			"cor": "vermelho",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/TremVermelhoPlaceHolder2.png",
 			"quantidade": 12
 		},
 		{
@@ -44,6 +44,60 @@
 			"cor": "coringa",
 			"imagem": "res://assets/TremCoringaPlaceHolder2.png",
 			"quantidade": 14
+		}
+	],
+	"PILHA_DESTINO": [
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
+		},
+		{
+			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"pontos": 7,
+			"cidade_origem": "RJ",
+			"cidade_destino": "SP"
 		}
 	]
 }
