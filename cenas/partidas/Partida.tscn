@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dq11jm8vuhwkn"]
 
-[ext_resource type="Script" path="res://scripts/partidas/Partida.gd" id="1_c5i01"]
+[ext_resource type="Script" uid="uid://1k866woyprhj" path="res://scripts/partidas/Partida.gd" id="1_c5i01"]
 
 [node name="Partida" type="Node2D"]
 script = ExtResource("1_c5i01")
