@@ -27,7 +27,7 @@ script = ExtResource("1_apk2w")
 position = Vector2(960, 540)
 texture = ExtResource("1_ccga0")
 
-[node name="Button" type="Button" parent="."]
+[node name="Jogar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 868.0
@@ -40,4 +40,4 @@ theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_f0x32")
 text = "JOGAR"
 
-[connection signal="pressed" from="Button" to="." method="_on_jogar_pressed"]
+[connection signal="pressed" from="Jogar" to="." method="_on_jogar_pressed"]
