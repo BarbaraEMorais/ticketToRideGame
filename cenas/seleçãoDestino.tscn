@@ -19,13 +19,13 @@ mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Slot1" type="Node2D" parent="Panel"]
-position = Vector2(123, 130)
+position = Vector2(123, 163)
 
 [node name="Slot2" type="Node2D" parent="Panel"]
-position = Vector2(360, 130)
+position = Vector2(360, 165)
 
 [node name="Slot3" type="Node2D" parent="Panel"]
-position = Vector2(617, 130)
+position = Vector2(617, 163)
 
 [node name="botaoContinuar" type="Button" parent="."]
 offset_left = 852.0
