@@ -126,6 +126,9 @@ func _atualizar_logica_botao_continuar():
 		botao_continuar.disabled = not pelo_menos_uma_escolhida
 	print("SelecaoDestinoUI: Botão 'Continuar' habilitado: %s (Total selecionadas: %s)" % [not botao_continuar.disabled if is_instance_valid(botao_continuar) else "BOTÃO INVÁLIDO", cartas_realmente_selecionadas.size()]) #debug
 
+
+
+
 func _on_botao_continuar_pressionado():
 	
 	

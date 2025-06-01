@@ -1,17 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq11jm8vuhwkn"]
+[gd_scene load_steps=2 format=3 uid="uid://dq11jm8vuhwkn"]
 
 [ext_resource type="Script" path="res://scripts/partidas/Partida.gd" id="1_c5i01"]
-[ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="2_e4dum"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg325"]
-bg_color = Color(1, 0.729412, 0.145098, 1)
-border_width_bottom = 14
-border_color = Color(0.403922, 0.184314, 0.0470588, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(0, 0, 0, 0.682353)
 
 [node name="Partida" type="Node2D"]
 script = ExtResource("1_c5i01")
@@ -26,3 +15,5 @@ theme_override_fonts/font = ExtResource("2_e4dum")
 theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxFlat_kg325")
 text = "INICIAR PARTIDA"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

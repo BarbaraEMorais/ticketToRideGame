@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkh78weiqt7dj"]
 
-[ext_resource type="Script" path="res://cenas/Menus/menu_principal.gd" id="1_apk2w"]
+[ext_resource type="Script" path="res://cenas/Menus/Menu Principal.gd" id="1_apk2w"]
 [ext_resource type="Texture2D" uid="uid://dwj6k23b3rl6p" path="res://assets/fundo-menu.png" id="1_ccga0"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="2_3rbv3"]
 

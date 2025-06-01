@@ -7,18 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aicb3"]
 size = Vector2(226.5, 335.5)
 
-[node name="CartaDestino" type="Node2D"]
+[node name="Area2D" type="Area2D"]
+position = Vector2(921, 521)
 script = ExtResource("1_ef62c")
 
-[node name="Area2D" type="Area2D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(113, 168)
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y7ut4")
-metadata/_edit_lock_ = true
 
-[node name="Origem" type="Label" parent="Area2D/Sprite2D"]
+[node name="Origem" type="Label" parent="Sprite2D"]
 offset_left = -64.0
 offset_top = -163.0
 offset_right = 262.0
@@ -31,7 +27,7 @@ text = "Placeholder"
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Destino" type="Label" parent="Area2D/Sprite2D"]
+[node name="Destino" type="Label" parent="Sprite2D"]
 offset_left = 60.0
 offset_top = 164.0
 offset_right = 386.0
@@ -44,7 +40,7 @@ text = "Placeholder"
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Pontuação" type="Label" parent="Area2D/Sprite2D"]
+[node name="Pontuação" type="Label" parent="Sprite2D"]
 offset_left = -29.0
 offset_top = -30.0
 offset_right = 30.0
@@ -58,7 +54,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(114, 169)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_aicb3")
-metadata/_edit_lock_ = true
