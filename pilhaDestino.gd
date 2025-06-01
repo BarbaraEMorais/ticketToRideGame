@@ -4,7 +4,7 @@ signal selecao_cartas_destino_solicitada
 
 func criarpilha_inicial() -> void:
 	print("CHEGOU AQUIIIII")
-	self._cartas.assign(FactoryCarta.criar_pilha_destino())
+	self._cartas = FactoryCarta.criar_cartas_da_pilha("PILHA_DESTINO")
 	if self._cartas.is_empty() and Engine.is_editor_hint():
 		print("Atenção: Pilha de trem vazia após criação pela Factory.")
 	else:

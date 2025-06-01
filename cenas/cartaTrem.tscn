@@ -4,18 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://cybp5t37edrna" path="res://assets/TremAzulPlaceHolder2.png" id="2_y02cg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qig4n"]
-size = Vector2(169, 249)
+size = Vector2(162, 244.5)
 
 [node name="Carta" type="Node2D"]
+position = Vector2(136, 506)
 script = ExtResource("1_j274c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-5, -17)
+position = Vector2(-8, -21)
 texture = ExtResource("2_y02cg")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-8, -11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4, -7)
+position = Vector2(5, -6)
 shape = SubResource("RectangleShape2D_qig4n")

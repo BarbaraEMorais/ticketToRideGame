@@ -6,9 +6,9 @@ var cidade_origem: String
 var cidade_destino: String
 var esta_selecionada: bool
 
-@onready var LabelOrigem = $Sprite2D/Origem
-@onready var LabelDestino = $Sprite2D/Destino
-@onready var LabelPontos = $"Sprite2D/Pontuação"
+@onready var LabelOrigem = $"Area2D/Sprite2D/Origem"
+@onready var LabelDestino = $"Area2D/Sprite2D/Destino"
+@onready var LabelPontos = $"Area2D/Sprite2D/Pontuação"
 
 # Avisa quando o estado de seleção DESTA CARTA muda.
 signal selecao_individual_alterada(carta: CartaDestino, novo_estado_selecao: bool)
@@ -19,8 +19,8 @@ func _init(_pontos: int = 0, _img_path: String = "res://assets/exodia.jpeg") -> 
 	esta_selecionada = false
 
 func configurar_dados(dados: Dictionary) -> void:
-	cidade_origem = dados.get("origem", "desconhecida")
-	cidade_destino = dados.get("destino", "desconhecida")
+	cidade_origem = dados.get("cidade_origem", "desconhecida")
+	cidade_destino = dados.get("cidade_destino", "desconhecida")
 	pontos = dados.get("pontos", 0)
 	esta_selecionada = false
 
@@ -77,16 +77,14 @@ func deselecionar():
 # Método para verificar se pode ser clicada 
 func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
 	print("CartaDestino ('%s'): _input_event chamado com evento: %s" % [self.name, event])
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb") 
-			alternar_selecao()
 	return false  
 	
-
-
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		var mouse_pos = get_global_mouse_position()
-		
-		
+		var carta_rect = Rect2(global_position - Vector2(50, 70), Vector2(100, 140))
+		if carta_rect.has_point(mouse_pos):
+			print("CLIQUE DETECTADO na carta %s!" % name)
+			alternar_selecao()
+	

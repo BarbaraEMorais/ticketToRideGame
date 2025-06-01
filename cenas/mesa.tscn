@@ -16,13 +16,13 @@ position = Vector2(1751, 242)
 rotation = -0.00370386
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
-position = Vector2(259, 535)
+position = Vector2(181, 457)
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
 position = Vector2(1495, 917)
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
-position = Vector2(-467, 262)
+position = Vector2(534, 52)
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
 position = Vector2(1293, 919)

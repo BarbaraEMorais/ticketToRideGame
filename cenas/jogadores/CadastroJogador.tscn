@@ -1,58 +1,88 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs8xpadxy5ph2"]
+[gd_scene load_steps=6 format=3 uid="uid://cs8xpadxy5ph2"]
 
 [ext_resource type="Script" path="res://scripts/jogadores/Cadastro.gd" id="1_s6bfe"]
 [ext_resource type="PackedScene" uid="uid://dq11jm8vuhwkn" path="res://cenas/partidas/Partida.tscn" id="2_udrf5"]
 
 [node name="CadastroJogador" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_s6bfe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 544)
+texture = ExtResource("2_gjjpw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 362.0
-offset_top = 78.0
-offset_right = 753.0
-offset_bottom = 133.0
-theme_override_font_sizes/font_size = 40
+offset_left = 512.0
+offset_top = 272.0
+offset_right = 1409.0
+offset_bottom = 453.0
+theme_override_colors/font_color = Color(1, 0.729412, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_h6fa5")
+theme_override_font_sizes/font_size = 180
 text = "Cadastro de Jogador"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NomeJogador" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 263.0
-offset_right = 730.0
-offset_bottom = 294.0
+offset_left = 749.0
+offset_top = 552.0
+offset_right = 1165.0
+offset_bottom = 600.0
+scale = Vector2(1.00308, 1)
+theme_override_font_sizes/font_size = 20
 placeholder_text = "Digite seu nome"
 
 [node name="ButtonCadastroJogador" type="Button" parent="."]
-layout_mode = 0
-offset_left = 505.0
-offset_top = 330.0
-offset_right = 589.0
-offset_bottom = 361.0
-text = "Cadastrar"
+layout_mode = 1
+anchors_preset = -1
+offset_left = 860.0
+offset_top = 648.0
+offset_right = 1060.0
+offset_bottom = 705.0
+theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("3_h6fa5")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhix3")
+text = "CADASTRAR"
 
 [node name="FeedbackCadastro" type="Label" parent="."]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 397.0
-offset_right = 729.0
-offset_bottom = 428.0
+offset_left = 798.0
+offset_top = 709.0
+offset_right = 1137.0
+offset_bottom = 740.0
 
 [node name="QuantidadeJogadores" type="SpinBox" parent="."]
 layout_mode = 0
-offset_left = 646.0
-offset_top = 189.0
-offset_right = 729.062
-offset_bottom = 220.0
+offset_left = 1091.0
+offset_top = 501.0
+offset_right = 1174.06
+offset_bottom = 532.0
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 190.0
-offset_right = 565.0
-offset_bottom = 213.0
+offset_left = 749.0
+offset_top = 493.0
+offset_right = 1072.0
+offset_bottom = 536.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 30
 text = "Número de Jogadores:"
 
 [node name="Partida" parent="." instance=ExtResource("2_udrf5")]
