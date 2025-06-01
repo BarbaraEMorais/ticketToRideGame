@@ -19,6 +19,12 @@ func configurar_dados(dados: Dictionary) -> void:
 	cidade_destino = dados.get("cidade_destino", "desconhecida")
 	pontos = dados.get("pontos", 0)
 	esta_selecionada = false
+
+@onready var LabelOrigem = $"Area2D/Sprite2D/Origem"
+@onready var LabelDestino = $"Area2D/Sprite2D/Destino"
+@onready var LabelPontos = $"Area2D/Sprite2D/Pontuação"
+
+
 	completado = false
 
 func _ready():
@@ -71,6 +77,7 @@ func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
 	print("CartaDestino ('%s'): _input_event chamado com evento: %s" % [self.name, event])
 	return false  
 	
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		var mouse_pos = get_global_mouse_position()
@@ -78,3 +85,10 @@ func _unhandled_input(event):
 		if carta_rect.has_point(mouse_pos):
 			print("CLIQUE DETECTADO na carta %s!" % name)
 			alternar_selecao()
+
+	
+func _ready() -> void:
+	LabelOrigem.text = cidade_origem.capitalize()
+	LabelDestino.text = cidade_destino.capitalize()
+	LabelPontos.text = str(pontos)
+

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ceclp48lo5e2d" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
 [ext_resource type="PackedScene" uid="uid://wccsf37xgcrr" path="res://cenas/pilhaDestino.tscn" id="6_pe6d5"]
 
+
 [node name="Mesa" type="Node2D"]
 position = Vector2(-10, -2)
 script = ExtResource("1_hxkmd")
@@ -18,6 +19,7 @@ rotation = -0.00370386
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
 position = Vector2(181, 457)
 
+
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
 position = Vector2(1495, 917)
 
@@ -26,3 +28,4 @@ position = Vector2(-779, -179)
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
 position = Vector2(1293, 919)
+
