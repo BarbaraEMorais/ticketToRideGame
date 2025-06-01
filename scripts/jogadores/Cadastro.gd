@@ -4,7 +4,7 @@ extends Control
 @onready var buttonCadastroJogador = $ButtonCadastroJogador
 @onready var feedbackCadastro = $FeedbackCadastro
 @onready var quantidadeJogadoresSlider = $QuantidadeJogadores
-@onready var buttonStart = $Start
+@onready var partidaStartButton = $Partida/Start
 
 var gerenciadorJogadores
 var nomes_json = []
@@ -12,12 +12,11 @@ var listBotsJogadores = []
 var qtdJogadores = 2  # valor inicial padrão
 
 func _ready() -> void:
-	buttonStart.disabled = true
+	partidaStartButton.disabled = true
 	quantidadeJogadoresSlider.min_value = 2
 	quantidadeJogadoresSlider.max_value = 5
 
 	qtdJogadores = int(quantidadeJogadoresSlider.value)
-	buttonStart.pressed.connect(_on_start_pressed)
 
 	nomes_json = carregar_nomes_json("res://assets/json/nomesBots.json")
 
@@ -26,14 +25,6 @@ func _ready() -> void:
 	buttonCadastroJogador.pressed.connect(_on_cadastrar_pressed)
 	quantidadeJogadoresSlider.value_changed.connect(_on_qtd_jogadores_changed)
 	listBotsJogadores = sortear_nomes(nomes_json, qtdJogadores)
-
-func _on_start_pressed():
-	print("cliquei no botao")
-	inicia_partida()
-
-func inicia_partida():
-	print(get_nomeJogador())
-	print(get_nomeBots())
 
 func _on_qtd_jogadores_changed(value):
 	qtdJogadores = int(value)
@@ -51,7 +42,7 @@ func _on_cadastrar_pressed():
 		feedbackCadastro.modulate = Color(1, 0, 0)
 		return
 	
-	buttonStart.disabled = false
+	partidaStartButton.disabled = false
 	gerenciadorJogadores.salvar_usuario(nome)
 	
 	print("Nome cadastrado: ", nome)

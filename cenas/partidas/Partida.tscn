@@ -6,14 +6,8 @@
 script = ExtResource("1_c5i01")
 
 [node name="Start" type="Button" parent="."]
-offset_left = 476.0
-offset_top = 456.0
-offset_right = 676.0
-offset_bottom = 513.0
-theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
-theme_override_fonts/font = ExtResource("2_e4dum")
-theme_override_font_sizes/font_size = 42
-theme_override_styles/normal = SubResource("StyleBoxFlat_kg325")
-text = "INICIAR PARTIDA"
-
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+offset_left = 490.0
+offset_top = 480.0
+offset_right = 627.0
+offset_bottom = 511.0
+text = "Começar Partida"
