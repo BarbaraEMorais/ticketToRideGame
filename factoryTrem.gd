@@ -43,11 +43,7 @@ static func int_if_not_empty(value, default_val : int = 0) -> int:
 
 static func criar_carta_destino(dados_entrada: Dictionary) -> CartaDestino:
 	var nova_carta := _TEMPLATE_CARTA_DESTINO.instantiate()
-	nova_carta.initialize(
-		dados_entrada.get("origem"),
-		dados_entrada.get("destino"),
-		dados_entrada.get("pontos")
-	)
+	nova_carta.configurar_dados(dados_entrada)
 	
 	return nova_carta
 
