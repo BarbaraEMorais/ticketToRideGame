@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkh78weiqt7dj"]
+
+[ext_resource type="Script" path="res://cenas/Menus/menu_principal.gd" id="1_apk2w"]
+[ext_resource type="Texture2D" uid="uid://dwj6k23b3rl6p" path="res://assets/fundo-menu.png" id="1_ccga0"]
+[ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="2_3rbv3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0x32"]
+bg_color = Color(1, 0.729412, 0.145098, 1)
+border_width_bottom = 14
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.682353)
+
+[node name="MenuPrincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_apk2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_ccga0")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 868.0
+offset_top = 834.0
+offset_right = 1064.0
+offset_bottom = 919.0
+theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("2_3rbv3")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_f0x32")
+text = "JOGAR"
+
+[connection signal="pressed" from="Button" to="." method="_on_jogar_pressed"]
