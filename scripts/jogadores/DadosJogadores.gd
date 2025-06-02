@@ -7,8 +7,7 @@ func salvar_usuario(nome: String):
 		"nome": nome
 	}
 	
-	var json = JSON.new()
-	var json_string = json.stringify(dados)
+	var json_string = JSON.stringify(dados)
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_string(json_string)

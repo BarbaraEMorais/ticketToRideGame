@@ -1,7 +1,28 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs8xpadxy5ph2"]
 
 [ext_resource type="Script" path="res://scripts/jogadores/Cadastro.gd" id="1_s6bfe"]
-[ext_resource type="PackedScene" uid="uid://dq11jm8vuhwkn" path="res://cenas/partidas/Partida.tscn" id="2_udrf5"]
+[ext_resource type="Texture2D" uid="uid://jg67fgp714p" path="res://assets/menu principal fundo.png" id="2_gjjpw"]
+[ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_h6fa5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhix3"]
+bg_color = Color(1, 0.729412, 0.145098, 1)
+border_width_bottom = 14
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.682353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfrnu"]
+bg_color = Color(1, 0.729412, 0.145098, 1)
+border_width_bottom = 14
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.682353)
 
 [node name="CadastroJogador" type="Control"]
 layout_mode = 3
@@ -84,5 +105,20 @@ theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 30
 text = "Número de Jogadores:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Partida" parent="." instance=ExtResource("2_udrf5")]
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 728.0
+offset_right = 1064.0
+offset_bottom = 785.0
+theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("3_h6fa5")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_kfrnu")
+text = "INICIAR PARTIDA"
+
+[connection signal="pressed" from="ButtonCadastroJogador" to="." method="_on_cadastrar_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
