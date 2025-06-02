@@ -1,5 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs8xpadxy5ph2"]
 
+
 [ext_resource type="Script" path="res://scripts/jogadores/Cadastro.gd" id="1_s6bfe"]
 [ext_resource type="Texture2D" uid="uid://jg67fgp714p" path="res://assets/menu principal fundo.png" id="2_gjjpw"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_h6fa5"]
@@ -23,6 +24,7 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 shadow_color = Color(0, 0, 0, 0.682353)
+
 
 [node name="CadastroJogador" type="Control"]
 layout_mode = 3

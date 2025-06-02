@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://tjvwsgh5scsr"]
+
+[ext_resource type="Texture2D" uid="uid://nsw6uagxs8a6" path="res://assets/test_pin.svg" id="1_730b7"]
+[ext_resource type="Script" uid="uid://kn0li6ib3c6f" path="res://tabuleiro/Cidade.gd" id="1_sa4h6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sa4h6"]
+radius = 18.0278
+
+[node name="Cidade" type="Area2D"]
+script = ExtResource("1_sa4h6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("1_730b7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sa4h6")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = 14.0
+offset_right = 20.0
+offset_bottom = 37.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
