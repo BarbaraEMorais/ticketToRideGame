@@ -6,7 +6,7 @@ static var arquivo_cartas := preload("res://cartas_ttr_caminho.json")
 static var arquivo_cartas_destino := preload("res://assets/json/Destino.json")
 
 const _TEMPLATE_CARTA_TREM : PackedScene = preload("res://cenas/cartaTrem.tscn") 
-const _TEMPLATE_CARTA_DESTINO : PackedScene = preload("res://cenas/cartaDestino.tscn") 
+const _TEMPLATE_CARTA_DESTINO : PackedScene = preload("res://cenas/cartaDestino.tscn")
 
 @export var cartas : Array[Dictionary]= [] 
 

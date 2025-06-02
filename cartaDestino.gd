@@ -1,10 +1,14 @@
 class_name CartaDestino extends Carta
 
 var pontos: int
-var completado: bool
+var completado: bool = false
 var cidade_origem: String
 var cidade_destino: String
 var esta_selecionada: bool
+
+@onready var LabelOrigem = $"Area2D/Sprite2D/Origem"
+@onready var LabelDestino = $"Area2D/Sprite2D/Destino"
+@onready var LabelPontos = $"Area2D/Sprite2D/Pontuação"
 
 # Avisa quando o estado de seleção DESTA CARTA muda.
 signal selecao_individual_alterada(carta: CartaDestino, novo_estado_selecao: bool)
@@ -20,16 +24,14 @@ func configurar_dados(dados: Dictionary) -> void:
 	pontos = dados.get("pontos", 0)
 	esta_selecionada = false
 
-@onready var LabelOrigem = $"Area2D/Sprite2D/Origem"
-@onready var LabelDestino = $"Area2D/Sprite2D/Destino"
-@onready var LabelPontos = $"Area2D/Sprite2D/Pontuação"
-
-
-	completado = false
 
 func _ready():
 	# Aguardar um frame para garantir que todos os nós estão prontos
 	await get_tree().process_frame
+	
+	LabelOrigem.text = cidade_origem.capitalize()
+	LabelDestino.text = cidade_destino.capitalize()
+	LabelPontos.text = str(pontos)
 	
 	# Garantir que a carta possa receber input
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -85,10 +87,4 @@ func _unhandled_input(event):
 		if carta_rect.has_point(mouse_pos):
 			print("CLIQUE DETECTADO na carta %s!" % name)
 			alternar_selecao()
-
 	
-func _ready() -> void:
-	LabelOrigem.text = cidade_origem.capitalize()
-	LabelDestino.text = cidade_destino.capitalize()
-	LabelPontos.text = str(pontos)
-
