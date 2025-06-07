@@ -132,7 +132,6 @@ func _on_botao_continuar_pressionado():
 	print("Cartas escolhidas para enviar à Mesa:")
 	for carta_escolhida in cartas_realmente_selecionadas:
 		print("  - '%s' (%s-%s)" % [carta_escolhida.name, carta_escolhida.cidade_origem, carta_escolhida.cidade_destino])
-
 	emit_signal("selecao_de_destinos_concluida", cartas_realmente_selecionadas)
 	
 	self.visible = false

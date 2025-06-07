@@ -41,6 +41,7 @@ func add_carta(carta: Carta) -> void:
 	connect_carta(carta)
 
 	_cartas.push_front(carta)
+	carta.get_parent().remove_child(carta)
 	add_child(carta)
 
 	_calcula_posicoes()
@@ -115,12 +116,3 @@ func get_limite():
 func get_cartas_na_mao():
 	return _cartas.size()
 	
-func ser_saqueado() -> Array[Carta]:
-	_posicoes.clear()
-	var cartas_roubadas: Array[Carta] = []
-	for c in _cartas:
-		cartas_roubadas.append(c)
-	
-	_cartas.clear()
-
-	return cartas_roubadas

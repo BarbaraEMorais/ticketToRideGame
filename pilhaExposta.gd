@@ -96,7 +96,7 @@ func _on_carta_exposta_foi_clicada(carta_clicada: CartaTrem) -> void:
 	
 	print("PilhaExposta: Carta '%s' clicada e será adicionada ao jogador." % carta_clicada.name)
 	#print(_cartas.size()) # antes
-	remove_child(carta_clicada)
+	#remove_child(carta_clicada)
 	emit_signal("carta_tomada_da_exposta", carta_clicada)
 	carta_clicada.drag_enabled = true
 	_cartas.erase(carta_clicada)

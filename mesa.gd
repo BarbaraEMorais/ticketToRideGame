@@ -13,6 +13,9 @@ var _card_manager: CardManager
 func _ready() -> void:
 	jogador= cena_jogador_host.instantiate()
 	add_child(jogador)
+	set_card_manager()
+	add_child(_card_manager)
+	
 	if not is_instance_valid(_pilha_trem):
 		push_error("Mesa: Nó PilhaTrem não encontrado ou inválido.")
 		return
@@ -105,8 +108,9 @@ func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 		for carta in cartas_escolhidas:
 			if is_instance_valid(carta): 
 				print("  - De: %s Para: %s (Pontos: %s)" % [carta.cidade_origem, carta.cidade_destino, carta.pontos])
-				print("    APAGANDO (temporariamente) a carta: %s" % carta.name)
-				carta.queue_free()
+				carta.visible=true
+				jogador.get_mao().add_carta(carta)
+				
 				
 			else:
 				print("  - Uma carta escolhida tornou-se inválida antes do processamento.")
