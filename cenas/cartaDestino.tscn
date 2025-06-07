@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmt651m6ir3re"]
+[gd_scene load_steps=5 format=3 uid="uid://ceclp48lo5e2d"]
 
 [ext_resource type="Script" path="res://cartaDestino.gd" id="1_ef62c"]
 [ext_resource type="Texture2D" uid="uid://covgpuum661t8" path="res://assets/BaseCartaDestino.png" id="2_y7ut4"]
@@ -8,15 +8,14 @@
 size = Vector2(226.5, 335.5)
 
 [node name="CartaDestino" type="Node2D"]
+position = Vector2(340, 175)
 script = ExtResource("1_ef62c")
 
 [node name="Area2D" type="Area2D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(113, 168)
+position = Vector2(2, -1)
 texture = ExtResource("2_y7ut4")
-metadata/_edit_lock_ = true
 
 [node name="Origem" type="Label" parent="Area2D/Sprite2D"]
 offset_left = -64.0
@@ -59,6 +58,5 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(114, 169)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_aicb3")
-metadata/_edit_lock_ = true
