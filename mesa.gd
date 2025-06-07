@@ -3,17 +3,25 @@ class_name Mesa extends Node2D
 @onready var _pilha_trem: PilhaTrem = $PilhaTrem 
 @onready var _pilha_exposta: PilhaExposta = $PilhaExposta
 @onready var _pilha_destino: PilhaDestino = $PilhaDestino
+
 # @onready var jogador_atual: Jogador 
 const CENA_SELECAO_DESTINO = preload("res://cenas/seleçãoDestino.tscn")
+var cena_jogador_host = preload("res://cenas/jogador.tscn")
 var instancia_selecao_destino_ui
+var jogador = Jogador
+var _card_manager: CardManager
 func _ready() -> void:
+	jogador= cena_jogador_host.instantiate()
+	add_child(jogador)
 	if not is_instance_valid(_pilha_trem):
 		push_error("Mesa: Nó PilhaTrem não encontrado ou inválido.")
 		return
 	if not is_instance_valid(_pilha_exposta):
 		push_error("Mesa: Nó PilhaExposta não encontrado ou inválido.")
 		return
-
+	
+	
+	
 	
 	_pilha_exposta.set_pilha_trem(_pilha_trem)
 
@@ -41,7 +49,8 @@ func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 
 # Callback para quando uma carta é tomada da PilhaExposta
 func _on_carta_tomada_da_pilha_exposta(carta: CartaTrem) -> void:
-	print("Mesa: Jogador tomou a carta '%s' da PilhaExposta." % carta.name)
+	
+	jogador.get_mao().add_carta(carta)
 	
 func _on_pilha_destino_selecao_solicitada() -> void:
 	print("Mesa: Recebida solicitação para seleção de cartas destino.")
@@ -106,3 +115,8 @@ func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 		
 		pass 
 	instancia_selecao_destino_ui = null # Limpa a referência
+
+func set_card_manager() -> void:
+	_card_manager = CardManager.new()
+	_card_manager.name = "CardManager"
+	jogador.get_mao().set_signals_to_manager(_card_manager)

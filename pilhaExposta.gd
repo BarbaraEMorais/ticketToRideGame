@@ -93,11 +93,15 @@ func _on_carta_exposta_foi_clicada(carta_clicada: CartaTrem) -> void:
 		print("PilhaExposta: Carta clicada ('%s') não encontrada na lista interna. Ignorando." % carta_clicada.name)
 		return
 
-	print("PilhaExposta: Carta '%s' clicada e será eliminada." % carta_clicada.name)
 	
-	_cartas.erase(carta_clicada) # TO DO: ACRESCENTAR CARTA A MÃO DO JOGADOR
+	print("PilhaExposta: Carta '%s' clicada e será adicionada ao jogador." % carta_clicada.name)
+	#print(_cartas.size()) # antes
+	remove_child(carta_clicada)
 	emit_signal("carta_tomada_da_exposta", carta_clicada)
-	carta_clicada.queue_free()
+	carta_clicada.drag_enabled = true
+	_cartas.erase(carta_clicada)
+	#carta_clicada.queue_free() 
+	#print(_cartas.size())# depois
 	call_deferred("_repor_uma_carta_na_exposta")
 	call_deferred("_atualizar_posicoes_cartas")
 	
