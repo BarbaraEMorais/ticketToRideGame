@@ -44,7 +44,8 @@ func get_pilha_exposta() -> PilhaExposta:
 # Callback para quando uma carta é comprada da PilhaTrem (clique direto na pilha)
 func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 	print("Mesa: Jogador comprou a carta '%s' da PilhaTrem." % carta.name)
-	# Aqui você adicionaria a carta à mão do jogador atual
+	carta.visible=true
+	jogador.get_mao().add_carta(carta)
 
 
 # Callback para quando uma carta é tomada da PilhaExposta
