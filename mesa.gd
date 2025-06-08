@@ -11,6 +11,8 @@ var instancia_selecao_destino_ui
 var jogador = Jogador
 var _card_manager: CardManager
 func _ready() -> void:
+	#CONFIGURAÇÃO DO JOGADOR NOVO (Quando implementar a lógica de turnos e outros jogadores ia, acho que faz mais sentido a partida instanciar
+	# e setar os jogadores)
 	jogador= cena_jogador_host.instantiate()
 	add_child(jogador)
 	set_card_manager()

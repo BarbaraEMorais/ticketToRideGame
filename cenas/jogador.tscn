@@ -7,16 +7,16 @@
 size = Vector2(400, 119)
 
 [node name="jogador" type="Node2D"]
-position = Vector2(893, 941)
+position = Vector2(888, 926)
 script = ExtResource("1_xym4u")
 
 [node name="Mao" type="Node2D" parent="."]
-position = Vector2(2, -4)
+position = Vector2(-5, -1)
 script = ExtResource("1_p6q5b")
 
 [node name="Area2D" type="Area2D" parent="Mao"]
-position = Vector2(5, -6)
+position = Vector2(0, 12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mao/Area2D"]
-position = Vector2(-18, 4)
+position = Vector2(2, -2)
 shape = SubResource("RectangleShape2D_334rp")

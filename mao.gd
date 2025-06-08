@@ -41,7 +41,8 @@ func add_carta(carta: Carta) -> void:
 	connect_carta(carta)
 
 	_cartas.push_front(carta)
-	carta.get_parent().remove_child(carta)
+	if is_instance_valid(carta.get_parent()):
+		carta.get_parent().remove_child(carta) #tira o pai anterior (pilha)
 	add_child(carta)
 
 	_calcula_posicoes()
