@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://pu1mgc2vajty"]
+
+[ext_resource type="Script" path="res://status_jogador.gd" id="1_7xird"]
+[ext_resource type="Texture2D" uid="uid://vmos4i3m7x0e" path="res://assets/Bilhete_vermelho.png" id="2_yduvx"]
+[ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_u54o8"]
+
+[node name="Status Jogador" type="Node2D"]
+position = Vector2(960, 540)
+script = ExtResource("1_7xird")
+
+[node name="Bilhete" type="Sprite2D" parent="."]
+texture = ExtResource("2_yduvx")
+
+[node name="Pontos" type="Label" parent="."]
+offset_left = 112.0
+offset_top = -96.0
+offset_right = 178.0
+offset_bottom = -25.0
+theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
+theme_override_fonts/font = ExtResource("3_u54o8")
+theme_override_font_sizes/font_size = 60
+text = "34"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Qtd_Destinos" type="Label" parent="."]
+offset_left = -130.0
+offset_top = 43.0
+offset_right = -64.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
+theme_override_fonts/font = ExtResource("3_u54o8")
+theme_override_font_sizes/font_size = 50
+text = "10
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Qtd_Vagoes" type="Label" parent="."]
+offset_left = -35.0
+offset_top = 43.0
+offset_right = 31.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
+theme_override_fonts/font = ExtResource("3_u54o8")
+theme_override_font_sizes/font_size = 50
+text = "10
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Qtd_Mao" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 43.0
+offset_right = 113.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
+theme_override_fonts/font = ExtResource("3_u54o8")
+theme_override_font_sizes/font_size = 50
+text = "10
+"
+horizontal_alignment = 1
+vertical_alignment = 1
