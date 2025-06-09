@@ -13,6 +13,9 @@ func set_card_color(color: String) -> void:
 	var color_path = "res://assets/Bilhete_" + color + ".png"
 	$Bilhete.texture = load(color_path)
 
+func set_nome(nome: String) -> void:
+	$Nome.text = nome
+
 func set_pontos(num: int) -> void:
 	$Pontos.text = num
 
