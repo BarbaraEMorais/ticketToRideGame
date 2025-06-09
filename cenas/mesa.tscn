@@ -20,11 +20,11 @@ visible = false
 position = Vector2(181, 457)
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
-position = Vector2(1495, 917)
+position = Vector2(346, 164)
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
 visible = false
 position = Vector2(534, 52)
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
-position = Vector2(1293, 919)
+position = Vector2(134, 158)

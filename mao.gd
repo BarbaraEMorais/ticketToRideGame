@@ -4,6 +4,9 @@ class_name Mao extends CardContainer
 var _posicoes: Array[Vector2]
 var _limite_cartas: int
 	
+var largura_carta := 180
+
+
 func _ready() -> void:
 	super._ready()
 	_cartas = []
@@ -12,7 +15,6 @@ func _ready() -> void:
 	print("INSTANCIADA")
 
 func _calcula_posicoes() -> void:
-	var largura_carta = 180
 	var qtd_cartas = _cartas.size()
 
 	var padding = 10
@@ -44,6 +46,11 @@ func add_carta(carta: Carta) -> void:
 	if is_instance_valid(carta.get_parent()):
 		carta.get_parent().remove_child(carta) #tira o pai anterior (pilha)
 	add_child(carta)
+
+	if carta is CartaDestino:
+		var escalaNecessaria = largura_carta / carta.visual_sprite.get_rect().size.x
+		carta.apply_scale(Vector2(escalaNecessaria, escalaNecessaria))
+		
 
 	_calcula_posicoes()
 	_anima_cartas()
