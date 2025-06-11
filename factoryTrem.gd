@@ -126,7 +126,8 @@ static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Ca
 				if tex: (sprite_node as Sprite2D).texture = tex
 				else: printerr("FactoryCarta (Destino): Falha ao carregar textura: ", caminho_img)
 		elif not caminho_img.is_empty():
-			printerr("FactoryCarta (Trem): 'SpriteVisual' não encontrado ou não é Sprite2D.")
+			pass
+			#printerr("FactoryCarta (Destino): 'SpriteVisual' não encontrado ou não é Sprite2D.")
 	else:
 		printerr("FactoryCarta: Contexto de pilha desconhecido em criar_carta: ", contexto_pilha)
 		return null

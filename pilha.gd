@@ -18,8 +18,8 @@ func criarpilha_inicial() -> void: # Esta função é intencionalmente deixada p
 func comprar_carta_da_pilha() -> Carta: 
 	if _cartas.size() > 0:
 		var carta: Carta = _cartas.pop_back() 
-		print("Pilha (%s): Carta '%s' comprada." % [name, carta.name if carta else "NIL"])
-		add_child(carta)
+		print("Pilha (%s): Carta '%s' compradaaaaaaaa." % [name, carta.name if carta else "NIL"])
+		#remove_child(carta)
 		emit_signal("carta_comprada_da_pilha", carta) 
 		return carta 
 	

@@ -11,9 +11,9 @@ var show_highlight = false
 
 
 func set_signals_to_manager(manager: CardManager) -> void:
-	holding_card.connect(manager.on_holding_card)
 	carta_left.connect(manager.on_carta_leaving_container)
 	carta_over.connect(manager.on_carta_over_container)
+	holding_card.connect(manager.on_holding_card)
 
 
 func on_card_grab_started(carta: Carta) -> void:
