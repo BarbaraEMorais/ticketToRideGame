@@ -47,15 +47,15 @@ func _mouse_saiu_da_carta() -> void:
 
 
 func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if not drag_enabled:
-		return
-		
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT :
-		if event.pressed:
-			pos_inicial_arrasto = get_global_mouse_position()
-			mouse_offset = position - pos_inicial_arrasto
+	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
+		return 
+	if event.pressed:
+		pos_inicial_arrasto = get_global_mouse_position()
+		mouse_offset = position - pos_inicial_arrasto
+
+		if drag_enabled:
 			arrastando = true
-			print("CARTA - emit inicia_arrasto")
+			print("CARTA ('%s') - Drag_enabled: true. Emitindo inicia_arrasto." % name) # DEBUG
 			inicia_arrasto.emit(self)
 			z_index = 1
 
@@ -63,11 +63,23 @@ func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: 
 				animacao_hover.kill()
 			scale = Vector2.ONE
 		else:
-			var was_click = (pos_inicial_arrasto - get_global_mouse_position()).length() < 5.0
-			_finaliza_arrastar()
-			if was_click:
-				carta_clicada.emit(self)
+			print("CARTA ('%s') - Drag_enabled: false. Clique pressionado." % name) # DEBUG
+			pass
 
+	else: 
+		var was_click = (pos_inicial_arrasto - get_global_mouse_position()).length() < 5.0
+
+		if arrastando: 
+			print("CARTA ('%s') - Estava arrastando. Finalizando arrasto." % name) # DEBUG
+			_finaliza_arrastar() 
+		
+	
+		if was_click:
+			print("CARTA ('%s') - Foi um clique curto. Emitindo carta_clicada." % name) # DEBUG
+			print("AAAAAAAAAAAAAAAAAAAA")
+			carta_clicada.emit(self)
+		else:
+			print("CARTA ('%s') - Não foi um clique curto (foi um arrasto ou nada)." % name) # DEBUG
 
 func _process(_delta: float) -> void:
 	if arrastando and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

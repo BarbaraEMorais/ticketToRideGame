@@ -3,9 +3,10 @@ extends Node
 class_name FactoryCarta 
 
 static var arquivo_cartas := preload("res://cartas_ttr_caminho.json") 
+static var arquivo_cartas_destino := preload("res://assets/json/Destino.json")
 
 const _TEMPLATE_CARTA_TREM : PackedScene = preload("res://cenas/cartaTrem.tscn") 
-const _TEMPLATE_CARTA_DESTINO : PackedScene = preload("res://cenas/cartaDestino.tscn") 
+const _TEMPLATE_CARTA_DESTINO : PackedScene = preload("res://cenas/cartaDestino.tscn")
 
 @export var cartas : Array[Dictionary]= [] 
 
@@ -21,7 +22,7 @@ func _ready() -> void:
 		else:
 			cartas.append({"Pilha": "PILHA_TREM", "CartaNode": carta_b, "Erro": "Não é CartaTrem."})
 			
-	r_cartas_base = criar_cartas_da_pilha("PILHA_DESTINO")
+	r_cartas_base = criar_pilha_destino() as Array[Carta]
 	for carta_b in r_cartas_base:
 		if carta_b is CartaDestino:
 			var cd = carta_b as CartaDestino
@@ -40,6 +41,36 @@ static func int_if_not_empty(value, default_val : int = 0) -> int:
 		elif value.is_valid_float(): return int(value.to_float())
 	return default_val
 
+static func criar_carta_destino(dados_entrada: Dictionary) -> CartaDestino:
+	var nova_carta := _TEMPLATE_CARTA_DESTINO.instantiate()
+	nova_carta.initialize(
+		dados_entrada.get("origem"),
+		dados_entrada.get("destino"),
+		dados_entrada.get("pontos")
+	)
+	
+	return nova_carta
+
+static func criar_pilha_destino() -> Array[CartaDestino]:
+	var ret : Array[CartaDestino]
+	
+	if arquivo_cartas_destino == null or not arquivo_cartas_destino.data:
+		printerr("FactoryCarta: 'arquivo_cartas' não carregado ou JSON global mal formatado.")
+		return ret
+	
+
+	var dados_da_pilha = arquivo_cartas_destino.data
+	if not dados_da_pilha is Array:
+		printerr("FactoryCarta: JSON da pilha de destina não é um Array.")
+		return ret
+
+	for definicao_item in dados_da_pilha:
+		if not definicao_item is Dictionary:
+			printerr("FactoryCarta: Item na pilha de destino não é um dicionário: " % definicao_item)
+			continue
+	
+		ret.append(criar_carta_destino(definicao_item))
+	return ret
 
 static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Carta:
 	var nova_carta_base : Carta = null 
@@ -87,10 +118,19 @@ static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Ca
 			script_carta_destino.configurar_dados(dados_entrada)
 		else:
 			printerr("FactoryCarta (Destino): Script 'CartaDestino' não tem 'configurar_dados(dados)'.")
+		var caminho_img : String = dados_entrada.get("imagem", "")
+		var sprite_node = script_carta_destino.get_node_or_null("Sprite2D")
+		if sprite_node and sprite_node is Sprite2D:
+			if not caminho_img.is_empty():
+				var tex : Texture2D = load(caminho_img)
+				if tex: (sprite_node as Sprite2D).texture = tex
+				else: printerr("FactoryCarta (Destino): Falha ao carregar textura: ", caminho_img)
+		elif not caminho_img.is_empty():
+			pass
+			#printerr("FactoryCarta (Destino): 'SpriteVisual' não encontrado ou não é Sprite2D.")
 	else:
 		printerr("FactoryCarta: Contexto de pilha desconhecido em criar_carta: ", contexto_pilha)
 		return null
-	
 	
 	if nova_carta_base and "visible" in nova_carta_base:
 		nova_carta_base.visible = false
@@ -128,10 +168,12 @@ static func criar_cartas_da_pilha(pilha_nome : String) -> Array[Carta]:
 				carta_criada = criar_carta(definicao_item, pilha_nome) 
 				if carta_criada:
 					ret.push_back(carta_criada)
+			ret.shuffle()
 		elif pilha_nome == "PILHA_DESTINO":
 			carta_criada = criar_carta(definicao_item, pilha_nome) 
 			if carta_criada:
 				ret.push_back(carta_criada)
+
 		
 
 	return ret 
@@ -142,4 +184,5 @@ static func _criar_todas_as_cartas_tt_ride_como_array_base() -> Array[Carta]: # 
 	if arquivo_cartas and arquivo_cartas.data:
 		for nome_da_pilha in arquivo_cartas.data:
 			todas_as_cartas.append_array(criar_cartas_da_pilha(nome_da_pilha))
+		todas_as_cartas.shuffle()
 	return todas_as_cartas

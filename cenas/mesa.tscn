@@ -4,23 +4,27 @@
 [ext_resource type="PackedScene" uid="uid://b5nr4prodiiq4" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
 [ext_resource type="PackedScene" uid="uid://rdsbsl6ag741" path="res://cenas/cartaTrem.tscn" id="3_gaxdi"]
 [ext_resource type="PackedScene" uid="uid://dbrmi6ca20idk" path="res://cenas/pilhaTrem.tscn" id="4_btbph"]
-[ext_resource type="Script" path="res://cartaTrem.gd" id="4_nk80x"]
-[ext_resource type="PackedScene" uid="uid://bmt651m6ir3re" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
+[ext_resource type="PackedScene" uid="uid://ceclp48lo5e2d" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
+[ext_resource type="PackedScene" uid="uid://wccsf37xgcrr" path="res://cenas/pilhaDestino.tscn" id="6_pe6d5"]
 
 [node name="Mesa" type="Node2D"]
+position = Vector2(-10, -2)
 script = ExtResource("1_hxkmd")
 
 [node name="PilhaExposta" parent="." instance=ExtResource("2_sboaq")]
-visible = false
-position = Vector2(-75, -186)
+position = Vector2(1751, 242)
+rotation = -0.00370386
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
-position = Vector2(100, 324)
-script = ExtResource("4_nk80x")
-drag_enabled = true
-cancela_arrasto = false
+visible = false
+position = Vector2(181, 457)
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
-position = Vector2(1020, 533)
+position = Vector2(346, 164)
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
+visible = false
+position = Vector2(534, 52)
+
+[node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
+position = Vector2(134, 158)
