@@ -23,9 +23,9 @@ jobs:
           mkdir godot
       
       - run: |
-          mv Godot_v4.2.2-stable_linux_x86_64 godot
+          mv Godot_v4.2.2-stable_linux.x86_64 godot
 
-      - run: chmod +x godot/Godot_v4.2.2-stable_linux_x86_64
+      - run: chmod +x godot/Godot_v4.2.2-stable_linux.x86_64
 
       - name: Test
         run: |
