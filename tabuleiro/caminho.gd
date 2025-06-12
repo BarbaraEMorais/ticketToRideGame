@@ -30,7 +30,7 @@ func _ready():
 
 
 func gera_caminho():
-	var parabola = Parabola.new(origem.position, destino.position, curvature)
+	var parabola = Parabola.new(origem.position, destino.position, curvature, 25)
 
 	# just to take the size of the trilho
 	var trilho = trilho_scene.instantiate() as Trilho

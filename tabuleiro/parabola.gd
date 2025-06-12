@@ -3,11 +3,11 @@ class_name Parabola extends Node2D
 @export var point_a: Vector2 = Vector2(-100, 0)
 @export var point_b: Vector2 = Vector2(100, 0)
 @export var convexity: float = -50.0  # Negative for upward curve, positive for downward
-@export var line_width: float = 2.0
 @export var line_color: Color = Color.WHITE
+@export var margins: float = 0
 
-func _init(a, b, conv):
-	set_points(a, b)
+func _init(a, b, conv, m = 0):
+	set_points(a, b, m)
 	set_convexity(conv)
 
 
@@ -46,9 +46,11 @@ func get_tangent_vector_at_parameter(t: float) -> Vector2:
 	return tangent_vector.normalized()  # Return as unit vector
 
 
-func set_points(a: Vector2, b: Vector2):
-	point_a = a
-	point_b = b
+func set_points(a: Vector2, b: Vector2, m: float):
+	var margin = (b - a).normalized() * m
+
+	point_a = a + margin
+	point_b = b - margin
 
 
 func set_convexity(new_convexity: float):
