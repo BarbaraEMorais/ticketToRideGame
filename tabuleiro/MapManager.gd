@@ -8,9 +8,8 @@ var caminhos: Array[Caminho] = []
 
 func _ready():
 	_cria_varias_cidades_exemplo()
-	_cria_caminho(1, 2, 6, 2)
-	_cria_caminho(2, 3, 3, 1)
-	_cria_caminho(1, 3, 5, 3)
+	_cria_caminho(1, 2, 5, 1)
+	# _cria_caminho(2, 3, 3, 1)
 
 
 func _cria_varias_cidades_exemplo():

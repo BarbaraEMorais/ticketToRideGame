@@ -15,4 +15,5 @@ caminho_scene = ExtResource("3_rpm0h")
 script = ExtResource("2_8nmvd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_ajt1u")
