@@ -8,7 +8,7 @@ var caminhos: Array[Caminho] = []
 
 func _ready():
 	_cria_varias_cidades_exemplo()
-	_cria_caminho(1, 2, 5, 1)
+	_cria_caminho(1, 2, 5, 1, ["Red"])
 	# _cria_caminho(2, 3, 3, 1)
 
 
@@ -33,7 +33,7 @@ func _cria_cidade(id: int, cidade_name: String, pos: Vector2):
 		push_warning("MapManager: cidadeino scene não setada.")
 
 
-func _cria_caminho(origem_id: int, cidade_id: int, length: int, lines: int):
+func _cria_caminho(origem_id: int, cidade_id: int, length: int, lines: int, colors: Array[String]):
 	if not caminho_scene:
 		push_warning("MapManager: Caminho scene não setada.")
 		return
@@ -46,6 +46,6 @@ func _cria_caminho(origem_id: int, cidade_id: int, length: int, lines: int):
 	var cidade_node: Cidade = cidades[cidade_id]
 
 	var caminho_node = caminho_scene.instantiate() as Caminho
-	caminho_node.setup_caminho(origem_node, cidade_node, length, lines)
+	caminho_node.setup_caminho(origem_node, cidade_node, length, lines, colors)
 	add_child(caminho_node)
 	caminhos.append(caminho_node)
