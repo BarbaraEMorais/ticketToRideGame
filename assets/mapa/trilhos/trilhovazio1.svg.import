@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwavw835ps88j"
-path="res://.godot/imported/trilhovazio3.svg-771774ead79fdb5da42225cd0fd73a52.ctex"
+uid="uid://kjbee3qhsy21"
+path="res://.godot/imported/trilhovazio1.svg-fa1ee6dbe408d5b283fed4136dd6a142.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/trilhos/trilhovazio3.svg"
-dest_files=["res://.godot/imported/trilhovazio3.svg-771774ead79fdb5da42225cd0fd73a52.ctex"]
+source_file="res://assets/mapa/trilhos/trilhovazio1.svg"
+dest_files=["res://.godot/imported/trilhovazio1.svg-fa1ee6dbe408d5b283fed4136dd6a142.ctex"]
 
 [params]
 

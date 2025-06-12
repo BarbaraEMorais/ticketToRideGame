@@ -50,7 +50,7 @@ func _update_sprite() -> void:
 	var state_prefix: String = "trilhopreenchido" if is_taken else "trilhovazio"
 	var color_suffix: String = str(_color_map.get(track_color, 1))
 
-	var path: String = "res://assets/trilhos/%s%s.svg" % [state_prefix, color_suffix]
+	var path: String = "res://assets/mapa/trilhos/%s%s.svg" % [state_prefix, color_suffix]
 
 	# Load the texture
 	var new_texture: Texture2D = load(path)

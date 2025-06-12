@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgwct12vkdk72"
-path="res://.godot/imported/trilhopreenchido4.svg-e016058313fc4405caf0801438aca3a4.ctex"
+uid="uid://dxqawfe31qpn3"
+path="res://.godot/imported/trilhopreenchido6.svg-7e3b5abf4426392bc5f64f7c87451806.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/trilhos/trilhopreenchido4.svg"
-dest_files=["res://.godot/imported/trilhopreenchido4.svg-e016058313fc4405caf0801438aca3a4.ctex"]
+source_file="res://assets/mapa/trilhos/trilhopreenchido6.svg"
+dest_files=["res://.godot/imported/trilhopreenchido6.svg-7e3b5abf4426392bc5f64f7c87451806.ctex"]
 
 [params]
 
