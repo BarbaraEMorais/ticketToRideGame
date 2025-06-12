@@ -9,12 +9,17 @@ class_name Caminho extends Node2D
 @export var linhasQtd: int
 @export var linhas: Array[Dictionary] = []
 
+var trilhos: Array[Array]
+
 func setup_caminho(_origem: Cidade, _destino: Cidade, _tamanho: int, _linhasQtd, _cores_linhas: Array[String]):
 	origem = _origem
 	destino = _destino
 	tamanho = _tamanho
 	linhasQtd = _linhasQtd
 	linhas = _cores_linhas.map(func(e): return {"color": e, "locomotives": 0})
+
+	for i in range(linhasQtd):
+		trilhos[i] = []
 
 
 func _ready():
@@ -33,11 +38,14 @@ func gera_caminho():
 		for j in range(linhasQtd):
 			var direction = parabola.get_tangent_vector_at_parameter((i+0.5)/float(tamanho))
 			var normal = direction.orthogonal()
+			var normal_offset = (linhasQtd/2.0 - 1/2.0) * normal - (j * trilho_shape.y * normal)
 
 			trilho = trilho_scene.instantiate() as Trilho
 			trilho.rotation = direction.angle()
-			trilho.position = parabola.get_parabola_point((i+0.5)/float(tamanho)) + (linhasQtd/2.0 - 1/2.0) * normal - (j * trilho_shape.y * normal)
+			trilho.position = parabola.get_parabola_point((i+0.5)/float(tamanho)) + normal_offset
 			add_child(trilho)
+
+			trilhos[j][i] = trilho
 
 
 func _get_trilho_shape(trilho_node: Area2D):
