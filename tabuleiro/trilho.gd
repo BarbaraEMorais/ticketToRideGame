@@ -1,6 +1,8 @@
 class_name Trilho extends Area2D
 
-
+signal trilho_hovered(trilho: Trilho)
+signal trilho_unhovered(trilho: Trilho)
+signal trilho_clicked(trilho: Trilho)
 
 var _color_map: Dictionary = {
 	"Blue": 1,
@@ -12,7 +14,6 @@ var _color_map: Dictionary = {
 	"Yellow": 7,
 	"DarkBlue": 8
 }
-
 
 @export_enum("Blue", "Orange", "Pink", "Red", "Green", "DarkGray", "Yellow", "DarkBlue") var track_color: String = "Blue":
 	set(value):
@@ -47,7 +48,7 @@ func _ready() -> void:
 
 func _update_sprite() -> void:
 	var state_prefix: String = "trilhopreenchido" if is_taken else "trilhovazio"
-	var color_suffix: String = str(_color_map.get(track_color, 1)) # Default to 1 if color not found
+	var color_suffix: String = str(_color_map.get(track_color, 1))
 
 	var path: String = "res://assets/trilhos/%s%s.svg" % [state_prefix, color_suffix]
 
@@ -56,9 +57,21 @@ func _update_sprite() -> void:
 	if new_texture:
 		sprite.texture = new_texture
 	else:
-		# Handle cases where the texture might not be found (e.g., wrong path, missing file)
 		printerr("Failed to load track sprite: %s" % path)
 
 
 func _on_mouse_entered() -> void:
-	pass # Replace with function body.
+	trilho_hovered.emit(self)
+
+func _on_mouse_exited() -> void:
+	trilho_unhovered.emit(self)
+
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		trilho_clicked.emit(self)
+
+func highlight():
+	sprite.modulate = Color(2.0, 2.0, 2.0)
+
+func unhighlight():
+	sprite.modulate = Color(1.0, 1.0, 1.0)
