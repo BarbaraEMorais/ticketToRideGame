@@ -39,6 +39,26 @@ script = ExtResource("1_s6bfe")
 position = Vector2(960, 544)
 texture = ExtResource("2_gjjpw")
 
+[node name="OptionButton" type="OptionButton" parent="Sprite2D"]
+offset_left = -208.0
+offset_top = 80.0
+offset_right = 208.0
+offset_bottom = 128.0
+item_count = 7
+popup/item_0/text = "Azul Claro"
+popup/item_1/text = "Vermelho"
+popup/item_1/id = 1
+popup/item_2/text = "Azul Escuro"
+popup/item_2/id = 2
+popup/item_3/text = "Verde"
+popup/item_3/id = 3
+popup/item_4/text = "Preto"
+popup/item_4/id = 4
+popup/item_5/text = "Amarelo"
+popup/item_5/id = 5
+popup/item_6/text = "Rosa"
+popup/item_6/id = 6
+
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 
@@ -71,9 +91,9 @@ placeholder_text = "Digite seu nome"
 layout_mode = 1
 anchors_preset = -1
 offset_left = 860.0
-offset_top = 648.0
+offset_top = 704.0
 offset_right = 1060.0
-offset_bottom = 705.0
+offset_bottom = 761.0
 theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
 theme_override_fonts/font = ExtResource("3_h6fa5")
 theme_override_font_sizes/font_size = 42
@@ -111,9 +131,9 @@ vertical_alignment = 1
 [node name="Start" type="Button" parent="."]
 layout_mode = 0
 offset_left = 864.0
-offset_top = 728.0
+offset_top = 784.0
 offset_right = 1064.0
-offset_bottom = 785.0
+offset_bottom = 841.0
 theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
 theme_override_fonts/font = ExtResource("3_h6fa5")
 theme_override_font_sizes/font_size = 42
