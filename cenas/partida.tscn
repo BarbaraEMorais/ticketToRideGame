@@ -6,7 +6,6 @@
 
 [node name="Partida" type="Node2D"]
 script = ExtResource("1_yh25d")
-maxJogadores = 2
 
 [node name="Tabuleiro" parent="." instance=ExtResource("3_utrv6")]
 position = Vector2(952, 544)

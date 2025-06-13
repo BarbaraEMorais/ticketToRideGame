@@ -1,13 +1,13 @@
 class_name Partida extends Node2D
 
-@export
 var listaJogadores : Array[Jogador]
-
-@export_range(2, 6)
 var maxJogadores : int
 var partidaEmAndamento : bool = true
 var _indexJogadorAtual : int = 0
 var mesa : Mesa
+var tabuleiro : MapManager
+
+# SEPARAR ESTADOS/TURNO DE PARTIDA
 enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
 var _estado = EM_ANDAMENTO
 
@@ -17,6 +17,8 @@ func _ready() -> void:
 	mesa.set_jogador_atual(listaJogadores[0])
 	mesa.set_mesa()
 	mesa.set_card_manager()
+
+	tabuleiro = $Tabuleiro
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
