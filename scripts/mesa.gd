@@ -6,18 +6,24 @@ class_name Mesa extends Node2D
 
 # @onready var jogador_atual: Jogador 
 const CENA_SELECAO_DESTINO = preload("res://cenas/seleçãoDestino.tscn")
-var cena_jogador_host = preload("res://cenas/jogador.tscn")
+#var cena_jogador_host = preload("res://cenas/JogadorHumano.tscn")
+#var cena_jogador_IA = preload("res://status_jogador.gd")
+
 var instancia_selecao_destino_ui
 var jogador = Jogador
+var jogadores_IA: Array[Jogador]
 var _card_manager: CardManager
+
+func set_mesa(jogadores: Array[Jogador]) -> void:
+	jogador = jogadores[0]
+	jogadores_IA = jogadores.slice(1)
+	add_child(jogador)
+	for i in range(jogadores_IA.size()):
+		add_child(jogadores_IA[i])
+
 func _ready() -> void:
 	#CONFIGURAÇÃO DO JOGADOR NOVO (Quando implementar a lógica de turnos e outros jogadores ia, acho que faz mais sentido a partida instanciar
-	# e setar os jogadores)
-	jogador= cena_jogador_host.instantiate()
-	add_child(jogador)
-	set_card_manager()
-	add_child(_card_manager)
-	
+	# e setar os jogadores)	
 	if not is_instance_valid(_pilha_trem):
 		push_error("Mesa: Nó PilhaTrem não encontrado ou inválido.")
 		return
@@ -127,3 +133,4 @@ func set_card_manager() -> void:
 	_card_manager = CardManager.new()
 	_card_manager.name = "CardManager"
 	jogador.get_mao().set_signals_to_manager(_card_manager)
+	add_child(_card_manager)

@@ -24,7 +24,7 @@ func carrega_usuario():
 	var json = JSON.new()
 	var err = json.parse(json_string)
 	
-	if err == OK and typeof(json.result) == TYPE_DICTIONARY:
-		return json.result.get("nome", null)
+	if err == OK and typeof(json.data) == TYPE_DICTIONARY:
+		return json.data.get("nome", null)
 	else:
 		return null

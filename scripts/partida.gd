@@ -1,38 +1,49 @@
 class_name Partida extends Node2D
 
 @export
-var listaJogadores : Array[JogadorTemp]
+var listaJogadores : Array[Jogador]
 
 @export_range(2, 6)
 var maxJogadores : int
-
 var partidaEmAndamento : bool = true
-
 var _indexJogadorAtual : int = 0
-
 var mesa : Mesa
-
 enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
-
 var _estado = EM_ANDAMENTO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mesa = $Mesa
-	pass # Replace with function body.
-
+	mesa.set_mesa(listaJogadores)
+	mesa.set_card_manager()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func add_player(jogador : JogadorTemp) -> void:
+static func create_partida(nomes: Array[String]) -> Partida:
+	var partida_cena = preload("res://cenas/partida.tscn")
+	var partida = partida_cena.instantiate()
+
+	print(nomes)
+	for nome in nomes:
+		var jogador = Jogador.create(nome, "azul_claro", Vector2(40, -680), Vector2(960, 0))
+		jogador.set_status_param()
+		partida.add_player(jogador)
+	return partida
+
+func add_player(jogador : Jogador) -> void:
 	if(listaJogadores.size() == maxJogadores):
 		printerr("Não é possível adicionar novo jogador: Partida Cheia")
 		return
-	
 	listaJogadores.append(jogador)
 
+func get_jogadores() -> Array[Jogador]:
+	return listaJogadores
+
+func set_partida() -> void:
+	for jogador in listaJogadores:
+		add_child(jogador)
 
 func proximo_turno():
 	# por segurança
@@ -63,5 +74,3 @@ func determinarVitoria() -> void:
 func _handle_end_game_signal():
 	if _estado == EM_ANDAMENTO:
 		_estado = ULTIMO_TURNO
-	
-	

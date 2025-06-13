@@ -1,16 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxpnsjnpqxxkb"]
+[gd_scene load_steps=3 format=3 uid="uid://dxpnsjnpqxxkb"]
 
 [ext_resource type="PackedScene" uid="uid://eifoucjqk2ut" path="res://cenas/mesa.tscn" id="1_gmxvt"]
 [ext_resource type="Script" path="res://scripts/partida.gd" id="1_yh25d"]
-[ext_resource type="PackedScene" uid="uid://kfvcr8lhu7y6" path="res://tabuleiro/tabuleiro.tscn" id="3_utrv6"]
 
 [node name="Partida" type="Node2D"]
 script = ExtResource("1_yh25d")
 maxJogadores = 2
-
-[node name="Tabuleiro" parent="." instance=ExtResource("3_utrv6")]
-position = Vector2(952, 544)
-scale = Vector2(0.548712, 0.548712)
 
 [node name="Mesa" parent="." instance=ExtResource("1_gmxvt")]
 

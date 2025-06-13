@@ -13,7 +13,7 @@ config_version=5
 config/name="TicketoRide"
 run/main_scene="res://cenas/Menus/Menu Principal.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://scripts/icon.svg"
 
 [display]
 

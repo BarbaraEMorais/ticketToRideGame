@@ -8,7 +8,7 @@ extends Control
 
 var gerenciadorJogadores
 var nomes_json = []
-var listBotsJogadores = []
+var listBotsJogadores : Array[String] = []
 var qtdJogadores = 2  # valor inicial padrão
 
 func _ready() -> void:
@@ -25,11 +25,14 @@ func _ready() -> void:
 	listBotsJogadores = sortear_nomes(nomes_json, qtdJogadores)
 
 func _on_start_pressed():
-	print("cliquei no botao")
-	inicia_partida()
+	listBotsJogadores.insert(0, gerenciadorJogadores.carrega_usuario())
+	var partida = Partida.create_partida(listBotsJogadores)
+	partida.set_partida()
+	add_child(partida)
+	get_tree().change_scene_to_packed(partida)
 
 func inicia_partida():
-	print(get_nomeJogador())
+	get_tree().change_scene_to_file("res://cenas/partida.tscn")
 	print(get_nomeBots())
 
 func _on_qtd_jogadores_changed(value):
@@ -77,7 +80,7 @@ func carregar_nomes_json(caminho: String) -> Array:
 
 	return json_parser.data
 
-func sortear_nomes(nomes_array: Array, quantidade: int) -> Array:
+func sortear_nomes(nomes_array: Array, quantidade: int) -> Array[String]:
 	var nomes_copiados = nomes_array.duplicate()
 	nomes_copiados.shuffle()
 	quantidade = quantidade -1
