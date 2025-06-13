@@ -14,26 +14,17 @@ var _estado = EM_ANDAMENTO
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mesa = $Mesa
-	mesa.set_mesa(listaJogadores)
+	mesa.set_jogador_atual(listaJogadores[0])
+	mesa.set_mesa()
 	mesa.set_card_manager()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-static func create_partida(nomes: Array[String]) -> Partida:
+static func create_partida() -> Partida:
 	var partida_cena = preload("res://cenas/partida.tscn")
 	var partida = partida_cena.instantiate()
-	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa"]
-	print(nomes)
-	for i in range(nomes.size()):
-		var jogador
-		if i == 0:
-			jogador = Jogador.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))
-		else:
-			jogador = JogadorIA.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))	
-		jogador.set_status_param()
-		partida.add_player(jogador)
 	return partida
 
 func add_player(jogador : Jogador) -> void:
@@ -45,14 +36,23 @@ func add_player(jogador : Jogador) -> void:
 func get_jogadores() -> Array[Jogador]:
 	return listaJogadores
 
-func set_partida() -> void:
-	print(listaJogadores)
+func set_partida(nomes: Array[String], qtd_jogadores: int) -> void:
+	maxJogadores = qtd_jogadores
+	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa"]
+	for i in range(maxJogadores):
+		var jogador
+		if i == 0:
+			jogador = Jogador.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))
+		else:
+			jogador = JogadorIA.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))	
+		jogador.set_status_param()
+		add_player(jogador)
 	for i in range(listaJogadores.size()):
 		add_child(listaJogadores[i])
 		if i > 0:
+			print("setou bot position")
 			listaJogadores[i].set_status_pos(Vector2(20, 200*(i-1)))
 			listaJogadores[i].set_mao_pos(Vector2(60, 200*(i-1)))
-	
 
 func proximo_turno():
 	# por segurança

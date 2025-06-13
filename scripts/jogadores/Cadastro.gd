@@ -26,10 +26,9 @@ func _ready() -> void:
 func _on_start_pressed():
 	listBotsJogadores = sortear_nomes(nomes_json, qtdJogadores)
 	listBotsJogadores.insert(0, gerenciadorJogadores.carrega_usuario())
-	var partida = Partida.create_partida(listBotsJogadores)
-	partida.set_partida()
+	var partida = Partida.create_partida()
+	partida.set_partida(listBotsJogadores, qtdJogadores)
 	add_child(partida)
-	get_tree().change_scene_to_packed(partida)
 
 func _on_qtd_jogadores_changed(value):
 	qtdJogadores = int(value)

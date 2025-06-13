@@ -14,24 +14,7 @@ var _card_manager: CardManager
 var jogador_atual : Jogador
 
 func _ready() -> void:
-	if not is_instance_valid(_pilha_trem):
-		push_error("Mesa: Nó PilhaTrem não encontrado ou inválido.")
-		return
-	if not is_instance_valid(_pilha_exposta):
-		push_error("Mesa: Nó PilhaExposta não encontrado ou inválido.")
-		return
-	
-	_pilha_exposta.set_pilha_trem(_pilha_trem)
-
-	# Conectar aos sinais, se a Mesa precisar reagir a esses eventos
-	_pilha_trem.carta_comprada_da_pilha.connect(_on_carta_comprada_da_pilha_trem)
-	_pilha_exposta.carta_tomada_da_exposta.connect(_on_carta_tomada_da_pilha_exposta)
-	
-	print("Mesa configurada. PilhaExposta conectada à PilhaTrem.")
-	if is_instance_valid(_pilha_destino):
-		var err = _pilha_destino.selecao_cartas_destino_solicitada.connect(_on_pilha_destino_selecao_solicitada)
-	#else:
-	#	push_warning("Mesa: Instância de _pilha_destino não é válida. Não foi possível conectar sinal.")
+	pass 
 	
 func get_trem() -> PilhaTrem:
 	return _pilha_trem
@@ -43,13 +26,13 @@ func get_pilha_exposta() -> PilhaExposta:
 func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 	print("Mesa: Jogador comprou a carta '%s' da PilhaTrem." % carta.name)
 	carta.visible=true
-	jogador.get_mao().add_carta(carta)
+	jogador_atual.get_mao().add_carta(carta)
 
 
 # Callback para quando uma carta é tomada da PilhaExposta
 func _on_carta_tomada_da_pilha_exposta(carta: CartaTrem) -> void:
 	
-	jogador.get_mao().add_carta(carta)
+	jogador_atual.get_mao().add_carta(carta)
 	
 func _on_pilha_destino_selecao_solicitada() -> void:
 	print("Mesa: Recebida solicitação para seleção de cartas destino.")
@@ -104,7 +87,7 @@ func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 			if is_instance_valid(carta): 
 				print("  - De: %s Para: %s (Pontos: %s)" % [carta.cidade_origem, carta.cidade_destino, carta.pontos])
 				carta.visible=true
-				jogador.get_mao().add_carta(carta)
+				jogador_atual.get_mao().add_carta(carta)
 				
 				
 			else:
@@ -122,5 +105,26 @@ func set_jogador_atual(jogador: Jogador):
 func set_card_manager() -> void:
 	_card_manager = CardManager.new()
 	_card_manager.name = "CardManager"
-	jogador.get_mao().set_signals_to_manager(_card_manager)
+	jogador_atual.get_mao().set_signals_to_manager(_card_manager)
 	add_child(_card_manager)
+
+func set_mesa():
+	if not is_instance_valid(_pilha_trem):
+		push_error("Mesa: Nó PilhaTrem não encontrado ou inválido.")
+		return
+	if not is_instance_valid(_pilha_exposta):
+		push_error("Mesa: Nó PilhaExposta não encontrado ou inválido.")
+		return
+	
+	_pilha_exposta.set_pilha_trem(_pilha_trem)
+
+	# Conectar aos sinais, se a Mesa precisar reagir a esses eventos
+	_pilha_trem.carta_comprada_da_pilha.connect(_on_carta_comprada_da_pilha_trem)
+	_pilha_exposta.carta_tomada_da_exposta.connect(_on_carta_tomada_da_pilha_exposta)
+	
+	print("Mesa configurada. PilhaExposta conectada à PilhaTrem.")
+	if is_instance_valid(_pilha_destino):
+		var err = _pilha_destino.selecao_cartas_destino_solicitada.connect(_on_pilha_destino_selecao_solicitada)
+	#else:
+	#	push_warning("Mesa: Instância de _pilha_destino não é válida. Não foi possível conectar sinal.")
+	
