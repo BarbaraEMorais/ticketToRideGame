@@ -10,29 +10,16 @@ const CENA_SELECAO_DESTINO = preload("res://cenas/seleçãoDestino.tscn")
 #var cena_jogador_IA = preload("res://status_jogador.gd")
 
 var instancia_selecao_destino_ui
-var jogador = Jogador
-var jogadores_IA: Array[Jogador]
 var _card_manager: CardManager
-
-func set_mesa(jogadores: Array[Jogador]) -> void:
-	jogador = jogadores[0]
-	jogadores_IA = jogadores.slice(1)
-	add_child(jogador)
-	for i in range(jogadores_IA.size()):
-		add_child(jogadores_IA[i])
+var jogador_atual : Jogador
 
 func _ready() -> void:
-	#CONFIGURAÇÃO DO JOGADOR NOVO (Quando implementar a lógica de turnos e outros jogadores ia, acho que faz mais sentido a partida instanciar
-	# e setar os jogadores)	
 	if not is_instance_valid(_pilha_trem):
 		push_error("Mesa: Nó PilhaTrem não encontrado ou inválido.")
 		return
 	if not is_instance_valid(_pilha_exposta):
 		push_error("Mesa: Nó PilhaExposta não encontrado ou inválido.")
 		return
-	
-	
-	
 	
 	_pilha_exposta.set_pilha_trem(_pilha_trem)
 
@@ -128,6 +115,9 @@ func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 		
 		pass 
 	instancia_selecao_destino_ui = null # Limpa a referência
+
+func set_jogador_atual(jogador: Jogador):
+	jogador_atual = jogador
 
 func set_card_manager() -> void:
 	_card_manager = CardManager.new()

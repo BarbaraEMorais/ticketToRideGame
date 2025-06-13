@@ -22,23 +22,18 @@ func _ready() -> void:
 
 	gerenciadorJogadores = load("res://scripts/jogadores/DadosJogadores.gd").new()
 	quantidadeJogadoresSlider.value_changed.connect(_on_qtd_jogadores_changed)
-	listBotsJogadores = sortear_nomes(nomes_json, qtdJogadores)
 
 func _on_start_pressed():
+	listBotsJogadores = sortear_nomes(nomes_json, qtdJogadores)
 	listBotsJogadores.insert(0, gerenciadorJogadores.carrega_usuario())
 	var partida = Partida.create_partida(listBotsJogadores)
 	partida.set_partida()
 	add_child(partida)
 	get_tree().change_scene_to_packed(partida)
 
-func inicia_partida():
-	get_tree().change_scene_to_file("res://cenas/partida.tscn")
-	print(get_nomeBots())
-
 func _on_qtd_jogadores_changed(value):
 	qtdJogadores = int(value)
 	print("Número de jogadores:", qtdJogadores)
-	listBotsJogadores = sortear_nomes(nomes_json, qtdJogadores)
 
 func get_nomeJogador() -> String:
 	return nomeJogador.text.strip_edges()
@@ -83,7 +78,7 @@ func carregar_nomes_json(caminho: String) -> Array:
 func sortear_nomes(nomes_array: Array, quantidade: int) -> Array[String]:
 	var nomes_copiados = nomes_array.duplicate()
 	nomes_copiados.shuffle()
-	quantidade = quantidade -1
+	quantidade = quantidade - 1
 	
 	if quantidade > nomes_copiados.size():
 		quantidade = nomes_copiados.size()

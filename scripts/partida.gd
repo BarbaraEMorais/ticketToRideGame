@@ -24,10 +24,14 @@ func _process(delta: float) -> void:
 static func create_partida(nomes: Array[String]) -> Partida:
 	var partida_cena = preload("res://cenas/partida.tscn")
 	var partida = partida_cena.instantiate()
-
+	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa"]
 	print(nomes)
-	for nome in nomes:
-		var jogador = Jogador.create(nome, "azul_claro", Vector2(40, -680), Vector2(960, 0))
+	for i in range(nomes.size()):
+		var jogador
+		if i == 0:
+			jogador = Jogador.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))
+		else:
+			jogador = JogadorIA.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))	
 		jogador.set_status_param()
 		partida.add_player(jogador)
 	return partida
@@ -42,8 +46,13 @@ func get_jogadores() -> Array[Jogador]:
 	return listaJogadores
 
 func set_partida() -> void:
-	for jogador in listaJogadores:
-		add_child(jogador)
+	print(listaJogadores)
+	for i in range(listaJogadores.size()):
+		add_child(listaJogadores[i])
+		if i > 0:
+			listaJogadores[i].set_status_pos(Vector2(20, 200*(i-1)))
+			listaJogadores[i].set_mao_pos(Vector2(60, 200*(i-1)))
+	
 
 func proximo_turno():
 	# por segurança
