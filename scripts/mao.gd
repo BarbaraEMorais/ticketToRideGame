@@ -37,6 +37,8 @@ func _calcula_posicoes() -> void:
 func accepts_card(_carta: Carta) -> bool:
 	return _cartas.size() < _limite_cartas
 
+func can_receive_card() -> bool:
+	return _cartas.size() < _limite_cartas
 
 func add_carta(carta: Carta) -> void:
 	connect_carta(carta)

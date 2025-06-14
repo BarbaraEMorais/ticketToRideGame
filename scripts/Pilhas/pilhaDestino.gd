@@ -20,20 +20,14 @@ func comprar_carta_da_pilha() -> Carta: # Sobrescrevendo o método da classe Pil
 	
 	return null 
 
-func comprar_carta_da_pilha_IA(numCartas : int) -> Array[CartaDestino]: # Usada somente pelo jogador IA
+func comprar_carta_da_pilha_IA() -> CartaDestino: # Usada somente pelo jogador IA
 	if _cartas.size() == 0:
 		print("PilhaDestino: Sem cartas de destino suficiente para jogador IA")
-		return []
+		return null
 	else:
-		var ret : Array[CartaDestino]
+		var ret = _cartas.pop_front() as CartaDestino
 		
-		if numCartas > _cartas.size():
-			numCartas = _cartas.size()
-			
-		for i in range(numCartas):
-			ret.append(_cartas.pop_front() as CartaDestino)
-		
-		print("PilhaDestino: Puxadas %s cartas pela IA." % ret.size())
+		print("PilhaDestino: IA puxou uma carta" % ret.size())
 		
 		return ret
 

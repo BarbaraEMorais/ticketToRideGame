@@ -128,3 +128,6 @@ func set_mesa():
 	#else:
 	#	push_warning("Mesa: Instância de _pilha_destino não é válida. Não foi possível conectar sinal.")
 	
+
+func get_pilha_destino() -> PilhaDestino:
+	return _pilha_destino
