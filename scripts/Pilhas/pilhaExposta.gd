@@ -159,3 +159,6 @@ func received_own_card(carta: Carta) -> void:
 
 func accepts_card(_carta: Carta) -> bool:
 	return false
+
+func getCartas() -> Array[CartaTrem]:
+	return _cartas
