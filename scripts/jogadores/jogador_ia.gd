@@ -11,7 +11,7 @@ static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Ve
 	novo.set_card_color(cor)
 	return novo
 
-func play(mesa : Mesa) -> void:
+func jogarTurno(mesa : Mesa) -> void:
 	# No momento, as ações do jogador IA não tem nenhuma lógica
 	var action : int = rng.randi()
 	
