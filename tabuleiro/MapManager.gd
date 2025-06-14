@@ -84,8 +84,10 @@ func json_map_parser(file_path: String):
 
 	# caminhos
 	for t in json_result["tracks"]:
-		# t["lines"].map(func(e): return e["colour"]) as Array[String]
-		_cria_caminho(t["id"], t["start"], t["end"], t["length"], t["lineAmount"], ["grey", "grey","grey", "grey"], t["curvature"])
+		var colors: Array[String] = []
+		for line_data in t["lines"]:
+			colors.append(line_data["colour"] as String)
+		_cria_caminho(t["id"], t["start"], t["end"], t["length"], t["lineAmount"], colors, t["curvature"])
 
 
 func _on_image_saved(image_path: String):

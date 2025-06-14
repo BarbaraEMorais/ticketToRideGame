@@ -13,7 +13,7 @@ class_name Caminho extends Node2D
 
 var trilhos: Array[Array]
 
-func setup_caminho(_id: int, _origem: Cidade, _destino: Cidade, _tamanho: int, _linhasQtd, cores: Array[String], _curvature: int = 0):
+func setup_caminho(_id: int, _origem: Cidade, _destino: Cidade, _tamanho: int, _linhasQtd, cores: Array, _curvature: int = 0):
 	id = _id
 	origem = _origem
 	destino = _destino
