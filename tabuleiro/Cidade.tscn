@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://tjvwsgh5scsr"]
+[gd_scene load_steps=4 format=3 uid="uid://tjvwsgh5scsr"]
 
 [ext_resource type="Script" uid="uid://kn0li6ib3c6f" path="res://tabuleiro/Cidade.gd" id="1_sa4h6"]
 [ext_resource type="Texture2D" uid="uid://dnrddtcdiyddg" path="res://assets/mapa/cidade.svg" id="2_stiri"]
-[ext_resource type="Texture2D" uid="uid://bdnhb7ac46mj5" path="res://assets/mapa/label-container.svg" id="3_24oni"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa4h6"]
 radius = 30.0167
@@ -24,10 +23,5 @@ offset_top = -70.0
 offset_right = 20.0
 offset_bottom = -47.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Label-container" type="Sprite2D" parent="."]
-position = Vector2(-1, -55)
-scale = Vector2(1, 0.763889)
-texture = ExtResource("3_24oni")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
