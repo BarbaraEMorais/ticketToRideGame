@@ -5,6 +5,7 @@ extends Control
 @onready var feedbackCadastro = $FeedbackCadastro
 @onready var quantidadeJogadoresSlider = $QuantidadeJogadores
 @onready var buttonStart = $Start
+@onready var corJogador = $Cor
 
 var gerenciadorJogadores
 var nomes_json = []
