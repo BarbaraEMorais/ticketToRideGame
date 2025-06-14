@@ -2,6 +2,7 @@ class_name Caminho extends Node2D
 
 @export var trilho_scene: PackedScene
 
+@export var id: int
 @export var origem: Cidade
 @export var destino: Cidade
 
@@ -12,7 +13,8 @@ class_name Caminho extends Node2D
 
 var trilhos: Array[Array]
 
-func setup_caminho(_origem: Cidade, _destino: Cidade, _tamanho: int, _linhasQtd, cores: Array[String], _curvature: int = 0):
+func setup_caminho(_id: int, _origem: Cidade, _destino: Cidade, _tamanho: int, _linhasQtd, cores: Array[String], _curvature: int = 0):
+	id = _id
 	origem = _origem
 	destino = _destino
 	tamanho = _tamanho
@@ -30,12 +32,12 @@ func _ready():
 
 
 func gera_caminho():
-	var parabola = Parabola.new(origem.position, destino.position, curvature, 25)
+	var parabola = Parabola.new(origem.position, destino.position, curvature, 30)
 
 	# just to take the size of the trilho
 	var trilho = trilho_scene.instantiate() as Trilho
 	var trilho_shape = _get_trilho_shape(trilho)
-	trilho_shape *= Vector2(0.5, 0.5)
+	trilho_shape *= Vector2(0.3, 0.3)
 	trilho.queue_free()
 
 	for i in range(tamanho):
@@ -47,8 +49,8 @@ func gera_caminho():
 
 			trilho = trilho_scene.instantiate() as Trilho
 			trilho.rotation = direction.angle()
-			trilho.position = parabola.get_parabola_point((i+0.5)/float(tamanho)) + normal_offset
-			trilho.scale = Vector2(0.5, 0.5)
+			trilho.position = parabola.get_parabola_point((i+0.5)/float(tamanho)) + normal_offset - (normal.normalized() * curvature)/2
+			trilho.scale = Vector2(0.3, 0.3)
 
 			trilho.trilho_hovered.connect(_on_trilho_hovered)
 			trilho.trilho_unhovered.connect(_on_trilho_unhovered)

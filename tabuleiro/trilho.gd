@@ -5,17 +5,19 @@ signal trilho_unhovered(trilho: Trilho)
 signal trilho_clicked(trilho: Trilho)
 
 var _color_map: Dictionary = {
-	"Blue": 1,
-	"Orange": 2,
-	"Pink": 3,
-	"Red": 4,
-	"Green": 5,
-	"DarkGray": 6,
-	"Yellow": 7,
-	"DarkBlue": 8
+	"blue": 1,
+	"orange": 2,
+	"pink": 3,
+	"red": 4,
+	"green": 5,
+	"black": 6,
+	"yellow": 7,
+	"dark_blue": 8,
+	"white": 9,
+	"grey": 10
 }
 
-@export_enum("Blue", "Orange", "Pink", "Red", "Green", "DarkGray", "Yellow", "DarkBlue") var track_color: String = "Blue":
+@export_enum("blue", "orange", "pink", "Red", "green", "black", "yellow", "dark_blue", "white", "grey") var track_color: String = "blue":
 	set(value):
 		track_color = value
 		_update_sprite()

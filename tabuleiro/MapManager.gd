@@ -36,7 +36,7 @@ func _cria_cidade(id: int, cidade_name: String, pos: Vector2):
 		push_warning("MapManager: Cidade scene não setada.")
 
 
-func _cria_caminho(origem_id: int, destino_id: int, length: int, lines: int, colors: Array[String], curvature = 0):
+func _cria_caminho(id: int, origem_id: int, destino_id: int, length: int, lines: int, colors: Array[String], curvature = 0):
 	if not caminho_scene:
 		push_warning("MapManager: Caminho scene não setada.")
 		return
@@ -49,7 +49,7 @@ func _cria_caminho(origem_id: int, destino_id: int, length: int, lines: int, col
 	var cidade_node: Cidade = cidades[destino_id]
 
 	var caminho_node = caminho_scene.instantiate() as Caminho
-	caminho_node.setup_caminho(origem_node, cidade_node, length, lines, colors, curvature)
+	caminho_node.setup_caminho(id, origem_node, cidade_node, length, lines, colors, curvature)
 	add_child(caminho_node)
 	caminhos.append(caminho_node)
 
@@ -72,14 +72,20 @@ func json_map_parser(file_path: String):
 	var output_path = "user://decoded_image.png"
 	image_parser.parseImage(json_result["detailedBackgrounds"]["skyNoRoads"], output_path)
 
+	# dimensoes do mapa
 	var width = (json_result["outline"]["width"] + json_result["outline"]["offset_x"]) * 2
 	var height = (json_result["outline"]["height"] + json_result["outline"]["offset_y"]) * 2
 	var dimensions = json_result["dimensions"]
+
 	# cidades
 	for cidade in json_result["destinations"]:
-		print(cidade)
-		_cria_cidade(cidade["id"], cidade["name"], Vector2(-width/2 + cidade["x"]*width / dimensions[0], height/2 + -cidade["y"] * height))
+		var pos = Vector2(-width/2 + cidade["x"] * width / dimensions[0], height/2 + -cidade["y"] * height)
+		_cria_cidade(cidade["id"], cidade["name"], pos)
 
+	# caminhos
+	for t in json_result["tracks"]:
+		# t["lines"].map(func(e): return e["colour"]) as Array[String]
+		_cria_caminho(t["id"], t["start"], t["end"], t["length"], t["lineAmount"], ["grey", "grey","grey", "grey"], t["curvature"])
 
 
 func _on_image_saved(image_path: String):
