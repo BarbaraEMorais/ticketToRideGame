@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cec2docseshmt"]
+
+[ext_resource type="Script" path="res://cenas/jogadores/opcoesJogador.gd" id="1_gp1de"]
+[ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_wkw62"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfrnu"]
+bg_color = Color(1, 0.729412, 0.145098, 1)
+border_width_bottom = 14
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.682353)
+
+[node name="OpcoesJogador" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gp1de")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 68.0
+offset_right = 1398.0
+offset_bottom = 249.0
+theme_override_colors/font_color = Color(1, 0.729412, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_wkw62")
+theme_override_font_sizes/font_size = 180
+text = "Cadastro de Jogador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="teste" type="Button" parent="."]
+layout_mode = 0
+offset_left = 851.0
+offset_top = 968.0
+offset_right = 1051.0
+offset_bottom = 1025.0
+theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("3_wkw62")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_kfrnu")
+text = "INICIAR PARTIDA"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 366.0
+offset_right = 1910.0
+offset_bottom = 698.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
