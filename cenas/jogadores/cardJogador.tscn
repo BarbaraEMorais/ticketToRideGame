@@ -1,0 +1,211 @@
+[gd_scene load_steps=18 format=3 uid="uid://dsb2ilrojbqmn"]
+
+[ext_resource type="Script" path="res://cenas/jogadores/cardJogador.gd" id="1_ifw3p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0t2n"]
+bg_color = Color(0.866667, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8u34"]
+bg_color = Color(0.866667, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muo4x"]
+bg_color = Color(0, 0.270588, 0.945098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k438x"]
+bg_color = Color(0, 0.270588, 0.945098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hq48"]
+bg_color = Color(0, 0.670588, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkhv1"]
+bg_color = Color(0, 0.670588, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgsrv"]
+bg_color = Color(1, 0.513726, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wthey"]
+bg_color = Color(1, 0.513726, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ay5w"]
+bg_color = Color(1, 1, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_845vx"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwwyb"]
+bg_color = Color(0.533333, 0.0941176, 0.870588, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2nv1b"]
+bg_color = Color(0.533333, 0.0941176, 0.870588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qk01s"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd08e"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eevlv"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgtau"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CardJogador" type="Control"]
+custom_minimum_size = Vector2(250, 280)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 280.0
+script = ExtResource("1_ifw3p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_as_relative = false
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 289.0
+color = Color(0, 0, 0.0196078, 0.113725)
+
+[node name="BoxContainer" type="BoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 96.0
+offset_right = 232.0
+offset_bottom = 127.0
+
+[node name="btnVermelho" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h0t2n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_j8u34")
+toggle_mode = true
+text = "     "
+
+[node name="btnAzul" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_muo4x")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k438x")
+toggle_mode = true
+text = "     "
+
+[node name="btnVerde" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hq48")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gkhv1")
+toggle_mode = true
+text = "     "
+
+[node name="btnLaranja" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wgsrv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wthey")
+toggle_mode = true
+text = "     "
+
+[node name="btnAmarelo" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ay5w")
+theme_override_styles/normal = SubResource("StyleBoxFlat_845vx")
+toggle_mode = true
+text = "     "
+
+[node name="btnRoxo" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bwwyb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2nv1b")
+toggle_mode = true
+text = "     "
+
+[node name="btnBranco" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qk01s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fd08e")
+toggle_mode = true
+text = "     "
+
+[node name="btnPreto" type="Button" parent="ColorRect/BoxContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eevlv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sgtau")
+toggle_mode = true
+text = "     "
+
+[node name="NomeJogador" type="LineEdit" parent="ColorRect"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 157.0
+offset_right = 219.0
+offset_bottom = 193.0
+scale = Vector2(1.00308, 1)
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Digite seu nome"
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 42.0
+offset_right = 210.0
+offset_bottom = 65.0
+text = "Selecione uma cor"
+
+[node name="btnConfirmar" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 220.0
+offset_right = 180.0
+offset_bottom = 253.0
+text = "Confirmar"
