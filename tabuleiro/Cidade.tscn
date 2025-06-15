@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://tjvwsgh5scsr"]
+[gd_scene load_steps=7 format=3 uid="uid://tjvwsgh5scsr"]
 
 [ext_resource type="Script" uid="uid://kn0li6ib3c6f" path="res://tabuleiro/Cidade.gd" id="1_sa4h6"]
 [ext_resource type="Texture2D" uid="uid://dnrddtcdiyddg" path="res://assets/mapa/cidade.svg" id="2_stiri"]
@@ -6,22 +6,55 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_sa4h6"]
 radius = 30.0167
 
+[sub_resource type="Theme" id="Theme_msywb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msywb"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.12549)
+shadow_size = 2
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_stiri"]
+font_color = Color(0, 0, 0, 1)
+
 [node name="Cidade" type="Area2D"]
+z_index = 1
 script = ExtResource("1_sa4h6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 3)
-scale = Vector2(0.72, 0.72)
+scale = Vector2(0.244898, 0.244898)
 texture = ExtResource("2_stiri")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
 shape = SubResource("CircleShape2D_sa4h6")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -70.0
-offset_right = 20.0
-offset_bottom = -47.0
-metadata/_edit_use_anchors_ = true
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_direction = 2
+anchors_preset = -1
+offset_left = -43.0
+offset_top = -76.0
+offset_right = 43.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_msywb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_msywb")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_stiri")
+horizontal_alignment = 1
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
