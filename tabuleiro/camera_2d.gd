@@ -1,8 +1,8 @@
 extends Camera2D
 
 @export var zoom_speed: float = 0.1
-@export var min_zoom: float = 0.5
-@export var max_zoom: float = 2.0
+@export var min_zoom: float = 0.9
+@export var max_zoom: float = 2.5
 
 func _input(event: InputEvent):
     if event is InputEventMouseButton:
