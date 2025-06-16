@@ -31,8 +31,6 @@ var _color_map: Dictionary = {
 @onready var collision_shape_node: CollisionShape2D = $CollisionShape2D
 
 @export var rectangle_color: Color = Color.WHITE
-@export var linha: int
-
 
 func _ready() -> void:
 	if not sprite:

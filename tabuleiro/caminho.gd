@@ -5,11 +5,12 @@ class_name Caminho extends Node2D
 @export var id: int
 @export var origem: Cidade
 @export var destino: Cidade
-
 @export var tamanho: int
 @export var linhasQtd: int
 @export var coresLinhas: Array[String]
 @export var curvature: int
+
+var linhas: Array[Linha]
 
 var trilhos: Array[Array]
 
@@ -22,9 +23,10 @@ func setup_caminho(_id: int, _origem: Cidade, _destino: Cidade, _tamanho: int, _
 	coresLinhas = cores
 	curvature = _curvature
 
-	trilhos.resize(linhasQtd)
 	for i in range(linhasQtd):
-		trilhos[i] = []
+		var linha = Linha.new(cores[i])
+		linhas.append(linha)
+		add_child(linha)
 
 
 func _ready():
@@ -52,16 +54,7 @@ func gera_caminho():
 			trilho.position = parabola.get_parabola_point((i+0.5)/float(tamanho)) + normal_offset - (normal.normalized() * curvature)/2
 			trilho.scale = Vector2(0.32, 0.3)
 
-			trilho.trilho_hovered.connect(_on_trilho_hovered)
-			trilho.trilho_unhovered.connect(_on_trilho_unhovered)
-			trilho.trilho_clicked.connect(_on_trilho_clicked)
-
-			add_child(trilho)
-
-			trilho.linha = j
-			trilho.track_color = coresLinhas[j]
-
-			trilhos[j].append(trilho)
+			linhas[j].add_trilho(trilho)
 
 
 func _get_trilho_shape(trilho_node: Area2D):
@@ -74,23 +67,3 @@ func _get_trilho_shape(trilho_node: Area2D):
 	if collision_shape_node and collision_shape_node.shape:
 		if collision_shape_node.shape is RectangleShape2D:
 			return collision_shape_node.shape.size
-
-
-func _on_trilho_hovered(trilho: Trilho):
-	highlight_linha(trilho.linha)
-
-func _on_trilho_unhovered(trilho: Trilho):
-	unhighlight_linha(trilho.linha)
-
-func _on_trilho_clicked(trilho: Trilho):
-	print("Clicked trilho at linha ", trilho.linha)
-
-func highlight_linha(linha_index: int):
-	for trilho in trilhos[linha_index]:
-		if trilho:
-			trilho.highlight()
-
-func unhighlight_linha(linha_index: int):
-	for trilho in trilhos[linha_index]:
-		if trilho:
-			trilho.unhighlight()
