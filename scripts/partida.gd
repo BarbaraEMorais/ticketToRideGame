@@ -6,18 +6,15 @@ var partidaEmAndamento : bool = true
 var _indexJogadorAtual : int = 0
 var mesa : Mesa
 var tabuleiro : MapManager
-
+var UI : CanvasLayer
 # SEPARAR ESTADOS/TURNO DE PARTIDA
 enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
 var _estado = EM_ANDAMENTO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	mesa = $Mesa
-	mesa.set_jogador_atual(listaJogadores[0])
-	mesa.set_mesa()
-	mesa.set_card_manager()
-
+	mesa = $"UI/Mesa"
+	UI = $"UI"
 	tabuleiro = $Tabuleiro
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +36,7 @@ func get_jogadores() -> Array[Jogador]:
 	return listaJogadores
 
 func set_partida(nomes: Array[String], qtd_jogadores: int) -> void:
+	print("set_partida -> nomes:", nomes)
 	maxJogadores = qtd_jogadores
 	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa"]
 	for i in range(maxJogadores):
@@ -50,11 +48,13 @@ func set_partida(nomes: Array[String], qtd_jogadores: int) -> void:
 		jogador.set_status_param()
 		add_player(jogador)
 	for i in range(listaJogadores.size()):
-		add_child(listaJogadores[i])
+		UI.add_child(listaJogadores[i])
 		if i > 0:
-			print("setou bot position")
 			listaJogadores[i].set_status_pos(Vector2(20, 200*(i-1)))
 			listaJogadores[i].set_mao_pos(Vector2(60, 200*(i-1)))
+	mesa.set_jogador_atual(listaJogadores[0])
+	mesa.set_mesa()
+	mesa.set_card_manager()
 
 func proximo_turno():
 	# por segurança

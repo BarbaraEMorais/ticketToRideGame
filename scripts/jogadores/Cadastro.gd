@@ -27,8 +27,8 @@ func _on_start_pressed():
 	listBotsJogadores = sortear_nomes(nomes_json, qtdJogadores)
 	listBotsJogadores.insert(0, gerenciadorJogadores.carrega_usuario())
 	var partida = Partida.create_partida()
-	partida.set_partida(listBotsJogadores, qtdJogadores)
 	add_child(partida)
+	partida.set_partida(listBotsJogadores, qtdJogadores)
 
 func _on_qtd_jogadores_changed(value):
 	qtdJogadores = int(value)

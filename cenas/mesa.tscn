@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://eifoucjqk2ut"]
 
-[ext_resource type="Script" uid="uid://bq43t2jo6iswp" path="res://scripts/mesa.gd" id="1_hxkmd"]
+[ext_resource type="Script" path="res://scripts/mesa.gd" id="1_hxkmd"]
 [ext_resource type="PackedScene" uid="uid://b5nr4prodiiq4" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
 [ext_resource type="PackedScene" uid="uid://rdsbsl6ag741" path="res://cenas/cartaTrem.tscn" id="3_gaxdi"]
 [ext_resource type="PackedScene" uid="uid://dbrmi6ca20idk" path="res://cenas/pilhaTrem.tscn" id="4_btbph"]
@@ -8,22 +8,24 @@
 [ext_resource type="PackedScene" uid="uid://wccsf37xgcrr" path="res://cenas/pilhaDestino.tscn" id="6_pe6d5"]
 
 [node name="Mesa" type="Node2D"]
+position = Vector2(-29, -24)
 script = ExtResource("1_hxkmd")
 
 [node name="PilhaExposta" parent="." instance=ExtResource("2_sboaq")]
-position = Vector2(1804, 846)
-rotation = -0.00370386
+position = Vector2(1824, 222)
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
 visible = false
 position = Vector2(181, 457)
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
-position = Vector2(943, 954)
+position = Vector2(1810, 829)
+rotation = 1.5708
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
 visible = false
 position = Vector2(534, 52)
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
-position = Vector2(731, 948)
+position = Vector2(1799, 999)
+rotation = 1.5708
