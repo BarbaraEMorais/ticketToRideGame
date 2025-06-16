@@ -1,18 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://ceg2m7fo43e8l"]
 
-[ext_resource type="Script" path="res://scripts/jogadores/jogador_ia.gd" id="1_ct13m"]
+[ext_resource type="Script" uid="uid://bqlr4d61il6x5" path="res://scripts/jogadores/jogador_ia.gd" id="1_ct13m"]
 [ext_resource type="PackedScene" uid="uid://74rmg4gi8bs8" path="res://cenas/mao.tscn" id="2_xvymb"]
 [ext_resource type="PackedScene" uid="uid://pu1mgc2vajty" path="res://cenas/jogadores/status_jogador.tscn" id="3_bgvwa"]
 
 [node name="JogadorIA" type="Node2D"]
-position = Vector2(118, 67)
-scale = Vector2(0.8, 0.8)
 script = ExtResource("1_ct13m")
 
 [node name="Mao" parent="." instance=ExtResource("2_xvymb")]
-position = Vector2(12.5, -2.86102e-06)
 scale = Vector2(0.8, 0.8)
 
 [node name="Status Jogador" parent="." instance=ExtResource("3_bgvwa")]
-position = Vector2(7.62939e-06, 1.25)
-scale = Vector2(0.8, 0.8)

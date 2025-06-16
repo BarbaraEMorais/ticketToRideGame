@@ -4,7 +4,6 @@
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_u54o8"]
 
 [node name="Status Jogador" type="Node2D"]
-position = Vector2(960, 540)
 
 [node name="Bilhete" type="Sprite2D" parent="."]
 texture = ExtResource("2_yduvx")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jg67fgp714p"
-path="res://.godot/imported/menu principal fundo.png-141399ba10f3daa266254eddbe2e835e.ctex"
+uid="uid://cs17varqd754o"
+path="res://.godot/imported/game-logo.png-6732171f7ac5e7fb6004932a52ce23d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu principal fundo.png"
-dest_files=["res://.godot/imported/menu principal fundo.png-141399ba10f3daa266254eddbe2e835e.ctex"]
+source_file="res://assets/game-logo.png"
+dest_files=["res://.godot/imported/game-logo.png-6732171f7ac5e7fb6004932a52ce23d8.ctex"]
 
 [params]
 
