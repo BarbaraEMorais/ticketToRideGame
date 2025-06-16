@@ -24,24 +24,30 @@ func add_trilho(trilho: Trilho):
 
 func claim_route(jogador: Jogador):
 	owner = jogador
+	for t in trilhos:
+		t.claim()
 
 
-func _on_trilho_hovered(trilho: Trilho):
+func _on_trilho_hovered(_trilho: Trilho):
 	highlight_linha()
 
 
-func _on_trilho_unhovered(trilho: Trilho):
+func _on_trilho_unhovered(_trilho: Trilho):
 	unhighlight_linha()
 
 
-func _on_trilho_clicked(trilho: Trilho):
-	print("Clicked trilho at linha")
+func _on_trilho_clicked(_trilho: Trilho):
+	# TEMP
+	var jogador_placeholder = Jogador.new()
+	if !dono:
+		claim_route(jogador_placeholder)
 
 
 func highlight_linha():
-	for trilho in trilhos:
-		trilho.highlight()
+	for t in trilhos:
+		t.highlight()
+
 
 func unhighlight_linha():
-	for trilho in trilhos:
-		trilho.unhighlight()
+	for t in trilhos:
+		t.unhighlight()

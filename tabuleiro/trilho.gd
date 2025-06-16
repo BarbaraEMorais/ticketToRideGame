@@ -4,6 +4,10 @@ signal trilho_hovered(trilho: Trilho)
 signal trilho_unhovered(trilho: Trilho)
 signal trilho_clicked(trilho: Trilho)
 
+var mouse_pressed_pos: Vector2 = Vector2.INF
+var is_dragging: bool = false
+const DRAG_THRESHOLD: float = 5.0
+
 var _color_map: Dictionary = {
 	"blue": 1,
 	"orange": 2,
@@ -46,6 +50,10 @@ func _ready() -> void:
 	_update_sprite()
 
 
+func claim():
+	is_taken = true
+
+
 func _update_sprite() -> void:
 	var state_prefix: String = "trilhopreenchido" if is_taken else "trilhovazio"
 	var color_suffix: String = str(_color_map.get(track_color, 1))
@@ -63,15 +71,32 @@ func _update_sprite() -> void:
 func _on_mouse_entered() -> void:
 	trilho_hovered.emit(self)
 
+
 func _on_mouse_exited() -> void:
 	trilho_unhovered.emit(self)
 
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		trilho_clicked.emit(self)
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				mouse_pressed_pos = event.position
+				is_dragging = false
+			elif not event.pressed:
+				if not is_dragging:
+					trilho_clicked.emit(self)
+				mouse_pressed_pos = Vector2.INF
+
+	elif event is InputEventMouseMotion:
+		if mouse_pressed_pos != Vector2.INF:
+			var distance_moved = mouse_pressed_pos.distance_to(event.position)
+			if distance_moved > DRAG_THRESHOLD:
+				is_dragging = true
+
 
 func highlight():
 	sprite.modulate = Color(2.0, 2.0, 2.0)
+
 
 func unhighlight():
 	sprite.modulate = Color(1.0, 1.0, 1.0)
