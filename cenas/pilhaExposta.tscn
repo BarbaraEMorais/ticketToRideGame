@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5nr4prodiiq4"]
 
-[ext_resource type="Script" path="res://pilhaExposta.gd" id="1_8spcp"]
+[ext_resource type="Script" uid="uid://dyj8xrwqgxvmk" path="res://scripts/Pilhas/pilhaExposta.gd" id="1_8spcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so1xe"]
 size = Vector2(391.996, 161.875)

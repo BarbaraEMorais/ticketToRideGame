@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceclp48lo5e2d"]
 
-[ext_resource type="Script" path="res://cartaDestino.gd" id="1_ef62c"]
+[ext_resource type="Script" uid="uid://dj3jugrwiucs4" path="res://scripts/cartas/cartaDestino.gd" id="1_ef62c"]
 [ext_resource type="Texture2D" uid="uid://covgpuum661t8" path="res://assets/BaseCartaDestino.png" id="2_y7ut4"]
 [ext_resource type="FontFile" uid="uid://c2ljl2mm6efoo" path="res://assets/fonts/NovaSquare-Regular.ttf" id="3_k5hwr"]
 

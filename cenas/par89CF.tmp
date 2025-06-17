@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxpnsjnpqxxkb"]
+
+[ext_resource type="PackedScene" uid="uid://eifoucjqk2ut" path="res://cenas/mesa.tscn" id="1_gmxvt"]
+[ext_resource type="Script" path="res://scripts/partida.gd" id="1_yh25d"]
+
+[node name="Partida" type="Node2D"]
+script = ExtResource("1_yh25d")
+maxJogadores = 2
+
+[node name="Mesa" parent="." instance=ExtResource("1_gmxvt")]
+
+[node name="NomeJogadorAtual" type="Label" parent="."]
+offset_left = 358.0
+offset_top = 1.0
+offset_right = 683.0
+offset_bottom = 30.0
+text = "Turno de: "

@@ -1,56 +1,60 @@
 class_name Caminho extends Node2D
 
-@export var origem_id: int = -1
-@export var destino_id: int = -1
-@export var tamanho: int = 1
-@export var linhas: int = 1
-
 @export var trilho_scene: PackedScene
 
-var _origem_pos: Vector2
-var _destino_pos: Vector2
+@export var id: int
+@export var origem: Cidade
+@export var destino: Cidade
+@export var tamanho: int
+@export var linhasQtd: int
+@export var coresLinhas: Array[String]
+@export var curvature: int
+
+var linhas: Array[Linha]
+
+var trilhos: Array[Array]
+
+func setup_caminho(_id: int, _origem: Cidade, _destino: Cidade, _tamanho: int, _linhasQtd, cores: Array, _curvature: int = 0):
+	id = _id
+	origem = _origem
+	destino = _destino
+	tamanho = _tamanho
+	linhasQtd = _linhasQtd
+	coresLinhas = cores
+	curvature = _curvature
+
+	for i in range(linhasQtd):
+		var linha = Linha.new(cores[i])
+		linhas.append(linha)
+		add_child(linha)
+
 
 func _ready():
 	gera_caminho()
 
 
-func setup_caminho(origem: Cidade, destino: Cidade, _tamanho: int, _linhas: int):
-	origem_id = origem.cidade_id
-	destino_id = destino.cidade_id
-	_origem_pos = origem.position
-	_destino_pos = destino.position
-	tamanho = _tamanho
-	linhas = _linhas
-
-
 func gera_caminho():
-	var direction = _destino_pos - _origem_pos
-	var curr_pos_in_direction = _origem_pos
-	var novo_trilho = trilho_scene.instantiate() as Trilho
+	var parabola = Parabola.new(origem.position, destino.position, curvature * tamanho / 4.0, 30)
 
-	var trilho_shape = _get_trilho_shape(novo_trilho)
-	novo_trilho.queue_free()
-	var ort = direction.orthogonal().normalized()
-	var gap_y = 10
-	var largura_linhas = (trilho_shape.y * linhas) + (gap_y * (linhas-1))
-
-
-	var gap_x = 10
-	var actual_length = trilho_shape.x * tamanho + gap_x * (tamanho-1)
-	var margin = (direction.length() - actual_length) / 2
-
-	curr_pos_in_direction += direction.normalized() * (margin + trilho_shape.x/2)
+	# just to take the size of the trilho
+	var trilho = trilho_scene.instantiate() as Trilho
+	var trilho_shape = _get_trilho_shape(trilho)
+	trilho_shape *= Vector2(0.32, 0.3)
+	trilho.queue_free()
 
 	for i in range(tamanho):
-		if (i > 0):
-			curr_pos_in_direction += direction.normalized() * (gap_x + trilho_shape.x)
+		var direction = parabola.get_tangent_vector_at_parameter((i+0.5)/float(tamanho))
+		var normal = direction.orthogonal()
 
-		for l in range(linhas):
-			novo_trilho = trilho_scene.instantiate() as Trilho
-			novo_trilho.rotation = direction.angle()
-			var pos_trilho = curr_pos_in_direction + ort * (largura_linhas/2 - (l+1)*largura_linhas/(linhas))
-			novo_trilho.position = pos_trilho
-			add_child(novo_trilho)
+		for j in range(linhasQtd):
+			var normal_offset = (linhasQtd/2.0 - 1/2.0) * trilho_shape.y * normal - (j * trilho_shape.y * normal)
+
+			trilho = trilho_scene.instantiate() as Trilho
+			trilho.rotation = direction.angle()
+			trilho.position = parabola.get_parabola_point((i+0.5)/float(tamanho)) + normal_offset - (normal.normalized() * curvature)/2
+			trilho.scale = Vector2(0.32, 0.3)
+
+			linhas[j].add_trilho(trilho)
 
 
 func _get_trilho_shape(trilho_node: Area2D):

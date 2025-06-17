@@ -1,26 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceg2m7fo43e8l"]
+[gd_scene load_steps=4 format=3 uid="uid://dn58ksqkuggw2"]
 
-[ext_resource type="Script" path="res://jogador.gd" id="1_n12qq"]
-[ext_resource type="Script" path="res://mao.gd" id="2_10oau"]
-[ext_resource type="PackedScene" uid="uid://pu1mgc2vajty" path="res://cenas/jogadores/status_jogador.tscn" id="3_lgq34"]
+[ext_resource type="Script" uid="uid://ufyxfx0h2ix4" path="res://scripts/jogadores/jogador.gd" id="1_legk7"]
+[ext_resource type="PackedScene" uid="uid://74rmg4gi8bs8" path="res://cenas/mao.tscn" id="2_xvymb"]
+[ext_resource type="PackedScene" uid="uid://pu1mgc2vajty" path="res://cenas/jogadores/status_jogador.tscn" id="3_bgvwa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_334rp"]
-size = Vector2(400, 119)
+[node name="Jogador" type="Node2D"]
+script = ExtResource("1_legk7")
 
-[node name="JogadorHumano" type="Node2D"]
-position = Vector2(888, 926)
-script = ExtResource("1_n12qq")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Mao" type="Node2D" parent="."]
-position = Vector2(-5, -1)
-script = ExtResource("2_10oau")
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
 
-[node name="Area2D" type="Area2D" parent="Mao"]
-position = Vector2(0, 12)
+[node name="Status Jogador" parent="CanvasLayer/HBoxContainer" instance=ExtResource("3_bgvwa")]
+position = Vector2(215, -91)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mao/Area2D"]
-position = Vector2(2, 31)
-shape = SubResource("RectangleShape2D_334rp")
-
-[node name="Status Jogador" parent="." instance=ExtResource("3_lgq34")]
-position = Vector2(-687, 40)
+[node name="Mao" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_xvymb")]
+position = Vector2(980, -50)

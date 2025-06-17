@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://rdsbsl6ag741"]
 
-[ext_resource type="Script" path="res://cartaTrem.gd" id="1_j274c"]
+[ext_resource type="Script" uid="uid://sr36fg2renpj" path="res://scripts/cartas/cartaTrem.gd" id="1_j274c"]
 [ext_resource type="Texture2D" uid="uid://cybp5t37edrna" path="res://assets/TremAzulPlaceHolder2.png" id="2_y02cg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qig4n"]

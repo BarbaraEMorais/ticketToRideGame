@@ -1,8 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs8xpadxy5ph2"]
 
-[ext_resource type="Script" path="res://scripts/jogadores/Cadastro.gd" id="1_s6bfe"]
-[ext_resource type="Texture2D" uid="uid://jg67fgp714p" path="res://assets/menu principal fundo.png" id="2_gjjpw"]
+[ext_resource type="Script" uid="uid://ceglop38o5ct2" path="res://scripts/jogadores/Cadastro.gd" id="1_s6bfe"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_h6fa5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8s1uq"]
+load_path = "res://.godot/imported/menu-background.png-645c8108d56ed08c6b260a351499ed5d.ctex"
 
 [node name="CadastroJogador" type="Control"]
 layout_mode = 3
@@ -15,9 +17,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s6bfe")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(960, 544)
-texture = ExtResource("2_gjjpw")
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_8s1uq")
+expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

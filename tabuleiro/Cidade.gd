@@ -8,7 +8,7 @@ signal cidade_clicked(cidade_id: int, cidade_name_val: String, node_instance: Ar
 @export var map_y: float = 0.0
 
 @onready var sprite_node: Sprite2D = $Sprite2D
-@onready var label_node: Label = $Label
+@onready var label_node: Label = $PanelContainer/MarginContainer/Label
 
 func _ready():
 	self.position = Vector2(map_x, map_y)
