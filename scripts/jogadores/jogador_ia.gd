@@ -9,6 +9,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
 static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Vector2) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorIA.tscn")
 	var novo = jogador_cena.instantiate()

@@ -7,7 +7,15 @@
 [node name="JogadorIA" type="Node2D"]
 script = ExtResource("1_ct13m")
 
-[node name="Mao" parent="." instance=ExtResource("2_xvymb")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mao" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_xvymb")]
+position = Vector2(-211, 162)
 scale = Vector2(0.8, 0.8)
 
-[node name="Status Jogador" parent="." instance=ExtResource("3_bgvwa")]
+[node name="Status Jogador" parent="CanvasLayer/HBoxContainer" instance=ExtResource("3_bgvwa")]
+position = Vector2(207, 173)
