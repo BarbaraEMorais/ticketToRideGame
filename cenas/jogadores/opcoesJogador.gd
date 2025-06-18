@@ -21,11 +21,11 @@ func _on_cadastro_confirmado(nome, cor):
 func _on_iniciar_partida_pressed() -> void:
 	var cena_partida = load("res://cenas/partida.tscn")
 	var partida = cena_partida.instantiate()
-	
+
 	get_tree().current_scene.call_deferred("free")
 	get_tree().root.add_child(partida)
 	get_tree().current_scene = partida
-	
+
 	partida.set_partida(nomes_jogador)
 
 ### Nomes bots

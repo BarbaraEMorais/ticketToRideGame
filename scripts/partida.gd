@@ -14,7 +14,7 @@ func _ready() -> void:
 	mesa = $"UI/Mesa"
 	UI = $"UI"
 	tabuleiro = $Tabuleiro
-
+	
 func _process(_delta: float) -> void:
 	pass
 
@@ -70,10 +70,8 @@ func _passar_turno():
 func checar_fim_partida() -> bool:
 	return false
 
-
 func determinarVitoria() -> void:
 	pass
-
 
 # Essa função deve ser conectada à um sinal emitido por jogador
 func _handle_end_game_signal():
