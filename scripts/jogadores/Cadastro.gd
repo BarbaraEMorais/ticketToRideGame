@@ -82,6 +82,7 @@ func carregar_nomes_json(caminho: String) -> Array:
 	return json_parser.data
 
 
+<<<<<<< Updated upstream
 func sortear_nomes(nomes_array: Array, quantidade: int) -> Array[String]:
 	var nomes_copiados = nomes_array.duplicate()
 	nomes_copiados.shuffle()
@@ -89,6 +90,11 @@ func sortear_nomes(nomes_array: Array, quantidade: int) -> Array[String]:
 
 	if quantidade > nomes_copiados.size():
 		quantidade = nomes_copiados.size()
+=======
+func _on_btn_avancar_pressed() -> void:
+	var cena_destino = preload("res://cenas/jogadores/OpcoesJogador.tscn").instantiate()
+	cena_destino.numBots = qtdJogBot.value
+>>>>>>> Stashed changes
 
 	var selecionados = nomes_copiados.slice(0, quantidade)
 
