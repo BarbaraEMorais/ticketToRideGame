@@ -41,11 +41,8 @@ func _on_qtd_jogadores_ia_changed(value):
 
 
 func _on_btn_avancar_pressed() -> void:
-	print("asklfasklda")
-
-	var cena_destino = preload("res://cenas/jogadores/OpcoesJogador.tscn").instantiate()
-	cena_destino.numJogHum = qtdJogHumano.value
-
+	var cena_destino = load("res://cenas/jogadores/OpcoesJogador.tscn").instantiate()
+	cena_destino.numBots = qtdJogBot.value
 	get_tree().current_scene.call_deferred("free")
 	get_tree().root.add_child(cena_destino)
 	get_tree().current_scene = cena_destino

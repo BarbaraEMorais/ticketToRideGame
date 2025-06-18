@@ -1,7 +1,6 @@
 class_name Partida extends Node2D
 
 var listaJogadores : Array[Jogador]
-var maxJogadores : int
 var partidaEmAndamento : bool = true
 var _indexJogadorAtual : int = 0
 var mesa : Mesa
@@ -15,19 +14,12 @@ func _ready() -> void:
 	mesa = $"UI/Mesa"
 	UI = $"UI"
 	tabuleiro = $Tabuleiro
-
-	var partida_data = GameDataTransfer.get_match_data()
-	set_partida(partida_data["players_array"], partida_data["qtd_jogadores"])
-
-
+	
 func _process(_delta: float) -> void:
 	pass
 
 
 func add_player(jogador : Jogador) -> void:
-	if(listaJogadores.size() == maxJogadores):
-		printerr("Não é possível adicionar novo jogador: Partida Cheia")
-		return
 	listaJogadores.append(jogador)
 
 
@@ -35,11 +27,9 @@ func get_jogadores() -> Array[Jogador]:
 	return listaJogadores
 
 
-func set_partida(nomes: Array[String], qtd_jogadores: int) -> void:
-	print("set_partida -> nomes:", nomes)
-	maxJogadores = qtd_jogadores
+func set_partida(nomes: Array[String]) -> void:
 	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa"]
-	for i in range(maxJogadores):
+	for i in range(nomes.size()):
 		var jogador
 		if i == 0:
 			jogador = Jogador.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))
@@ -81,10 +71,8 @@ func _passar_turno():
 func checar_fim_partida() -> bool:
 	return false
 
-
 func determinarVitoria() -> void:
 	pass
-
 
 # Essa função deve ser conectada à um sinal emitido por jogador
 func _handle_end_game_signal():
