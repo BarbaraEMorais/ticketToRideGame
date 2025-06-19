@@ -17,6 +17,8 @@ func _ready() -> void:
 	mesa.set_jogador_atual(listaJogadores[0])
 	mesa.set_mesa()
 	mesa.set_card_manager()
+	$NomeJogadorAtual.text = "Turno de: " + listaJogadores[_indexJogadorAtual].get_nome()
+
 
 	tabuleiro = $Tabuleiro
 
@@ -33,8 +35,7 @@ func add_player(jogador : Jogador) -> void:
 	if(listaJogadores.size() == maxJogadores):
 		printerr("Não é possível adicionar novo jogador: Partida Cheia")
 		return
-	if jogador is JogadorIA:
-		jogador.turnOver.connect(_on_ai_turn_over)
+	jogador.turnOver.connect(_on_turn_over)
 	listaJogadores.append(jogador)
 
 func get_jogadores() -> Array[Jogador]:
@@ -88,7 +89,8 @@ func _handle_end_game_signal():
 	if _estado == EM_ANDAMENTO:
 		_estado = ULTIMO_TURNO
 
-func _on_ai_turn_over() -> void:
+func _on_turn_over() -> void:
+	
 	proximo_turno()
 
 func _on_pass_turn_button_pressed() -> void:

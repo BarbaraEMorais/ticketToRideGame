@@ -2,7 +2,7 @@ class_name JogadorIA extends Jogador
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-signal turnOver
+
 
 static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Vector2) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorIA.tscn")
@@ -16,6 +16,8 @@ static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Ve
 func jogarTurno(mesa : Mesa) -> void:
 	# No momento, as ações do jogador IA não tem nenhuma lógica
 	var action : int = rng.randi()
+	
+	await get_tree().create_timer(2).timeout
 	
 	if action % 2: # Pegar carta de trem
 		

@@ -1,5 +1,14 @@
 class_name MaoJogador extends Mao
 
+# Como as duas ações que encerram o turno do jogador envolvem adicionar uma carta
+# a sua mão, podemos emitir um sinal para o fim do turno do jogador a partir daqui
+
+signal received_new_card
+
+func add_carta(carta : Carta):
+	super(carta)
+	received_new_card.emit()
+
 func on_card_grab_started(carta: Carta) -> void:
 	print("MAO : ON CARD GRAB STARTED ", self.name)
 	super(carta)
