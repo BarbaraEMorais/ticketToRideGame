@@ -33,6 +33,8 @@ func add_player(jogador : Jogador) -> void:
 	if(listaJogadores.size() == maxJogadores):
 		printerr("Não é possível adicionar novo jogador: Partida Cheia")
 		return
+	if jogador is JogadorIA:
+		jogador.turnOver.connect(_on_ai_turn_over)
 	listaJogadores.append(jogador)
 
 func get_jogadores() -> Array[Jogador]:
@@ -86,6 +88,8 @@ func _handle_end_game_signal():
 	if _estado == EM_ANDAMENTO:
 		_estado = ULTIMO_TURNO
 
+func _on_ai_turn_over() -> void:
+	proximo_turno()
 
 func _on_pass_turn_button_pressed() -> void:
 	proximo_turno()
