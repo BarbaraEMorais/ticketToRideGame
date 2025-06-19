@@ -9,6 +9,10 @@ var _destinos: int
 func _ready() -> void:
 	pass
 
+# Lógica relacionada ao turno do usuário
+func jogarTurno(mesa : Mesa):
+	pass
+
 func _process(delta: float) -> void:
 	$"Status Jogador/Pontos".text = str(_pontos)
 	$"Status Jogador/Qtd_Trens".text = str(_trens)

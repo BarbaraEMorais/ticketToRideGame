@@ -67,8 +67,8 @@ func _passar_turno():
 	if (_indexJogadorAtual >= listaJogadores.size()):
 		_indexJogadorAtual = 0
 		
-	$NomeJogadorAtual.text = "Turno de: " + listaJogadores[_indexJogadorAtual].nome
-	listaJogadores[_indexJogadorAtual].jogarTurno()
+	$NomeJogadorAtual.text = "Turno de: " + listaJogadores[_indexJogadorAtual].get_nome()
+	listaJogadores[_indexJogadorAtual].jogarTurno(mesa)
 	
 	if _estado == ULTIMO_TURNO:
 		_estado = FINALIZAR
@@ -85,3 +85,7 @@ func determinarVitoria() -> void:
 func _handle_end_game_signal():
 	if _estado == EM_ANDAMENTO:
 		_estado = ULTIMO_TURNO
+
+
+func _on_pass_turn_button_pressed() -> void:
+	proximo_turno()

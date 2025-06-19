@@ -2,6 +2,8 @@ class_name JogadorIA extends Jogador
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
+signal turnOver
+
 static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Vector2) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorIA.tscn")
 	var novo = jogador_cena.instantiate()
@@ -31,3 +33,5 @@ func jogarTurno(mesa : Mesa) -> void:
 			if get_mao().can_receive_card():
 				var carta_dest := mesa.get_pilha_destino().comprar_carta_da_pilha_IA()
 				get_mao().add_carta(carta_dest)
+				
+	turnOver.emit()
