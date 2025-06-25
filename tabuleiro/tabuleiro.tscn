@@ -12,6 +12,8 @@ cidade_scene = ExtResource("3_8nmvd")
 caminho_scene = ExtResource("3_rpm0h")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+show_behind_parent = true
+z_index = -3
 limit_left = -1000
 limit_top = -750
 limit_right = 1000
@@ -19,6 +21,7 @@ limit_bottom = 750
 limit_smoothed = true
 position_smoothing_speed = 10.0
 editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource("2_8nmvd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

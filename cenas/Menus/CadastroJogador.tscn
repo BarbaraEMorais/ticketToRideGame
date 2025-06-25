@@ -1,0 +1,412 @@
+[gd_scene load_steps=25 format=3 uid="uid://bqglc6fpyv624"]
+
+[ext_resource type="Script" path="res://scripts/Cadastro.gd" id="1_bpb3b"]
+[ext_resource type="StyleBox" uid="uid://cr5ixfy80rlrg" path="res://assets/botao_hover.tres" id="3_6dolb"]
+[ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_h6fa5"]
+[ext_resource type="StyleBox" uid="uid://ctqcwg7be4e4k" path="res://assets/botao_base.tres" id="4_gxpo8"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8s1uq"]
+load_path = "res://.godot/imported/menu-background.png-645c8108d56ed08c6b260a351499ed5d.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyec4"]
+bg_color = Color(0.862745, 0.14902, 0.14902, 1)
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1tl1"]
+bg_color = Color(0.231373, 0.509804, 0.964706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj430"]
+bg_color = Color(0.231373, 0.509804, 0.964706, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnk6"]
+bg_color = Color(0.290196, 0.870588, 0.501961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ffj0"]
+bg_color = Color(0.290196, 0.870588, 0.501961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7axut"]
+bg_color = Color(0.960784, 0.317647, 0.0431373, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5hd8"]
+bg_color = Color(0.960784, 0.317647, 0.0431373, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icwbe"]
+bg_color = Color(1, 0.819608, 0.105882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdq5g"]
+bg_color = Color(1, 0.819608, 0.105882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qfyo"]
+bg_color = Color(1, 0.337255, 0.698039, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giq3k"]
+bg_color = Color(1, 0.337255, 0.698039, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wee7x"]
+bg_color = Color(0, 0.211765, 0.560784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ovk1"]
+bg_color = Color(0, 0.211765, 0.560784, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keqrk"]
+bg_color = Color(0.117647, 0.160784, 0.231373, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gveij"]
+bg_color = Color(0.117647, 0.160784, 0.231373, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7pe3"]
+content_margin_left = 20.0
+content_margin_top = 2.0
+content_margin_right = 20.0
+content_margin_bottom = 2.0
+bg_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhix3"]
+bg_color = Color(1, 0.729412, 0.145098, 1)
+border_width_bottom = 14
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.682353)
+
+[sub_resource type="Theme" id="Theme_p2soo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js5qb"]
+bg_color = Color(1, 0.729412, 0.145098, 0.501961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 14
+border_color = Color(0.403922, 0.184314, 0.0470588, 0.501961)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="CadastroJogador" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bpb3b")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_8s1uq")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 624.0
+offset_right = 1039.0
+offset_bottom = 647.0
+text = "Selecione uma cor"
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_left = 746.0
+offset_top = 678.0
+offset_right = 1168.0
+offset_bottom = 720.0
+theme_override_constants/separation = 13
+alignment = 1
+
+[node name="btnVermelho" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_kyec4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kyec4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kyec4")
+toggle_mode = true
+text = "     "
+
+[node name="btnAzulClaro" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_y1tl1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y1tl1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dj430")
+toggle_mode = true
+text = "     "
+
+[node name="btnVerde" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_bvnk6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bvnk6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ffj0")
+toggle_mode = true
+text = "     "
+
+[node name="btnLaranja" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7axut")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7axut")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5hd8")
+toggle_mode = true
+text = "     "
+
+[node name="btnAmarelo" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_icwbe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_icwbe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sdq5g")
+toggle_mode = true
+text = "     "
+
+[node name="btnRosa" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_3qfyo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3qfyo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_giq3k")
+toggle_mode = true
+text = "     "
+
+[node name="btnAzulEscuro" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_wee7x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wee7x")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4ovk1")
+toggle_mode = true
+text = "     "
+
+[node name="btnPreto" type="Button" parent="BoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_keqrk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_keqrk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gveij")
+toggle_mode = true
+text = "     "
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 272.0
+offset_right = 1409.0
+offset_bottom = 453.0
+theme_override_colors/font_color = Color(1, 0.729412, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_h6fa5")
+theme_override_font_sizes/font_size = 180
+text = "Cadastro de Jogador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NomeJogador" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 753.0
+offset_top = 552.0
+offset_right = 1167.0
+offset_bottom = 600.0
+scale = Vector2(1.00308, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_x7pe3")
+placeholder_text = "Digite seu nome"
+
+[node name="ButtonCadastroJogador" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_left = 860.0
+offset_top = 704.0
+offset_right = 1060.0
+offset_bottom = 761.0
+theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("3_h6fa5")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhix3")
+text = "CADASTRAR"
+
+[node name="FeedbackCadastro" type="Label" parent="."]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 739.0
+offset_right = 1137.0
+offset_bottom = 770.0
+
+[node name="QuantidadeJogadores" type="SpinBox" parent="."]
+layout_mode = 0
+offset_left = 1099.0
+offset_top = 501.0
+offset_right = 1182.06
+offset_bottom = 532.0
+theme = SubResource("Theme_p2soo")
+min_value = 2.0
+max_value = 6.0
+value = 2.0
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 748.0
+offset_top = 493.0
+offset_right = 1071.0
+offset_bottom = 536.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 30
+text = "Número de Jogadores:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 749.0
+offset_top = 616.0
+offset_right = 1072.0
+offset_bottom = 659.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 30
+text = "Selecione uma cor:"
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = 808.0
+offset_top = 784.0
+offset_right = 1108.0
+offset_bottom = 861.0
+theme_override_colors/font_disabled_color = Color(0.403922, 0.184314, 0.0470588, 0.501961)
+theme_override_colors/font_hover_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("3_h6fa5")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/disabled = SubResource("StyleBoxFlat_js5qb")
+theme_override_styles/hover = ExtResource("3_6dolb")
+theme_override_styles/pressed = ExtResource("3_6dolb")
+theme_override_styles/normal = ExtResource("4_gxpo8")
+text = "INICIAR PARTIDA"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="text_changed" from="NomeJogador" to="." method="_on_nome_jogador_text_changed"]
+[connection signal="pressed" from="ButtonCadastroJogador" to="." method="_on_cadastrar_pressed"]
+[connection signal="value_changed" from="QuantidadeJogadores" to="." method="_on_quantidade_jogadores_value_changed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
