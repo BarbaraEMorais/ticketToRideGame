@@ -27,8 +27,8 @@ func comprar_carta_da_pilha_IA() -> CartaDestino: # Usada somente pelo jogador I
 	else:
 		var ret = _cartas.pop_front() as CartaDestino
 		
-		print("PilhaDestino: IA puxou uma carta" % ret.size())
-		
+		print("PilhaDestino: IA puxou uma carta")
+		ret.show()
 		return ret
 
 func puxar_cartas_para_tela_selecao(quantidade: int) -> Array[CartaDestino]:

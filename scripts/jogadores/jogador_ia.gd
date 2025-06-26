@@ -23,7 +23,7 @@ func jogarTurno(mesa : Mesa) -> void:
 		
 		# TODO: Lógica para trems arco-íriis
 		for i in range(0, 1):
-			var index_selecao := rng.randi_range(0,  mesa.get_pilha_exposta().getCartas().size())
+			var index_selecao := rng.randi_range(0,  mesa.get_pilha_exposta().getCartas().size() -1)
 			var carta_sel := mesa.get_pilha_exposta().getCartas()[index_selecao]
 			if get_mao().accepts_card(carta_sel):
 				mesa.get_pilha_exposta().remove_carta(carta_sel)
