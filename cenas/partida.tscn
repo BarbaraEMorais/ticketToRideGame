@@ -1,35 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://gvkxrchsktqx"]
+[gd_scene load_steps=3 format=3 uid="uid://gvkxrchsktqx"]
 
 [ext_resource type="PackedScene" uid="uid://eifoucjqk2ut" path="res://cenas/mesa.tscn" id="1_gmxvt"]
 [ext_resource type="Script" path="res://scripts/partida.gd" id="1_yh25d"]
-[ext_resource type="PackedScene" uid="uid://kfvcr8lhu7y6" path="res://tabuleiro/tabuleiro.tscn" id="3_utrv6"]
 
 [node name="Partida" type="Node2D"]
 position = Vector2(992, 752)
 script = ExtResource("1_yh25d")
 
-[node name="Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -992.0
-offset_top = -752.0
-offset_right = -952.0
-offset_bottom = -712.0
-
-[node name="Control" type="Control" parent="Container"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 992.0
-offset_top = 752.0
-offset_right = 1032.0
-offset_bottom = 792.0
-
-[node name="Tabuleiro" parent="Container/Control" instance=ExtResource("3_utrv6")]
-position = Vector2(-1000, -752)
-scale = Vector2(0.548712, 0.548712)
-
-[node name="UI" type="CanvasLayer" parent="Container"]
+[node name="UI" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Mesa" parent="Container/UI" instance=ExtResource("1_gmxvt")]
-position = Vector2(-24, -24)
+[node name="Mesa" parent="UI" instance=ExtResource("1_gmxvt")]

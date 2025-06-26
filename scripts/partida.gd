@@ -11,9 +11,9 @@ enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
 var _estado = EM_ANDAMENTO
 
 func _ready() -> void:
-	mesa = $"Container/UI/Mesa"
-	UI = $"Container/UI"
-	tabuleiro = $"Container/Tabuleiro"
+	mesa = $"UI/Mesa"
+	UI = $"UI"
+	#tabuleiro = $"Tabuleiro"
 	
 func _process(_delta: float) -> void:
 	pass
@@ -28,7 +28,7 @@ func get_jogadores() -> Array[Jogador]:
 
 func set_partida(nomes: Array[String], player_color: String) -> void:
 	print(nomes);
-	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa", "branco"]
+	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa", "laranja"]
 	cores.erase(player_color)
 	cores.shuffle()
 	for i in range(nomes.size()):
@@ -39,10 +39,9 @@ func set_partida(nomes: Array[String], player_color: String) -> void:
 			jogador = JogadorIA.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))
 		jogador.set_status_param()
 		add_player(jogador)
-	for i in range(listaJogadores.size()):
 		if i > 0:
-			listaJogadores[i].set_status_pos(Vector2(20, 200*(i-1)))
-			listaJogadores[i].set_mao_pos(Vector2(60, 200*(i-1)))
+			listaJogadores[i].set_status_pos(Vector2(0, 150*(i-1)))
+			listaJogadores[i].set_mao_pos(Vector2(0, 150*(i-1)))
 		UI.add_child(listaJogadores[i])
 	mesa.set_jogador_atual(listaJogadores[0])
 	mesa.set_mesa()
