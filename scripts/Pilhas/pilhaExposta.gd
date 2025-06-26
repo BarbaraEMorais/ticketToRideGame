@@ -1,9 +1,9 @@
 class_name PilhaExposta extends CardContainer
 
 const MAX_CARTAS_EXPOSTAS: int = 5
-const LARGURA_CARTA: float = 170.0
+const LARGURA_CARTA: float = 146.0
 const ESPACAMENTO_ENTRE_CARTAS: float = 10.0
-const LARGURA_CARTA_EM_PE: float = 170.0
+const LARGURA_CARTA_EM_PE: float = 146.0
 const ALTURA_CARTA_EM_PE: float = 250.0
 
 const ESPACAMENTO_VERTICAL_ENTRE_CARTAS: float = 10.0 
