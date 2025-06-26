@@ -14,8 +14,20 @@ scale = Vector2(0.548712, 0.548712)
 [node name="Mesa" parent="." instance=ExtResource("1_gmxvt")]
 
 [node name="NomeJogadorAtual" type="Label" parent="."]
-offset_left = 358.0
-offset_top = 1.0
-offset_right = 683.0
-offset_bottom = 30.0
+offset_left = 1005.0
+offset_top = 8.0
+offset_right = 1330.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Turno de: "
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1154.0
+offset_top = 993.0
+offset_right = 1389.0
+offset_bottom = 1063.0
+theme_override_font_sizes/font_size = 32
+text = "Passar Turno"
+
+[connection signal="pressed" from="Button" to="." method="_on_pass_turn_button_pressed"]
