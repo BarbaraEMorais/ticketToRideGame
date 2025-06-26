@@ -13,11 +13,6 @@ var _estado = EM_ANDAMENTO
 func _ready() -> void:
 	mesa = $"Container/UI/Mesa"
 	UI = $"Container/UI"
-	mesa.set_jogador_atual(listaJogadores[0])
-	mesa.set_mesa()
-	mesa.set_card_manager()
-	$NomeJogadorAtual.text = "Turno de: " + listaJogadores[_indexJogadorAtual].get_nome()
-
 	tabuleiro = $"Container/Tabuleiro"
 
 
@@ -26,9 +21,6 @@ func _process(_delta: float) -> void:
 	pass
 
 func add_player(jogador : Jogador) -> void:
-	if(listaJogadores.size() == maxJogadores):
-		printerr("Não é possível adicionar novo jogador: Partida Cheia")
-		return
 	jogador.turnOver.connect(_on_turn_over)
 	listaJogadores.append(jogador)
 

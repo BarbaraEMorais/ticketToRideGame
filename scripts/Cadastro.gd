@@ -84,7 +84,7 @@ func _on_start_pressed():
 	feedbackCadastro.modulate = Color(0, 1, 0)
 	nomeJogador.editable = false
 	
-	listaJogadores = sortear_nomes(nomes_json, qtdJogadores-1)
+	listaJogadores = sortear_nomes(nomes_json, qtdJogadores)
 	listaJogadores.insert(0, nome)
 	
 	var cena_partida = load("res://cenas/partida.tscn")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://hfux5sch86k7"]
 
-[ext_resource type="Script" path="res://scripts/jogadores/Cadastro.gd" id="1_s6bfe"]
+[ext_resource type="Script" path="res://scripts/Cadastro.gd" id="1_s6bfe"]
 [ext_resource type="StyleBox" uid="uid://cr5ixfy80rlrg" path="res://assets/botao_hover.tres" id="3_18vq3"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_h6fa5"]
 [ext_resource type="StyleBox" uid="uid://ctqcwg7be4e4k" path="res://assets/botao_base.tres" id="4_cd3ul"]
