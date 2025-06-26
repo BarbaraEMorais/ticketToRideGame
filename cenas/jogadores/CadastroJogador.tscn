@@ -1,28 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs8xpadxy5ph2"]
+[gd_scene load_steps=4 format=3 uid="uid://cs8xpadxy5ph2"]
 
 [ext_resource type="Script" path="res://scripts/jogadores/Cadastro.gd" id="1_s6bfe"]
-[ext_resource type="Texture2D" uid="uid://jg67fgp714p" path="res://assets/menu principal fundo.png" id="2_gjjpw"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_h6fa5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhix3"]
-bg_color = Color(1, 0.729412, 0.145098, 1)
-border_width_bottom = 14
-border_color = Color(0.403922, 0.184314, 0.0470588, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(0, 0, 0, 0.682353)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfrnu"]
-bg_color = Color(1, 0.729412, 0.145098, 1)
-border_width_bottom = 14
-border_color = Color(0.403922, 0.184314, 0.0470588, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(0, 0, 0, 0.682353)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8s1uq"]
+load_path = "res://.godot/imported/menu-background.png-645c8108d56ed08c6b260a351499ed5d.ctex"
 
 [node name="CadastroJogador" type="Control"]
 layout_mode = 3
@@ -35,39 +17,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s6bfe")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(960, 544)
-texture = ExtResource("2_gjjpw")
-
-[node name="OptionButton" type="OptionButton" parent="Sprite2D"]
-offset_left = -208.0
-offset_top = 80.0
-offset_right = 208.0
-offset_bottom = 128.0
-item_count = 7
-popup/item_0/text = "Azul Claro"
-popup/item_1/text = "Vermelho"
-popup/item_1/id = 1
-popup/item_2/text = "Azul Escuro"
-popup/item_2/id = 2
-popup/item_3/text = "Verde"
-popup/item_3/id = 3
-popup/item_4/text = "Preto"
-popup/item_4/id = 4
-popup/item_5/text = "Amarelo"
-popup/item_5/id = 5
-popup/item_6/text = "Rosa"
-popup/item_6/id = 6
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_8s1uq")
+expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 272.0
-offset_right = 1409.0
-offset_bottom = 453.0
+offset_left = 487.0
+offset_top = 92.0
+offset_right = 1384.0
+offset_bottom = 273.0
 theme_override_colors/font_color = Color(1, 0.729412, 0.145098, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 20
@@ -77,68 +44,70 @@ text = "Cadastro de Jogador"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NomeJogador" type="LineEdit" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 749.0
-offset_top = 552.0
-offset_right = 1165.0
-offset_bottom = 600.0
-scale = Vector2(1.00308, 1)
-theme_override_font_sizes/font_size = 20
-placeholder_text = "Digite seu nome"
+offset_left = 487.0
+offset_top = 472.0
+offset_right = 862.0
+offset_bottom = 909.0
 
-[node name="ButtonCadastroJogador" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 860.0
-offset_top = 704.0
-offset_right = 1060.0
-offset_bottom = 761.0
-theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
-theme_override_fonts/font = ExtResource("3_h6fa5")
-theme_override_font_sizes/font_size = 42
-theme_override_styles/normal = SubResource("StyleBoxFlat_bhix3")
-text = "CADASTRAR"
+[node name="VBoxContainer" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 17.0
+offset_right = 362.0
+offset_bottom = 420.0
 
-[node name="FeedbackCadastro" type="Label" parent="."]
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+offset_right = 349.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Jogador Humano"
+
+[node name="qtdJogHum" type="SpinBox" parent="Panel/VBoxContainer"]
+layout_mode = 2
+offset_left = 110.0
+offset_top = 277.0
+offset_right = 218.0
+offset_bottom = 352.0
+
+[node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 798.0
-offset_top = 709.0
-offset_right = 1137.0
-offset_bottom = 740.0
+offset_left = 1014.0
+offset_top = 472.0
+offset_right = 1387.0
+offset_bottom = 902.0
 
-[node name="QuantidadeJogadores" type="SpinBox" parent="."]
+[node name="VBoxContainer" type="Control" parent="Panel2"]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 357.0
+offset_bottom = 412.0
+
+[node name="Label" type="Label" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+offset_right = 345.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "IA"
+
+[node name="qtdJogIA" type="SpinBox" parent="Panel2/VBoxContainer"]
 layout_mode = 0
-offset_left = 1091.0
-offset_top = 501.0
-offset_right = 1174.06
-offset_bottom = 532.0
+offset_left = 110.0
+offset_top = 273.0
+offset_right = 218.0
+offset_bottom = 346.0
 
-[node name="Label2" type="Label" parent="."]
+[node name="btnAvancar" type="Button" parent="."]
 layout_mode = 0
-offset_left = 749.0
-offset_top = 493.0
-offset_right = 1072.0
-offset_bottom = 536.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 1
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 30
-text = "Número de Jogadores:"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 873.0
+offset_top = 983.0
+offset_right = 1012.0
+offset_bottom = 1031.0
+text = "Avançar"
 
-[node name="Start" type="Button" parent="."]
-layout_mode = 0
-offset_left = 864.0
-offset_top = 784.0
-offset_right = 1064.0
-offset_bottom = 841.0
-theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
-theme_override_fonts/font = ExtResource("3_h6fa5")
-theme_override_font_sizes/font_size = 42
-theme_override_styles/normal = SubResource("StyleBoxFlat_kfrnu")
-text = "INICIAR PARTIDA"
-
-[connection signal="pressed" from="ButtonCadastroJogador" to="." method="_on_cadastrar_pressed"]
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="btnAvancar" to="." method="_on_btn_avancar_pressed"]

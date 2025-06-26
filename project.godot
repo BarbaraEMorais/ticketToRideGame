@@ -15,11 +15,16 @@ run/main_scene="res://cenas/Menus/Menu Principal.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://scripts/icon.svg"
 
+[autoload]
+
+GameDataTransfer="*res://singletons/GameDataTransfer.gd"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 

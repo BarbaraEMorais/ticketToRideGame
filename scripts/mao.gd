@@ -5,7 +5,6 @@ var _posicoes: Array[Vector2]
 var _limite_cartas: int
 var largura_carta := 180
 
-
 func _ready() -> void:
 	super._ready()
 	_cartas = []
