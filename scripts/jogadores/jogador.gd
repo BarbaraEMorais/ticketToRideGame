@@ -9,9 +9,7 @@ var _destinos: int
 @onready var _mao = $CanvasLayer/HBoxContainer/Mao
 
 func _ready() -> void:
-	if _mao is MaoJogador:
-		(_mao as MaoJogador).received_new_card.connect(_on_player_hand_received_card)
-	pass
+	_mao.received_new_card.connect(_on_player_hand_received_card)
 
 # Lógica relacionada ao turno do usuário
 func jogarTurno(mesa : Mesa):

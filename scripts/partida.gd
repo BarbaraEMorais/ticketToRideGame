@@ -6,6 +6,7 @@ var _indexJogadorAtual : int = 0
 var mesa : Mesa
 var tabuleiro : MapManager
 var UI : CanvasLayer
+var labelJogadorAtual : Label
 # SEPARAR ESTADOS/TURNO DE PARTIDA
 enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
 var _estado = EM_ANDAMENTO
@@ -14,7 +15,7 @@ func _ready() -> void:
 	mesa = $"Container/UI/Mesa"
 	UI = $"Container/UI"
 	tabuleiro = $"Container/Tabuleiro"
-
+	labelJogadorAtual = $Container/NomeJogadorAtual
 
 	
 func _process(_delta: float) -> void:
@@ -28,6 +29,8 @@ func add_player(jogador : Jogador) -> void:
 func get_jogadores() -> Array[Jogador]:
 	return listaJogadores
 
+func update_curr_player_label():
+	labelJogadorAtual.text = "Turno de: " + get_jogadores()[_indexJogadorAtual].get_nome() 
 
 func set_partida(nomes: Array[String], player_color: String) -> void:
 	print(nomes);
@@ -50,6 +53,7 @@ func set_partida(nomes: Array[String], player_color: String) -> void:
 	mesa.set_jogador_atual(listaJogadores[0])
 	mesa.set_mesa()
 	mesa.set_card_manager()
+	update_curr_player_label()
 
 
 func proximo_turno():
@@ -63,8 +67,8 @@ func _passar_turno():
 	_indexJogadorAtual += 1
 	if (_indexJogadorAtual >= listaJogadores.size()):
 		_indexJogadorAtual = 0
-		
-	$NomeJogadorAtual.text = "Turno de: " + listaJogadores[_indexJogadorAtual].get_nome()
+	
+	update_curr_player_label()
 	listaJogadores[_indexJogadorAtual].jogarTurno(mesa)
 	
 	if _estado == ULTIMO_TURNO:

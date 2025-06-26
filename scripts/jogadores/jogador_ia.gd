@@ -37,4 +37,3 @@ func jogarTurno(mesa : Mesa) -> void:
 				var carta_dest := mesa.get_pilha_destino().comprar_carta_da_pilha_IA()
 				get_mao().add_carta(carta_dest)
 				
-	turnOver.emit()

@@ -16,17 +16,15 @@ offset_top = -752.0
 offset_right = -952.0
 offset_bottom = -712.0
 
-[node name="Control" type="Control" parent="Container"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 992.0
-offset_top = 752.0
-offset_right = 1032.0
-offset_bottom = 792.0
-
-[node name="Tabuleiro" parent="Container/Control" instance=ExtResource("3_utrv6")]
-position = Vector2(-1000, -752)
-scale = Vector2(0.548712, 0.548712)
+[node name="NomeJogadorAtual" type="Label" parent="Container"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = -516.0
+offset_right = 524.0
+offset_bottom = -471.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Turno de: "
 
 [node name="UI" type="CanvasLayer" parent="Container"]
 layer = 2
@@ -34,21 +32,6 @@ layer = 2
 [node name="Mesa" parent="Container/UI" instance=ExtResource("1_gmxvt")]
 position = Vector2(-24, -24)
 
-[node name="NomeJogadorAtual" type="Label" parent="."]
-offset_left = 1005.0
-offset_top = 8.0
-offset_right = 1330.0
-offset_bottom = 53.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "Turno de: "
-
-[node name="Button" type="Button" parent="."]
-offset_left = 1154.0
-offset_top = 993.0
-offset_right = 1389.0
-offset_bottom = 1063.0
-theme_override_font_sizes/font_size = 32
-text = "Passar Turno"
-
-[connection signal="pressed" from="Button" to="." method="_on_pass_turn_button_pressed"]
+[node name="Tabuleiro" parent="Container" instance=ExtResource("3_utrv6")]
+position = Vector2(-8, 0)
+scale = Vector2(0.548712, 0.548712)

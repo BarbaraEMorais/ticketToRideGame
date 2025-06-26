@@ -5,6 +5,8 @@ var _posicoes: Array[Vector2]
 var _limite_cartas: int
 var largura_carta := 180
 
+signal received_new_card
+
 func _ready() -> void:
 	super._ready()
 	_cartas = []
@@ -54,6 +56,7 @@ func add_carta(carta: Carta) -> void:
 
 	_calcula_posicoes()
 	_anima_cartas()
+	received_new_card.emit()
 
 
 func remove_carta(carta: Carta) -> void:
