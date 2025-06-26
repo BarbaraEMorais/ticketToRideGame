@@ -13,7 +13,7 @@ var _estado = EM_ANDAMENTO
 func _ready() -> void:
 	mesa = $"UI/Mesa"
 	UI = $"UI"
-	#tabuleiro = $"Tabuleiro"
+	tabuleiro = $"Tabuleiro"
 	
 func _process(_delta: float) -> void:
 	pass
