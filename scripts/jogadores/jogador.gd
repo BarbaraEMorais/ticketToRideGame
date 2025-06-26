@@ -1,5 +1,7 @@
 class_name Jogador extends Node2D
 
+signal turnOver
+
 var _nome : String
 var _trens : int
 var _pontos : int
@@ -7,6 +9,12 @@ var _destinos: int
 @onready var _mao = $CanvasLayer/HBoxContainer/Mao
 
 func _ready() -> void:
+	if _mao is MaoJogador:
+		(_mao as MaoJogador).received_new_card.connect(_on_player_hand_received_card)
+	pass
+
+# Lógica relacionada ao turno do usuário
+func jogarTurno(mesa : Mesa):
 	pass
 
 func _process(delta: float) -> void:
@@ -62,3 +70,6 @@ func get_mao() -> Mao:
 
 func get_nome() -> String:
 	return _nome
+
+func _on_player_hand_received_card():
+	turnOver.emit()

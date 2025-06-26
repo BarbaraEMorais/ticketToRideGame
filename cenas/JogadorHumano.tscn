@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn58ksqkuggw2"]
+[gd_scene load_steps=5 format=3 uid="uid://dn58ksqkuggw2"]
 
 [ext_resource type="Script" path="res://scripts/jogadores/jogador.gd" id="1_legk7"]
 [ext_resource type="PackedScene" uid="uid://74rmg4gi8bs8" path="res://cenas/mao.tscn" id="2_xvymb"]
 [ext_resource type="PackedScene" uid="uid://pu1mgc2vajty" path="res://cenas/jogadores/status_jogador.tscn" id="3_bgvwa"]
+[ext_resource type="Script" path="res://scripts/mao_jogador.gd" id="3_g52np"]
 
 [node name="Jogador" type="Node2D"]
 script = ExtResource("1_legk7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Mao" parent="CanvasLayer" instance=ExtResource("2_xvymb")]
+position = Vector2(0, 2)
+script = ExtResource("3_g52np")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 2

@@ -36,6 +36,8 @@ func _calcula_posicoes() -> void:
 func accepts_card(_carta: Carta) -> bool:
 	return _cartas.size() < _limite_cartas
 
+func can_receive_card() -> bool:
+	return _cartas.size() < _limite_cartas
 
 func add_carta(carta: Carta) -> void:
 	connect_carta(carta)
@@ -63,50 +65,6 @@ func remove_carta(carta: Carta) -> void:
 
 	_calcula_posicoes()
 	_anima_cartas()
-
-
-func on_card_grab_started(carta: Carta) -> void:
-	print("MAO : ON CARD GRAB STARTED ", self.name)
-	super(carta)
-
-	for c in _cartas:
-		c.desabilita_hover_anim()
-		if c != carta:
-			c.disable_drag()
-
-	move_child(carta, -1)
-
-
-func canceled_card_move(_carta: Carta) -> void:
-	print("MAO - canceled_card_move ", self.name)
-	_anima_cartas()
-
-
-func received_own_card(_carta: Carta) -> void:
-	print("MAOP - received_own_card ", self.name)
-	var indice_carta = _cartas.find(_carta)
-	var pos_alvo = indice_carta
-	var dist_minima = INF
-	
-	for i in range(_posicoes.size()):
-		var dist = _carta.position.distance_to(_posicoes[i])
-		if dist < dist_minima:
-			dist_minima = dist
-			pos_alvo = i
-	
-	if pos_alvo != indice_carta:
-		_cartas.remove_at(indice_carta)
-		_cartas.insert(pos_alvo, _carta)
-		_calcula_posicoes()
-
-	_anima_cartas()
-
-
-func on_card_grab_ended(_carta: Carta) -> void:
-	for c in _cartas:
-		c.habilita_hover_anim()
-		c.enable_drag()
-
 
 func _anima_cartas() -> void:
 	for i in range(_cartas.size()):
