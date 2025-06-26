@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cec2docseshmt"]
+[gd_scene load_steps=5 format=3 uid="uid://cec2docseshmt"]
 
 [ext_resource type="Script" path="res://cenas/jogadores/opcoesJogador.gd" id="1_gp1de"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_wkw62"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gu7cr"]
+load_path = "res://.godot/imported/menu-background.png-645c8108d56ed08c6b260a351499ed5d.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfrnu"]
 bg_color = Color(1, 0.729412, 0.145098, 1)
@@ -23,6 +26,18 @@ offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gp1de")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_gu7cr")
+expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

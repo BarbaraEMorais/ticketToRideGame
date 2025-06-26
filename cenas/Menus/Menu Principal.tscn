@@ -1,16 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkh78weiqt7dj"]
+[gd_scene load_steps=9 format=3 uid="uid://bkh78weiqt7dj"]
 
-[ext_resource type="Script" uid="uid://bs25r3d7c4ucy" path="res://cenas/Menus/Menu Principal.gd" id="1_apk2w"]
+[ext_resource type="Script" path="res://cenas/Menus/Menu Principal.gd" id="1_apk2w"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="2_3rbv3"]
 [ext_resource type="Texture2D" uid="uid://80w603use0ob" path="res://assets/menu-background.png" id="2_q0vgd"]
-[ext_resource type="Script" uid="uid://f35l2vdue5uh" path="res://cenas/Menus/game_logo.gd" id="3_vh6gj"]
+[ext_resource type="Script" path="res://cenas/Menus/game_logo.gd" id="3_vh6gj"]
 [ext_resource type="Texture2D" uid="uid://cs17varqd754o" path="res://assets/game-logo.png" id="4_j8h2w"]
+[ext_resource type="StyleBox" uid="uid://cr5ixfy80rlrg" path="res://assets/botao_hover.tres" id="6_tlfve"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5kt5"]
-content_margin_top = 14.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djpmj"]
 bg_color = Color(1, 0.729412, 0.145098, 1)
-border_width_bottom = 9
-border_color = Color(0.8, 0.8, 0.8, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.403922, 0.184314, 0.0470588, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -18,13 +21,15 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh6gj"]
 bg_color = Color(1, 0.729412, 0.145098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
 border_width_bottom = 14
 border_color = Color(0.403922, 0.184314, 0.0470588, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.682353)
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -73,17 +78,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = 121.0
+offset_top = 119.0
 offset_right = 150.0
 offset_bottom = 206.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.403922, 0.184314, 0.0470588, 1)
 theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
 theme_override_fonts/font = ExtResource("2_3rbv3")
 theme_override_font_sizes/font_size = 70
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p5kt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_djpmj")
+theme_override_styles/pressed = ExtResource("6_tlfve")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vh6gj")
 text = "JOGAR"
 
