@@ -25,7 +25,7 @@ func on_card_grab_ended(_carta: Carta) -> void:
 
 
 func _on_area_entered(other_area: Area2D) -> void:
-	var carta = other_area.get_parent() as CartaArrastavel
+	var carta = other_area.get_parent() as Carta
 	if not carta:
 		return
 	
@@ -34,7 +34,7 @@ func _on_area_entered(other_area: Area2D) -> void:
 
 func _on_area_exited(other_area: Area2D) -> void:
 	print("CARD-CONTAINER : _on_area_exited ", self.name)
-	var carta = other_area.get_parent() as CartaArrastavel
+	var carta = other_area.get_parent() as Carta
 	if not carta:
 		return
 	
