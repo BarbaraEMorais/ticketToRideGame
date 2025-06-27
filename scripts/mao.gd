@@ -3,7 +3,7 @@ class_name Mao extends CardContainer
 @export var _cartas: Array[Carta]
 var _posicoes: Array[Vector2]
 var _limite_cartas: int
-var largura_carta := 180
+var largura_carta := 146
 
 signal received_new_card
 

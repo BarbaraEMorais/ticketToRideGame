@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dsb2ilrojbqmn"]
 
-[ext_resource type="Script" path="res://cenas/jogadores/cardJogador.gd" id="1_ifw3p"]
+[ext_resource type="Script" uid="uid://cxxtb85h5xab0" path="res://cenas/jogadores/cardJogador.gd" id="1_ifw3p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0t2n"]
 bg_color = Color(0.866667, 0, 0, 1)

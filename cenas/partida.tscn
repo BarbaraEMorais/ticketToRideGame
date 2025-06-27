@@ -1,20 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://gvkxrchsktqx"]
+[gd_scene load_steps=4 format=3 uid="uid://brqklqj46yft7"]
 
 [ext_resource type="PackedScene" uid="uid://eifoucjqk2ut" path="res://cenas/mesa.tscn" id="1_gmxvt"]
-[ext_resource type="Script" path="res://scripts/partida.gd" id="1_yh25d"]
+[ext_resource type="Script" uid="uid://bfbi5pbj0vgo2" path="res://scripts/partida.gd" id="1_yh25d"]
 [ext_resource type="PackedScene" uid="uid://kfvcr8lhu7y6" path="res://tabuleiro/tabuleiro.tscn" id="3_utrv6"]
 
 [node name="Partida" type="Node2D"]
 position = Vector2(992, 752)
 script = ExtResource("1_yh25d")
 
-[node name="Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -992.0
-offset_top = -752.0
-offset_right = -952.0
-offset_bottom = -712.0
+[node name="UI" type="CanvasLayer" parent="."]
 
 [node name="NomeJogadorAtual" type="Label" parent="Container"]
 layout_mode = 0

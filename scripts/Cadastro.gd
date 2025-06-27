@@ -143,5 +143,4 @@ func _on_nome_jogador_text_changed(new_text: String) -> void:
 
 
 func _on_quantidade_jogadores_value_changed(value: float) -> void:
-	print("value: ",value)
 	qtdJogadores = int(value)
