@@ -2,47 +2,47 @@
 	"PILHA_TREM": [
 		{
 			"cor": "vermelho",
-			"imagem": "res://assets/TremVermelhoPlaceHolder2.png",
+			"imagem": "res://assets/cartas/Vermelha.png",
 			"quantidade": 12
 		},
 		{
 			"cor": "azul",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/cartas/Azul.png",
 			"quantidade": 12
 		},
 		{
 			"cor": "verde",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/cartas/Verde.png",
 			"quantidade": 12
 		},
 		{
 			"cor": "laranja",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/cartas/laranja.png",
 			"quantidade": 12
 		},
 		{
 			"cor": "amarelo",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/cartas/Amarela.png",
 			"quantidade": 12
 		},
 		{
-			"cor": "roxo",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"cor": "rosa",
+			"imagem": "res://assets/cartas/Rosa.png",
 			"quantidade": 12
 		},
 		{
 			"cor": "branco",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/cartas/Branca.png",
 			"quantidade": 12
 		},
 		{
 			"cor": "preto",
-			"imagem": "res://assets/TremAzulPlaceHolder2.png",
+			"imagem": "res://assets/cartas/Preta.png",
 			"quantidade": 12
 		},
 		{
 			"cor": "coringa",
-			"imagem": "res://assets/TremCoringaPlaceHolder2.png",
+			"imagem": "res://assets/cartas/Coringa.png",
 			"quantidade": 14
 		}
 	],

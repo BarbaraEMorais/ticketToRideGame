@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bkh78weiqt7dj"]
 
-[ext_resource type="Script" path="res://cenas/Menus/Menu Principal.gd" id="1_apk2w"]
+[ext_resource type="Script" uid="uid://bs25r3d7c4ucy" path="res://cenas/Menus/Menu Principal.gd" id="1_apk2w"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="2_3rbv3"]
 [ext_resource type="Texture2D" uid="uid://80w603use0ob" path="res://assets/menu-background.png" id="2_q0vgd"]
-[ext_resource type="Script" path="res://cenas/Menus/game_logo.gd" id="3_vh6gj"]
+[ext_resource type="Script" uid="uid://f35l2vdue5uh" path="res://cenas/Menus/game_logo.gd" id="3_vh6gj"]
 [ext_resource type="Texture2D" uid="uid://cs17varqd754o" path="res://assets/game-logo.png" id="4_j8h2w"]
 [ext_resource type="StyleBox" uid="uid://cr5ixfy80rlrg" path="res://assets/botao_hover.tres" id="6_tlfve"]
 
