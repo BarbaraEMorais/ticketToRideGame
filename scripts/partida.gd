@@ -5,14 +5,14 @@ var partidaEmAndamento : bool = true
 var _indexJogadorAtual : int = 0
 var mesa : Mesa
 var tabuleiro : MapManager
-var UI : CanvasLayer
+var ui : CanvasLayer
 # SEPARAR ESTADOS/TURNO DE PARTIDA
 enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
 var _estado = EM_ANDAMENTO
 
 func _ready() -> void:
 	mesa = $"UI/Mesa"
-	UI = $"UI"
+	ui = $"UI"
 	tabuleiro = $"Tabuleiro"
 	
 func _process(_delta: float) -> void:
@@ -27,14 +27,13 @@ func get_jogadores() -> Array[Jogador]:
 
 
 func set_partida(nomes: Array[String], player_color: String) -> void:
-	print(nomes);
 	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa", "laranja"]
 	cores.erase(player_color)
 	cores.shuffle()
 	for i in range(nomes.size()):
 		var jogador
 		if i == 0:
-			jogador = Jogador.create(nomes[i], player_color, Vector2(40, -680), Vector2(960, 0))
+			jogador = Jogador.create(nomes[i], player_color)
 		else:
 			jogador = JogadorIA.create(nomes[i], cores[i], Vector2(40, -680), Vector2(960, 0))
 		jogador.set_status_param()
@@ -42,11 +41,10 @@ func set_partida(nomes: Array[String], player_color: String) -> void:
 		if i > 0:
 			listaJogadores[i].set_status_pos(Vector2(0, 150*(i-1)))
 			listaJogadores[i].set_mao_pos(Vector2(0, 150*(i-1)))
-		UI.add_child(listaJogadores[i])
+		ui.add_child(listaJogadores[i])
 	mesa.set_jogador_atual(listaJogadores[0])
 	mesa.set_mesa()
 	mesa.set_card_manager()
-
 
 func proximo_turno():
 	# por segurança

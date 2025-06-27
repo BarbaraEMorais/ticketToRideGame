@@ -5,6 +5,7 @@ var _trens : int
 var _pontos : int
 var _destinos: int
 @onready var _mao = $Mao
+@onready var _status_card = $"Status Jogador"
 
 func _ready() -> void:
 	pass
@@ -14,7 +15,7 @@ func _process(delta: float) -> void:
 	$"Status Jogador/Qtd_Trens".text = str(_trens)
 	$"Status Jogador/Qtd_Destinos".text = str(_destinos)
 
-static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Vector2) -> Jogador:
+static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,0), pos_mao: Vector2 = Vector2(0,0)) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorHumano.tscn")
 	var novo = jogador_cena.instantiate()
 	novo._nome = nome
@@ -62,3 +63,6 @@ func get_mao() -> Mao:
 
 func get_nome() -> String:
 	return _nome
+
+func get_status() -> Node2D:
+	return _status_card
