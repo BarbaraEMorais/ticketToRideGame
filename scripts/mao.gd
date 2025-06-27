@@ -41,6 +41,7 @@ func accepts_card(_carta: Carta) -> bool:
 func can_receive_card() -> bool:
 	return _cartas.size() < _limite_cartas
 
+
 func add_carta(carta: Carta) -> void:
 	connect_carta(carta)
 
@@ -56,7 +57,6 @@ func add_carta(carta: Carta) -> void:
 
 	_calcula_posicoes()
 	_anima_cartas()
-	received_new_card.emit()
 
 
 func remove_carta(carta: Carta) -> void:

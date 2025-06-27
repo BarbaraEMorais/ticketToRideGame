@@ -17,13 +17,18 @@ func _ready() -> void:
 	tabuleiro = $"Container/Tabuleiro"
 	labelJogadorAtual = $Container/NomeJogadorAtual
 
+	# Quando uma carta é tomada da pilha exposta, o turno acaba
+	mesa.get_pilha_exposta().carta_tomada_da_exposta.connect(_on_card_taken)
+	# Quando uma carta de destino é comprada, o turno acaba
+	mesa.sel_destino_concluida.connect(_on_dest_cards_taken)
+
 	
 func _process(_delta: float) -> void:
 	pass
 
 func add_player(jogador : Jogador) -> void:
-	jogador.turnOver.connect(_on_turn_over)
 	listaJogadores.append(jogador)
+	jogador.turnOver.connect(_on_turn_over)
 
 
 func get_jogadores() -> Array[Jogador]:
@@ -89,8 +94,13 @@ func _handle_end_game_signal():
 		_estado = ULTIMO_TURNO
 
 func _on_turn_over() -> void:
-	
+	proximo_turno()
+
+func _on_card_taken(drop : Carta):
 	proximo_turno()
 
 func _on_pass_turn_button_pressed() -> void:
+	proximo_turno()
+	
+func _on_dest_cards_taken():
 	proximo_turno()
