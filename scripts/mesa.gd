@@ -85,7 +85,7 @@ func _on_pilha_destino_selecao_solicitada() -> void:
 		push_warning("Mesa: Instância de SelecaoDestinoUI não tem o sinal 'selecao_de_destinos_concluida'.")
 
 
-func conectar_sinais_das_linhas():
+func conectar_sinais_das_linhas(): # CONECTA TODAS AS LINHAS COM A FUNÇÃO QUE FAZ A VERIFICAÇÃO NA MESA
 	print("Mesa: Conectando sinais das linhas do Tabuleiro...")
 	
 	if not is_instance_valid(tabuleiro_node):
@@ -105,8 +105,9 @@ func conectar_sinais_das_linhas():
 
 func _on_rota_reclamar_solicitada(linha_clicada: Linha):
 	print("chegou aqui na parte de reivindicar")
+	#FUNÇÃO DA MÃO QUE VERIFICA SE TEM CARTAS SUFUCIENTES PRA REIVINDICIAR E RETORNA 0 SE FOR POSSIVEL
 	if jogador_atual.get_mao().gerencia_reivindicação(linha_clicada.color, linha_clicada.trilhos.size()) ==0:
-		linha_clicada.claim_route(jogador_atual)
+		linha_clicada.claim_route(jogador_atual) 
 		jogador_atual.subtrai_trens(linha_clicada.trilhos.size())
 		jogador_atual.soma_pontos(PONTOS_POR_ROTA.get(linha_clicada.trilhos.size()))
 		

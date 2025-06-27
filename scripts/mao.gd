@@ -134,18 +134,18 @@ func get_limite():
 func get_cartas_na_mao():
 	return _cartas.size()
 
-func gerencia_reivindicação(cor: String, tamanho_requerido: int):
+func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
+	#OBS: FOI CRIADO UM DICIONARIO PRA MAPEAR A QUANTIDADE DE CADA COR DE CARTA NA MÃO DO JOGADOR
 	var qtd_coringa = _contagem_por_cor.get("coringa", 0)
-	var qtd_cor = _contagem_por_cor.get(cor, 0)
+	var qtd_cor = _contagem_por_cor.get(cor_rota, 0)
 	var cartas_da_cor: Array[CartaTrem] = []
 	var cartas_coringa: Array[CartaTrem] = []
-	if cor != "grey":
-		print(_contagem_por_cor.get(cor) )
-		if (_contagem_por_cor.get(cor) + qtd_coringa >= tamanho_requerido):	
+	if cor_rota != "grey": # SE A ROTA  NÃO FOR CINZA
+		if (_contagem_por_cor.get(cor_rota) + qtd_coringa >= tamanho_requerido): #VÊ SE TEMOS CARTAS SUFICIENTES PRA REIVINDICAR ROTA	
 			print("chegou aqui")
-			for carta in _cartas:
+			for carta in _cartas:  #PASSA ARMAZENANDO AS CARTAS DA COR REQUISITADA PARA TIRAR DA MÃO POSTERIORMENTE
 				if carta is CartaTrem:
-					if carta.cor == cor:
+					if carta.cor == cor_rota:
 						cartas_da_cor.append(carta)
 					elif carta.cor == "coringa":
 						cartas_coringa.append(carta)
@@ -153,7 +153,7 @@ func gerencia_reivindicação(cor: String, tamanho_requerido: int):
 			for i in range (tamanho_requerido):
 				print ("i:", i)
 				if cartas_da_cor.size()>0:
-					remove_carta(cartas_da_cor[0]) 
+					remove_carta(cartas_da_cor[0]) #TIRA DA MÃO
 					cartas_da_cor.pop_front()
 				elif cartas_coringa.size()>0:
 					remove_carta(cartas_coringa[0])
@@ -166,11 +166,11 @@ func gerencia_reivindicação(cor: String, tamanho_requerido: int):
 		print("coringa:",qtd_coringa)
 		for i in _contagem_por_cor:
 			if i == "coringa": continue # Pula a chave "coringa" no loop principal
-			if  _contagem_por_cor[i]> maior_qtd:
+			if  _contagem_por_cor[i]> maior_qtd: # PROCURA A COR DE TREM DE MAIOR QUANTIDADE NA MÃO DO JOGADOR
 				maior_qtd= _contagem_por_cor[i]
 				cor_maior=i
 		print("maior cor", maior_qtd)
-		if maior_qtd + qtd_coringa >= tamanho_requerido:
+		if maior_qtd + qtd_coringa >= tamanho_requerido:  #VÊ SE TEMOS CARTAS SUFICIENTES PRA REIVINDICAR ROTA	
 			for carta in _cartas:
 				if carta is CartaTrem:
 					if carta.cor == cor_maior:
