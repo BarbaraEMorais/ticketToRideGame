@@ -3,6 +3,7 @@ class_name Partida extends Node2D
 var listaJogadores : Array[Jogador]
 var partidaEmAndamento : bool = true
 var _indexJogadorAtual : int = 0
+var _indexJogadorUltimoTurno : int = 9999
 var mesa : Mesa
 var tabuleiro : MapManager
 var UI : CanvasLayer
@@ -67,17 +68,29 @@ func proximo_turno():
 	else:
 		_passar_turno()
 
+func getJogadorAtual() -> Jogador:
+	return listaJogadores[_indexJogadorAtual]
 
 func _passar_turno():
+	if _estado == FINALIZAR:
+		# Implementar lógica de fim de partida
+		return
+	
+	if _indexJogadorAtual == _indexJogadorUltimoTurno and _estado == ULTIMO_TURNO:
+		_estado = FINALIZAR	
+	
+	
+	if getJogadorAtual().get_trens() <= 2 and _estado == EM_ANDAMENTO:
+		_indexJogadorUltimoTurno = _indexJogadorAtual
+		_estado = ULTIMO_TURNO
+	
 	_indexJogadorAtual += 1
+	
 	if (_indexJogadorAtual >= listaJogadores.size()):
 		_indexJogadorAtual = 0
 	
 	update_curr_player_label()
-	listaJogadores[_indexJogadorAtual].jogarTurno(mesa)
-	
-	if _estado == ULTIMO_TURNO:
-		_estado = FINALIZAR
+	getJogadorAtual().jogarTurno(mesa)
 
 
 # Placeholder para a checagem da vitoria de um jogador
