@@ -1,9 +1,9 @@
 class_name PilhaExposta extends CardContainer
 
 const MAX_CARTAS_EXPOSTAS: int = 5
-const LARGURA_CARTA: float = 170.0
+const LARGURA_CARTA: float = 146.0
 const ESPACAMENTO_ENTRE_CARTAS: float = 10.0
-const LARGURA_CARTA_EM_PE: float = 170.0
+const LARGURA_CARTA_EM_PE: float = 146.0
 const ALTURA_CARTA_EM_PE: float = 250.0
 
 const ESPACAMENTO_VERTICAL_ENTRE_CARTAS: float = 10.0 
@@ -66,7 +66,7 @@ func _repor_uma_carta_na_exposta() -> void:
 		nova_carta.drag_enabled = false
 		var ponto_de_origem_global = pilha_trem.global_position
 		nova_carta.position = self.to_local(ponto_de_origem_global)
-		nova_carta.rotation_degrees = 90
+		nova_carta.rotation_degrees = 270
 
 		var callable_method = Callable(self, "_on_carta_exposta_foi_clicada")
 

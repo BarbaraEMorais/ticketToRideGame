@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Vector2) -> Jogador:
+static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,0), pos_mao: Vector2 = Vector2(0,0)) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorIA.tscn")
 	var novo = jogador_cena.instantiate()
 	novo._nome = nome

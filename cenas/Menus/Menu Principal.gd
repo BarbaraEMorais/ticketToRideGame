@@ -12,4 +12,4 @@ func _process(_delta: float) -> void:
 
 
 func _on_jogar_pressed() -> void:
-	get_tree().change_scene_to_file("res://cenas/jogadores/CadastroJogador.tscn")
+	get_tree().change_scene_to_file("res://cenas/Menus/CadastroJogador.tscn")

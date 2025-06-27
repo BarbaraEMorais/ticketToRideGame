@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://eifoucjqk2ut"]
+
+[ext_resource type="Script" path="res://mesa.gd" id="1_hxkmd"]
+[ext_resource type="PackedScene" uid="uid://b5nr4prodiiq4" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
+[ext_resource type="PackedScene" uid="uid://rdsbsl6ag741" path="res://cenas/cartaTrem.tscn" id="3_gaxdi"]
+[ext_resource type="PackedScene" uid="uid://dbrmi6ca20idk" path="res://cenas/pilhaTrem.tscn" id="4_btbph"]
+[ext_resource type="PackedScene" uid="uid://ceclp48lo5e2d" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
+[ext_resource type="PackedScene" uid="uid://wccsf37xgcrr" path="res://cenas/pilhaDestino.tscn" id="6_pe6d5"]
+
+[node name="Mesa" type="Node2D"]
+position = Vector2(-10, -2)
+script = ExtResource("1_hxkmd")
+
+[node name="PilhaExposta" parent="." instance=ExtResource("2_sboaq")]
+position = Vector2(1763, 94)
+scale = Vector2(0.8, 0.8)
+
+[node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
+visible = false
+position = Vector2(181, 457)
+scale = Vector2(0.8, 0.8)
+
+[node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
+position = Vector2(1782, 826)
+rotation = 1.5708
+
+[node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
+visible = false
+position = Vector2(534, 52)
+scale = Vector2(0.8, 0.8)
+
+[node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
+position = Vector2(1780, 980)
+rotation = 1.5708
+scale = Vector2(0.8, 0.8)
