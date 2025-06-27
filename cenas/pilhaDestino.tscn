@@ -6,9 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jihf6"]
 size = Vector2(163, 239)
 
-[node name="PilhaDestino" type="Node2D"]
-position = Vector2(1540, 896)
+[node name="PilhaDestino" type="Container"]
+offset_left = 1540.0
+offset_top = 896.0
+offset_right = 1540.0
+offset_bottom = 896.0
 script = ExtResource("1_5uhck")
+metadata/_custom_type_script = "uid://bvmheucnaw05c"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ccqr6")

@@ -50,24 +50,21 @@ func on_grab_ended(carta: Carta) -> void:
 	reset_state()
 
 
-func on_carta_over_container(carta: Carta, container: CardContainer) -> void:
+func on_mouse_over_container(container: CardContainer) -> void:
 	print("CARD MANAGER - on_carta_over_container ", self.name)
 	if not container.can_receive_cards:
-		return
-
-	if carta != current_carta:
 		return
 
 	if new_parent:
 		new_parent.disable_highlight()
 
-	if container.accepts_card(carta):
+	if container.accepts_card(current_carta):
 		container.highlight()
 
 	new_parent = container
 
 
-func on_carta_leaving_container(carta: Carta, container: CardContainer) -> void:
+func on_mouse_leaving_container(container: CardContainer) -> void:
 	if just_moved:
 		return 
 
@@ -77,8 +74,6 @@ func on_carta_leaving_container(carta: Carta, container: CardContainer) -> void:
 	print("CARD MANAGER - on_carta_leaving_container ", self.name)
 	left_curr_container = true
 
-	if carta != current_carta:
-		return
 
 	if container == current_parent:
 		return

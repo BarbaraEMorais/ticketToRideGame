@@ -1,28 +1,39 @@
 [gd_scene load_steps=7 format=3 uid="uid://eifoucjqk2ut"]
 
 [ext_resource type="Script" uid="uid://bq43t2jo6iswp" path="res://scripts/mesa.gd" id="1_hxkmd"]
-[ext_resource type="PackedScene" uid="uid://b5nr4prodiiq4" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
 [ext_resource type="PackedScene" uid="uid://rdsbsl6ag741" path="res://cenas/cartaTrem.tscn" id="3_gaxdi"]
 [ext_resource type="PackedScene" uid="uid://dbrmi6ca20idk" path="res://cenas/pilhaTrem.tscn" id="4_btbph"]
 [ext_resource type="PackedScene" uid="uid://ceclp48lo5e2d" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
+[ext_resource type="Script" uid="uid://dyj8xrwqgxvmk" path="res://scripts/Pilhas/pilhaExposta.gd" id="6_fx48a"]
 [ext_resource type="PackedScene" uid="uid://wccsf37xgcrr" path="res://cenas/pilhaDestino.tscn" id="6_pe6d5"]
 
-[node name="Mesa" type="Node2D"]
+[node name="Mesa" type="CanvasLayer"]
 script = ExtResource("1_hxkmd")
 
-[node name="PilhaExposta" parent="." instance=ExtResource("2_sboaq")]
-position = Vector2(1795, 200)
+[node name="PilhaExposta" type="Container" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_top = 19.0
+offset_bottom = 664.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+size_flags_vertical = 10
+script = ExtResource("6_fx48a")
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
 visible = false
-anchors_preset = 8
 offset_left = 181.0
 offset_top = 457.0
 offset_right = 636.0
 offset_bottom = 1140.0
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
-position = Vector2(1795, 858)
+offset_left = 1795.0
+offset_top = 858.0
+offset_right = 1795.0
+offset_bottom = 858.0
 rotation = 1.5708
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
@@ -33,6 +44,9 @@ offset_right = 759.0
 offset_bottom = 388.0
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
-position = Vector2(1802, 989)
+offset_left = 1802.0
+offset_top = 989.0
+offset_right = 1802.0
+offset_bottom = 989.0
 rotation = 1.5708
 scale = Vector2(0.8, 0.8)
