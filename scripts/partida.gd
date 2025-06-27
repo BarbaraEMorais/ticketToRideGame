@@ -13,10 +13,10 @@ enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
 var _estado = EM_ANDAMENTO
 
 func _ready() -> void:
-	mesa = $"Container/UI/Mesa"
-	ui = $"Container/UI"
-	tabuleiro = $"Container/Tabuleiro"
-	labelJogadorAtual = $Container/NomeJogadorAtual
+	mesa = $"UI/Mesa"
+	ui = $"UI"
+	tabuleiro = $"Tabuleiro"
+	labelJogadorAtual = $UI/NomeJogadorAtual
 
 	# Quando uma carta é tomada da pilha exposta, o turno acaba
 	mesa.get_pilha_exposta().carta_tomada_da_exposta.connect(_on_card_taken)
