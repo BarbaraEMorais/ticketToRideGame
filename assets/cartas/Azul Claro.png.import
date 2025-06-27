@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct8d3a0op0vdg"
-path="res://.godot/imported/Azul.png-ba6e8a298d34f85c56ebe28c7823ea1b.ctex"
+uid="uid://bjkk082jvu3us"
+path="res://.godot/imported/Azul Claro.png-4e642cfddf98a66b193670d2acc0510f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cartas/Azul.png"
-dest_files=["res://.godot/imported/Azul.png-ba6e8a298d34f85c56ebe28c7823ea1b.ctex"]
+source_file="res://assets/cartas/Azul Claro.png"
+dest_files=["res://.godot/imported/Azul Claro.png-4e642cfddf98a66b193670d2acc0510f.ctex"]
 
 [params]
 
