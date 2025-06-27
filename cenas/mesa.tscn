@@ -11,7 +11,7 @@
 script = ExtResource("1_hxkmd")
 
 [node name="PilhaExposta" parent="." instance=ExtResource("2_sboaq")]
-position = Vector2(1778, 84)
+position = Vector2(1795, 200)
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
 visible = false

@@ -66,7 +66,7 @@ func _repor_uma_carta_na_exposta() -> void:
 		nova_carta.drag_enabled = false
 		var ponto_de_origem_global = pilha_trem.global_position
 		nova_carta.position = self.to_local(ponto_de_origem_global)
-		nova_carta.rotation_degrees = 90
+		nova_carta.rotation_degrees = 270
 
 		var callable_method = Callable(self, "_on_carta_exposta_foi_clicada")
 
