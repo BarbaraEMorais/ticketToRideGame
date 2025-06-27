@@ -14,6 +14,7 @@ const LARGURA_VISUAL_CARTA_DEITADA: float = ALTURA_CARTA_EM_PE
 const ALTURA_VISUAL_CARTA_DEITADA: float = LARGURA_CARTA_EM_PE  
 var _cartas: Array[CartaTrem] 
 var pilha_trem: PilhaTrem
+
 signal carta_tomada_da_exposta(carta: CartaTrem) 
 
 func _ready() -> void:
@@ -159,3 +160,6 @@ func received_own_card(carta: Carta) -> void:
 
 func accepts_card(_carta: Carta) -> bool:
 	return false
+
+func getCartas() -> Array[CartaTrem]:
+	return _cartas
