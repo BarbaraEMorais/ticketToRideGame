@@ -21,6 +21,7 @@ var animacao_hover: Tween
 
 func _ready() -> void:
 	posicao_original = position
+	pivot_offset = size / 2.0
 
 
 func _on_mouse_entered() -> void:
@@ -31,7 +32,7 @@ func _on_mouse_entered() -> void:
 		animacao_hover.kill()
 	
 	animacao_hover = create_tween()
-	animacao_hover.tween_property(self, "scale", Vector2.ONE * 1.2, 0.1)
+	animacao_hover.tween_property(self, "scale", Vector2.ONE * 1.3, 0.1)
 
 
 func _on_mouse_exited() -> void:

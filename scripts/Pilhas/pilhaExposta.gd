@@ -105,9 +105,9 @@ func _atualizar_posicoes_cartas() -> void:
 			i -= 1 
 			continue
 
-		var x_pos: float = 0.0 
+		var x_pos: float = LARGURA_VISUAL_CARTA_DEITADA/2
 
-		var y_pos: float = float(i) * (ALTURA_VISUAL_CARTA_DEITADA + ESPACAMENTO_VERTICAL_ENTRE_CARTAS) + ALTURA_VISUAL_CARTA_DEITADA
+		var y_pos: float = float(i) * (ALTURA_VISUAL_CARTA_DEITADA + ESPACAMENTO_VERTICAL_ENTRE_CARTAS)
 		
 		var tween = get_tree().create_tween()
 		tween.tween_property(carta_node, "position", Vector2(x_pos, y_pos), 0.2).set_trans(Tween.TRANS_SINE)

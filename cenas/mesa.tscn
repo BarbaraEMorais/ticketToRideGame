@@ -11,12 +11,10 @@
 script = ExtResource("1_hxkmd")
 
 [node name="PilhaExposta" type="Container" parent="."]
+custom_minimum_size = Vector2(250, 0)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -250.0
-offset_top = 19.0
-offset_bottom = 664.0
 grow_horizontal = 0
 size_flags_horizontal = 10
 size_flags_vertical = 10
@@ -30,11 +28,10 @@ offset_right = 636.0
 offset_bottom = 1140.0
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
-offset_left = 1795.0
-offset_top = 858.0
-offset_right = 1795.0
-offset_bottom = 858.0
-rotation = 1.5708
+offset_left = 1702.0
+offset_top = 778.0
+offset_right = 1702.0
+offset_bottom = 778.0
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
 visible = false

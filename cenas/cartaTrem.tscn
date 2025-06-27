@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://rdsbsl6ag741"]
+[gd_scene load_steps=4 format=3 uid="uid://rdsbsl6ag741"]
 
 [ext_resource type="Texture2D" uid="uid://dk83f63no7jqk" path="res://assets/cartas/Coringa.png" id="1_65myn"]
 [ext_resource type="Script" uid="uid://sr36fg2renpj" path="res://scripts/cartas/cartaTrem.gd" id="1_j274c"]
+[ext_resource type="Texture2D" uid="uid://bvikun3cftybu" path="res://assets/cartas/card_shadow.png" id="3_22vko"]
 
 [node name="CartaTrem" type="TextureRect"]
 custom_minimum_size = Vector2(146, 250)
@@ -10,9 +11,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -79.4931
+offset_left = -79.0
 offset_top = -125.0
-offset_right = 79.4931
+offset_right = 80.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -23,6 +24,12 @@ texture = ExtResource("1_65myn")
 expand_mode = 3
 stretch_mode = 5
 script = ExtResource("1_j274c")
+
+[node name="CardShadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(79, 129)
+scale = Vector2(0.380952, 0.383333)
+texture = ExtResource("3_22vko")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
