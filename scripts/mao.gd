@@ -46,10 +46,9 @@ func add_carta(carta: Carta) -> void:
 	add_child(carta)
 
 	if carta is CartaDestino:
-		var escalaNecessaria = largura_carta / carta.visual_sprite.get_rect().size.x
-		carta.apply_scale(Vector2(escalaNecessaria, escalaNecessaria))
+		var escalaNecessaria = largura_carta / carta.size.x
+		carta.scale = Vector2(escalaNecessaria, escalaNecessaria)
 		
-
 	_calcula_posicoes()
 	_anima_cartas()
 

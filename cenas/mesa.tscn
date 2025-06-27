@@ -28,10 +28,17 @@ offset_right = 636.0
 offset_bottom = 1140.0
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
-offset_left = 1702.0
-offset_top = 778.0
-offset_right = 1702.0
-offset_bottom = 778.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -315.0
+offset_right = -18.0
+offset_bottom = -179.069
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
 visible = false
@@ -41,9 +48,16 @@ offset_right = 759.0
 offset_bottom = 388.0
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
-offset_left = 1802.0
-offset_top = 989.0
-offset_right = 1802.0
-offset_bottom = 989.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -160.0
+offset_right = 125.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 0
 rotation = 1.5708
 scale = Vector2(0.8, 0.8)

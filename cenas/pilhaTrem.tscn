@@ -3,12 +3,17 @@
 [ext_resource type="Script" uid="uid://bw4xniy81hbi8" path="res://scripts/Pilhas/pilhaTrem.gd" id="1_k8c8a"]
 [ext_resource type="Texture2D" uid="uid://dcubluyhxxwfa" path="res://assets/cartas/pilha_trens.png" id="2_d57mh"]
 
-[node name="PilhaTrem" type="Container"]
+[node name="PilhaTrem" type="CenterContainer"]
+offset_right = 200.0
+offset_bottom = 135.931
 script = ExtResource("1_k8c8a")
-metadata/_custom_type_script = "uid://bvmheucnaw05c"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 texture = ExtResource("2_d57mh")
 expand_mode = 5
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

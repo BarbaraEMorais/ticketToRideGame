@@ -32,7 +32,7 @@ func enable_click_area() -> void:
 	pass
 
 
-func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var carta_puxada: Carta = comprar_carta_da_pilha()
 		if carta_puxada:

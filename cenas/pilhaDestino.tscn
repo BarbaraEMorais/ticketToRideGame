@@ -1,24 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://wccsf37xgcrr"]
+[gd_scene load_steps=3 format=3 uid="uid://wccsf37xgcrr"]
 
 [ext_resource type="Script" uid="uid://bgy55rdlrtiju" path="res://scripts/Pilhas/pilhaDestino.gd" id="1_5uhck"]
-[ext_resource type="Texture2D" uid="uid://f3q80foafpma" path="res://assets/TicketPlaceHolder2.png" id="2_ccqr6"]
+[ext_resource type="Texture2D" uid="uid://covgpuum661t8" path="res://assets/BaseCartaDestino.png" id="2_8ahi0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jihf6"]
-size = Vector2(163, 239)
-
-[node name="PilhaDestino" type="Container"]
-offset_left = 1540.0
-offset_top = 896.0
-offset_right = 1540.0
-offset_bottom = 896.0
+[node name="PilhaDestino" type="CenterContainer"]
+custom_minimum_size = Vector2(150, 224)
+offset_right = 150.0
+offset_bottom = 224.0
 script = ExtResource("1_5uhck")
-metadata/_custom_type_script = "uid://bvmheucnaw05c"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ccqr6")
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+texture = ExtResource("2_8ahi0")
+expand_mode = 5
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2.5, 0.5)
-shape = SubResource("RectangleShape2D_jihf6")
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
