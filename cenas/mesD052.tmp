@@ -11,14 +11,14 @@
 script = ExtResource("1_hxkmd")
 
 [node name="PilhaExposta" parent="." instance=ExtResource("2_sboaq")]
-position = Vector2(1770, 75)
+position = Vector2(1795, 200)
 
 [node name="Carta" parent="." instance=ExtResource("3_gaxdi")]
 visible = false
 position = Vector2(181, 457)
 
 [node name="PilhaTrem" parent="." instance=ExtResource("4_btbph")]
-position = Vector2(1740, 860)
+position = Vector2(1795, 858)
 rotation = 1.5708
 
 [node name="CartaDestino" parent="." instance=ExtResource("5_j7o1c")]
@@ -26,6 +26,6 @@ visible = false
 position = Vector2(534, 52)
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
-position = Vector2(1735, 990)
+position = Vector2(1802, 989)
 rotation = 1.5708
 scale = Vector2(0.8, 0.8)

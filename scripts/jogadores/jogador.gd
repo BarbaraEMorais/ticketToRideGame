@@ -66,3 +66,9 @@ func get_nome() -> String:
 
 func get_status() -> Node2D:
 	return _status_card
+
+func soma_pontos(_num: int) -> void:
+	_pontos += _num 
+	
+func subtrai_trens(_num: int) -> void:
+	_trens -= _num

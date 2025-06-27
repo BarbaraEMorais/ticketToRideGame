@@ -134,7 +134,7 @@ func get_limite():
 func get_cartas_na_mao():
 	return _cartas.size()
 
-func gerencia_reivindicação(cor: String, tamanho_requerido: int):
+func qtd_cor(cor: String, tamanho_requerido: int):
 	var qtd_coringa = _contagem_por_cor.get("coringa", 0)
 	var qtd_cor = _contagem_por_cor.get(cor, 0)
 	var cartas_da_cor: Array[CartaTrem] = []

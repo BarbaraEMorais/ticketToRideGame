@@ -89,7 +89,7 @@ static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Ca
 			return null
 		
 		var script_carta_trem : CartaTrem = nova_carta_base as CartaTrem
-		script_carta_trem.cor = dados_entrada.get("id_tipo_carta", "cor_desconhecida")
+		script_carta_trem.cor = dados_entrada.get("cor", "cor_desconhecida")
 		
 		var caminho_img : String = dados_entrada.get("imagem", "")
 		var sprite_node = script_carta_trem.get_node_or_null("Sprite2D")

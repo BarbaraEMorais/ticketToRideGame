@@ -3,7 +3,15 @@ class_name Mesa extends Node2D
 @onready var _pilha_trem: PilhaTrem = $PilhaTrem 
 @onready var _pilha_exposta: PilhaExposta = $PilhaExposta
 @onready var _pilha_destino: PilhaDestino = $PilhaDestino
-
+@onready var tabuleiro_node: MapManager = $"../../Tabuleiro"
+const PONTOS_POR_ROTA = {
+	1: 1,
+	2: 2,
+	3: 4,
+	4: 7,
+	5: 10,
+	6: 15
+}
 # @onready var jogador_atual: Jogador 
 const CENA_SELECAO_DESTINO = preload("res://cenas/seleçãoDestino.tscn")
 #var cena_jogador_host = preload("res://cenas/JogadorHumano.tscn")
@@ -14,14 +22,13 @@ var _card_manager: CardManager
 var jogador_atual : Jogador
 
 func _ready() -> void:
-	pass 
+	call_deferred("conectar_sinais_das_linhas")
 	
 func get_trem() -> PilhaTrem:
 	return _pilha_trem
 
 func get_pilha_exposta() -> PilhaExposta: 
 	return _pilha_exposta
-
 # Callback para quando uma carta é comprada da PilhaTrem (clique direto na pilha)
 func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 	print("Mesa: Jogador comprou a carta '%s' da PilhaTrem." % carta.name)
@@ -76,6 +83,36 @@ func _on_pilha_destino_selecao_solicitada() -> void:
 		print("Mesa: Conectado ao sinal 'selecao_de_destinos_concluida' da UI de seleção.")
 	else:
 		push_warning("Mesa: Instância de SelecaoDestinoUI não tem o sinal 'selecao_de_destinos_concluida'.")
+
+
+func conectar_sinais_das_linhas():
+	print("Mesa: Conectando sinais das linhas do Tabuleiro...")
+	
+	if not is_instance_valid(tabuleiro_node):
+		printerr("Mesa: Referência ao nó 'Tabuleiro' não encontrada!")
+		return
+
+	if tabuleiro_node.caminhos.is_empty(): # <--- SUSPEITO PRINCIPAL
+		push_warning("Mesa: Nenhum caminho encontrado no Tabuleiro para conectar sinais.")
+		return
+		
+	for caminho in tabuleiro_node.caminhos:
+		for linha in caminho.linhas:
+			if not linha.rota_reclamar_solicitada.is_connected(_on_rota_reclamar_solicitada):
+				linha.rota_reclamar_solicitada.connect(_on_rota_reclamar_solicitada)
+				print("linha conectada")
+
+
+func _on_rota_reclamar_solicitada(linha_clicada: Linha):
+	print("chegou aqui na parte de reivindicar")
+	if jogador_atual.get_mao().gerencia_reivindicação(linha_clicada.color, linha_clicada.trilhos.size()) ==0:
+		linha_clicada.claim_route(jogador_atual)
+		jogador_atual.subtrai_trens(linha_clicada.trilhos.size())
+		jogador_atual.soma_pontos(PONTOS_POR_ROTA.get(linha_clicada.trilhos.size()))
+		
+	
+
+
 
 #método para lidar com o resultado da seleção
 func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
