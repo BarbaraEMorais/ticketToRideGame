@@ -64,19 +64,18 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.498113
 anchor_top = 0.476064
-anchor_right = 0.498113
-anchor_bottom = 0.699468
+anchor_right = 0.5
+anchor_bottom = 0.476064
 offset_left = -27.0
 offset_top = -31.0
-offset_right = 32.0
-offset_bottom = 50.0
+offset_right = 31.5
+offset_bottom = 134.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_hc1gv")
 theme_override_font_sizes/font_size = 80
 text = "99
 "
 horizontal_alignment = 1
-vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

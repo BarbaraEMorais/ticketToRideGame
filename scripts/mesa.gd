@@ -4,10 +4,7 @@ class_name Mesa extends Node
 @onready var _pilha_exposta: PilhaExposta = $PilhaExposta
 @onready var _pilha_destino: PilhaDestino = $PilhaDestino
 
-# @onready var jogador_atual: Jogador 
 const CENA_SELECAO_DESTINO = preload("res://cenas/seleçãoDestino.tscn")
-#var cena_jogador_host = preload("res://cenas/JogadorHumano.tscn")
-#var cena_jogador_IA = preload("res://status_jogador.gd")
 
 var instancia_selecao_destino_ui
 var _card_manager: CardManager

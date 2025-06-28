@@ -4,15 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://cx6xqklsihc2g" path="res://assets/cartas/pilhas/Trens Pilha.png" id="2_d57mh"]
 
 [node name="PilhaTrem" type="CenterContainer"]
-offset_right = 200.0
-offset_bottom = 135.931
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -133.808
+offset_right = 100.0
+offset_bottom = 133.808
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_k8c8a")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 texture = ExtResource("2_d57mh")
-expand_mode = 5
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
