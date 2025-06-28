@@ -38,6 +38,7 @@ func set_status_param() -> void:
 
 func set_card_color(color: String) -> void:
 	var color_path = "res://assets/Bilhete_" + color + ".png"
+	print(color_path)
 	$"Status Jogador".texture = load(color_path)
 
 func set_status_pos(_pos: Vector2) -> void:
@@ -74,3 +75,9 @@ func _on_player_hand_received_card():
 	turnOver.emit()
 func get_status() -> Node2D:
 	return _status_card
+
+func soma_pontos(_num: int) -> void:
+	_pontos += _num 
+	
+func subtrai_trens(_num: int) -> void:
+	_trens -= _num

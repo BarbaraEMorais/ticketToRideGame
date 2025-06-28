@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2wjntvd0s02n"]
 
-[ext_resource type="Script" uid="uid://kd6ipkl7hhn2" path="res://tabuleiro/caminho.gd" id="1_nsf5n"]
+[ext_resource type="Script" path="res://tabuleiro/caminho.gd" id="1_nsf5n"]
 [ext_resource type="PackedScene" uid="uid://hddgpr75emag" path="res://tabuleiro/Trilho.tscn" id="2_qqogi"]
 
 [node name="Caminho" type="Node2D"]

@@ -6,7 +6,7 @@ var destino: Cidade
 var color: String
 var trilhos: Array[Trilho] = []
 var dono: Jogador
-
+signal rota_reclamar_solicitada(linha_selecionada: Linha)
 func _init(_color: String):
 	color = _color
 
@@ -40,7 +40,7 @@ func _on_trilho_clicked(_trilho: Trilho):
 	# TEMP
 	var jogador_placeholder = Jogador.new()
 	if !dono:
-		claim_route(jogador_placeholder)
+		emit_signal("rota_reclamar_solicitada", self) 
 
 
 func highlight_linha():
