@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ufyxfx0h2ix4" path="res://scripts/jogadores/jogador.gd" id="1_legk7"]
 [ext_resource type="PackedScene" uid="uid://74rmg4gi8bs8" path="res://cenas/mao.tscn" id="2_xvymb"]
 [ext_resource type="PackedScene" uid="uid://pu1mgc2vajty" path="res://cenas/jogadores/status_jogador.tscn" id="3_bgvwa"]
-[ext_resource type="Script" path="res://scripts/mao_jogador.gd" id="4_2ukpb"]
+[ext_resource type="Script" uid="uid://b0ntvlw87qqo7" path="res://scripts/mao_jogador.gd" id="4_2ukpb"]
 
 [node name="JogadorHumano" type="Control"]
 layout_mode = 3

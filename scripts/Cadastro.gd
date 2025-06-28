@@ -33,7 +33,6 @@ func _ready() -> void:
 		$BoxContainer/btnLaranja,
 		$BoxContainer/btnAmarelo,
 		$BoxContainer/btnRosa,
-		$BoxContainer/btnAzulEscuro,
 		$BoxContainer/btnPreto
 		]
 
@@ -57,7 +56,6 @@ func selecionar_cor(botao):
 	# Salva cor escolhida
 	match botao.name:
 		"btnVermelho": cor_atual = "vermelho"
-		"btnAzulEscuro":    cor_atual = "azul_escuro"
 		"btnVerde":   cor_atual = "verde"
 		"btnLaranja": cor_atual = "laranja"
 		"btnAmarelo": cor_atual = "amarelo"
@@ -66,7 +64,6 @@ func selecionar_cor(botao):
 		"btnAzulClaro": cor_atual = "azul_claro"
 
 	emit_signal("cor_selecionada", cor_atual)
-	print("cor atual:", cor_atual)
 
 
 func _on_start_pressed():

@@ -39,7 +39,7 @@ func update_curr_player_label():
 	labelJogadorAtual.text = "Turno de: " + get_jogadores()[_indexJogadorAtual].get_nome() 
 
 func set_partida(nomes: Array[String], player_color: String) -> void:
-	var cores = ["azul_claro", "vermelho", "azul_escuro", "verde", "preto", "amarelo", "rosa", "laranja"]
+	var cores = ["azul_claro", "vermelho", "verde", "preto", "amarelo", "rosa", "laranja"]
 	cores.erase(player_color)
 	cores.shuffle()
 	for i in range(nomes.size()):

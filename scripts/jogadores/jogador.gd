@@ -6,6 +6,7 @@ var _nome : String
 var _trens : int
 var _pontos : int
 var _destinos: int
+var _cor: String
 @onready var _mao = $Mao
 @onready var _status_card = $"Status Jogador"
 
@@ -26,7 +27,8 @@ static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,
 	var novo = jogador_cena.instantiate()
 	novo._nome = nome
 	novo._trens = 45
-	novo._pontos= 0
+	novo._pontos = 0
+	novo._cor = cor
 	novo.set_card_color(cor)
 	return novo
 
@@ -38,6 +40,7 @@ func set_status_param() -> void:
 
 func set_card_color(color: String) -> void:
 	var color_path = "res://assets/Bilhete_" + color + ".png"
+	print(color_path)
 	$"Status Jogador".texture = load(color_path)
 
 func set_status_pos(_pos: Vector2) -> void:
@@ -74,3 +77,11 @@ func _on_player_hand_received_card():
 	turnOver.emit()
 func get_status() -> Node2D:
 	return _status_card
+
+func soma_pontos(_num: int) -> void:
+	_pontos += _num 
+	
+func subtrai_trens(_num: int) -> void:
+	_trens -= _num
+func get_cor() -> String:
+	return _cor

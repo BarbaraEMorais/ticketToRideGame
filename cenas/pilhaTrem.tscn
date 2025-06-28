@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbrmi6ca20idk"]
 
 [ext_resource type="Script" uid="uid://bw4xniy81hbi8" path="res://scripts/Pilhas/pilhaTrem.gd" id="1_k8c8a"]
-[ext_resource type="Texture2D" uid="uid://dcubluyhxxwfa" path="res://assets/cartas/pilha_trens.png" id="2_d57mh"]
+[ext_resource type="Texture2D" uid="uid://cx6xqklsihc2g" path="res://assets/cartas/pilhas/Trens Pilha.png" id="2_d57mh"]
 
 [node name="PilhaTrem" type="CenterContainer"]
 offset_right = 200.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wccsf37xgcrr"]
 
 [ext_resource type="Script" uid="uid://bgy55rdlrtiju" path="res://scripts/Pilhas/pilhaDestino.gd" id="1_5uhck"]
-[ext_resource type="Texture2D" uid="uid://covgpuum661t8" path="res://assets/BaseCartaDestino.png" id="2_8ahi0"]
+[ext_resource type="Texture2D" uid="uid://uvy02yxrfxw6" path="res://assets/cartas/pilhas/Destino Pilha.png" id="2_8ahi0"]
 
 [node name="PilhaDestino" type="CenterContainer"]
 custom_minimum_size = Vector2(150, 224)

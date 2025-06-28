@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b52mmcmiel4j2"
-path="res://.godot/imported/Branca.png-a8ad21dbffd251d2fd9d0dd9c44286c8.ctex"
+uid="uid://uvy02yxrfxw6"
+path="res://.godot/imported/Destino Pilha.png-9d4e49172434fd7aebf09a5e2927350d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cartas/Branca.png"
-dest_files=["res://.godot/imported/Branca.png-a8ad21dbffd251d2fd9d0dd9c44286c8.ctex"]
+source_file="res://assets/cartas/pilhas/Destino Pilha.png"
+dest_files=["res://.godot/imported/Destino Pilha.png-9d4e49172434fd7aebf09a5e2927350d.ctex"]
 
 [params]
 

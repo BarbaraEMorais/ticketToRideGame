@@ -89,6 +89,33 @@ func json_map_parser(file_path: String):
 			colors.append(line_data["colour"] as String)
 		_cria_caminho(t["id"], t["start"], t["end"], t["length"], t["lineAmount"], colors, t["curvature"])
 
+# NOVA FUNÇÃO: Retorna uma lista de cidades vizinhas a 'cidade_de_partida'
+# que podem ser alcançadas através de rotas pertencentes ao 'jogador'.
+func get_vizinhos_alcancaveis(cidade_de_partida: Cidade, jogador: Jogador) -> Array[Cidade]:
+	var vizinhos_encontrados: Array[Cidade] = []
+	
+	# Itera sobre todos os caminhos existentes no mapa
+	for caminho in caminhos:
+		var cidade_oposta: Cidade = null
+		
+		# Verifica se o caminho está conectado à nossa cidade de partida
+		if caminho.origem == cidade_de_partida:
+			cidade_oposta = caminho.destino
+		elif caminho.destino == cidade_de_partida:
+			cidade_oposta = caminho.origem
+		
+		# Se o caminho está conectado, verificamos as linhas dentro dele
+		if is_instance_valid(cidade_oposta):
+			for linha in caminho.linhas:
+				# A linha pertence ao jogador que estamos a verificar?
+				if linha.dono == jogador:
+					# Se sim, adicionamos a cidade oposta à nossa lista de vizinhos
+					# e podemos parar de verificar as outras linhas deste caminho.
+					vizinhos_encontrados.append(cidade_oposta)
+					break # Otimização: uma vez que uma linha conecta, o caminho é válido
+	
+	return vizinhos_encontrados
+
 
 func _on_image_saved(image_path: String):
 	if not FileAccess.file_exists(image_path):
