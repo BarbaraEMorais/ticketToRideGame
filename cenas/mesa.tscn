@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://eifoucjqk2ut"]
 
-[ext_resource type="Script" path="res://scripts/mesa.gd" id="1_hxkmd"]
-[ext_resource type="PackedScene" uid="uid://b5nr4prodiiq4" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
+[ext_resource type="Script" uid="uid://bq43t2jo6iswp" path="res://scripts/mesa.gd" id="1_hxkmd"]
+[ext_resource type="PackedScene" path="res://cenas/pilhaExposta.tscn" id="2_sboaq"]
 [ext_resource type="PackedScene" uid="uid://rdsbsl6ag741" path="res://cenas/cartaTrem.tscn" id="3_gaxdi"]
 [ext_resource type="PackedScene" uid="uid://dbrmi6ca20idk" path="res://cenas/pilhaTrem.tscn" id="4_btbph"]
 [ext_resource type="PackedScene" uid="uid://ceclp48lo5e2d" path="res://cenas/cartaDestino.tscn" id="5_j7o1c"]
@@ -26,6 +26,19 @@ visible = false
 position = Vector2(534, 52)
 
 [node name="PilhaDestino" parent="." instance=ExtResource("6_pe6d5")]
-position = Vector2(1735, 990)
+custom_minimum_size = Vector2(150, 224)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1735.0
+offset_top = 990.0
+offset_right = 1885.0
+offset_bottom = 1214.0
+grow_horizontal = 2
+grow_vertical = 2
 rotation = 1.5708
 scale = Vector2(0.8, 0.8)
+
+[connection signal="gui_input" from="PilhaDestino" to="PilhaDestino" method="_on_gui_input"]

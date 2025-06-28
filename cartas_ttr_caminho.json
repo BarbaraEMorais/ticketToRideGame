@@ -3,99 +3,99 @@
 		{
 			"cor": "red",
 			"imagem": "res://assets/cartas/Vermelha.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "blue",
 			"imagem": "res://assets/cartas/Azul.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "green",
 			"imagem": "res://assets/cartas/Verde.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "orange",
 			"imagem": "res://assets/cartas/laranja.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "yellow",
 			"imagem": "res://assets/cartas/Amarela.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "pink",
 			"imagem": "res://assets/cartas/Rosa.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "white",
 			"imagem": "res://assets/cartas/Branca.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "black",
 			"imagem": "res://assets/cartas/Preta.png",
-			"quantidade": 12
+			"quantidade": 12.0
 		},
 		{
 			"cor": "coringa",
 			"imagem": "res://assets/cartas/Coringa.png",
-			"quantidade": 14
+			"quantidade": 14.0
 		}
 	],
 	"PILHA_DESTINO": [
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7
+			"pontos": 7.0
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
 			"imagem": "res://assets/TicketPlaceHolder2.png",
-			"pontos": 7,
+			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		}
