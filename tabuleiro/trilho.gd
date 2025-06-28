@@ -50,8 +50,16 @@ func _ready() -> void:
 	_update_sprite()
 
 
-func claim():
+func claim(cor: String):
 	is_taken = true
+	match cor:
+		"vermelho": track_color = "red"
+		"verde": track_color = "green"
+		"laranja": track_color = "orange"
+		"amarelo": track_color = "yellow"
+		"rosa": track_color = "pink"
+		"preto": track_color = "black"
+		"azul_claro": track_color = "light_blue"
 
 
 func _update_sprite() -> void:
