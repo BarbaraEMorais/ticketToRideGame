@@ -15,6 +15,7 @@ signal carta_tomada_da_exposta(carta: CartaTrem)
 var _cartas: Array[CartaTrem] 
 var pilha_trem: PilhaTrem
 
+signal carta_tomada_da_exposta(carta: CartaTrem) 
 
 func _ready() -> void:
 	_cartas.clear()
@@ -142,3 +143,6 @@ func received_own_card(carta: Carta) -> void:
 
 func accepts_card(_carta: Carta) -> bool:
 	return false
+
+func getCartas() -> Array[CartaTrem]:
+	return _cartas

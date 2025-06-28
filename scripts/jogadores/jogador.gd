@@ -1,12 +1,19 @@
 class_name Jogador extends Control
 
+signal turnOver
+
 var _nome : String
 var _trens : int
 var _pontos : int
 var _destinos: int
 @onready var _mao = $Mao
+@onready var _status_card = $"Status Jogador"
 
 func _ready() -> void:
+	_mao.received_new_card.connect(_on_player_hand_received_card)
+
+# Lógica relacionada ao turno do usuário
+func jogarTurno(mesa : Mesa):
 	pass
 
 func _process(_delta: float) -> void:
@@ -14,7 +21,7 @@ func _process(_delta: float) -> void:
 	$"Status Jogador/Qtd_Trens".text = str(_trens)
 	$"Status Jogador/Qtd_Destinos".text = str(_destinos)
 
-static func create(nome : String, cor : String, pos_status: Vector2, pos_mao: Vector2) -> Jogador:
+static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,0), pos_mao: Vector2 = Vector2(0,0)) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorHumano.tscn")
 	var novo = jogador_cena.instantiate()
 	novo._nome = nome
@@ -62,3 +69,8 @@ func get_mao() -> Mao:
 
 func get_nome() -> String:
 	return _nome
+
+func _on_player_hand_received_card():
+	turnOver.emit()
+func get_status() -> Node2D:
+	return _status_card
