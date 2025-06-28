@@ -8,7 +8,7 @@ static var arquivo_cartas_destino := preload("res://assets/json/Destino.json")
 const _TEMPLATE_CARTA_TREM : PackedScene = preload("res://cenas/cartaTrem.tscn") 
 const _TEMPLATE_CARTA_DESTINO : PackedScene = preload("res://cenas/cartaDestino.tscn")
 
-@export var cartas : Array[Dictionary]= [] 
+@export var cartas : Array[Dictionary]= []
 
 func _ready() -> void:
 	cartas.clear()
@@ -28,7 +28,7 @@ func _ready() -> void:
 			var cd = carta_b as CartaDestino
 			cartas.append({
 				"Pilha": "PILHA_DESTINO", "CartaNode": cd, "Tipo": "Destino", 
-				"Origem": cd.cidade_origem, "Destino": cd.cidade_destino, "Pontos": cd.valor_pontos, "ID_Def": cd.definicao_id
+				"Origem": cd.origem, "Destino": cd.destino, "Pontos": cd.pontos, "ID_Def": cd.definicao_id
 			})
 		else:
 			cartas.append({"Pilha": "PILHA_DESTINO", "CartaNode": carta_b, "Erro": "Não é CartaDestino."})
@@ -174,9 +174,7 @@ static func criar_cartas_da_pilha(pilha_nome : String) -> Array[Carta]:
 			carta_criada = criar_carta(definicao_item, pilha_nome) 
 			if carta_criada:
 				ret.push_back(carta_criada)
-
-		
-
+			ret.shuffle()
 	return ret 
 
 

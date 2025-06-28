@@ -43,52 +43,344 @@
 	],
 	"PILHA_DESTINO": [
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Brasilia",
-			"cidade_destino": "Ituiutaba"
+			"origem": "Gurupi",
+			"destino": "Petrolina",
+			"pontos": 5.0
 		},
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Brasilia",
-			"cidade_destino": "Ituiutaba"
+			"origem": "Imperatriz",
+			"destino": "Barreiras",
+			"pontos": 5.0
 		},
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Brasilia",
-			"cidade_destino": "Ituiutaba"
+			"origem": "Tucumã",
+			"destino": "Brasília",
+			"pontos": 5.0
 		},
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Brasilia",
-			"cidade_destino": "Ituiutaba"
+			"origem": "Coxim",
+			"destino": "São Paulo",
+			"pontos": 5.0
 		},
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Ituiutaba",
-			"cidade_destino": "Brasilia"
+			"origem": "Sertãozinho",
+			"destino": "Janaúba",
+			"pontos": 5.0
 		},
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Ituiutaba",
-			"cidade_destino": "Brasilia"
+			"origem": "Teresina",
+			"destino": "Itapetinga",
+			"pontos": 6.0
 		},
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Ituiutaba",
-			"cidade_destino": "Brasilia"
+			"origem": "Benevides",
+			"destino": "Petrolina",
+			"pontos": 6.0
 		},
 		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "Ituiutaba",
-			"cidade_destino": "Brasilia"
+			"origem": "Brasília",
+			"destino": "Rio de Janeiro",
+			"pontos": 6.0
+		},
+		{
+			"origem": "Manaus",
+			"destino": "Tucumã",
+			"pontos": 6.0
+		},
+		{
+			"origem": "Gurupi",
+			"destino": "Belo Horizonte",
+			"pontos": 6.0
+		},
+		{
+			"origem": "Humaitá",
+			"destino": "Sinop",
+			"pontos": 6.0
+		},
+		{
+			"origem": "Vilhena",
+			"destino": "Gurupi",
+			"pontos": 7.0
+		},
+		{
+			"origem": "Sinop",
+			"destino": "Ibiporã",
+			"pontos": 7.0
+		},
+		{
+			"origem": "Imperatriz",
+			"destino": "Natal",
+			"pontos": 7.0
+		},
+		{
+			"origem": "Uberlândia",
+			"destino": "Itapetinga",
+			"pontos": 7.0
+		},
+		{
+			"origem": "Campo Verde",
+			"destino": "Rio de Janeiro",
+			"pontos": 7.0
+		},
+		{
+			"origem": "Barra do Bugres",
+			"destino": "Joinville",
+			"pontos": 8.0
+		},
+		{
+			"origem": "Porto Alegre",
+			"destino": "Uberlândia",
+			"pontos": 8.0
+		},
+		{
+			"origem": "Campo Verde",
+			"destino": "Barreiras",
+			"pontos": 8.0
+		},
+		{
+			"origem": "Rio de Janeiro",
+			"destino": "Maceió",
+			"pontos": 8.0
+		},
+		{
+			"origem": "Uruguaiana",
+			"destino": "São Paulo",
+			"pontos": 8.0
+		},
+		{
+			"origem": "Nova Xavantina",
+			"destino": "São Luís",
+			"pontos": 8.0
+		},
+		{
+			"origem": "Pato Branco",
+			"destino": "Gurupi",
+			"pontos": 9.0
+		},
+		{
+			"origem": "Tucumã",
+			"destino": "Itapetinga",
+			"pontos": 9.0
+		},
+		{
+			"origem": "Brasília",
+			"destino": "Teresina",
+			"pontos": 9.0
+		},
+		{
+			"origem": "Barra do Bugres",
+			"destino": "Janaúba",
+			"pontos": 9.0
+		},
+		{
+			"origem": "Sinop",
+			"destino": "Santarém",
+			"pontos": 10.0
+		},
+		{
+			"origem": "Nova Xavantina",
+			"destino": "Maceió",
+			"pontos": 10.0
+		},
+		{
+			"origem": "Uberlândia",
+			"destino": "Benevides",
+			"pontos": 10.0
+		},
+		{
+			"origem": "Campo Verde",
+			"destino": "Santa Vitória do Palmar",
+			"pontos": 10.0
+		},
+		{
+			"origem": "Tefé",
+			"destino": "Coxim",
+			"pontos": 10.0
+		},
+		{
+			"origem": "Imperatriz",
+			"destino": "Cachoeiro de Itapemirim",
+			"pontos": 11.0
+		},
+		{
+			"origem": "Vilhena",
+			"destino": "Belo Horizonte",
+			"pontos": 11.0
+		},
+		{
+			"origem": "Sertãozinho",
+			"destino": "São Luís",
+			"pontos": 11.0
+		},
+		{
+			"origem": "Humaitá",
+			"destino": "Brasília",
+			"pontos": 11.0
+		},
+		{
+			"origem": "Joinville",
+			"destino": "Salvador",
+			"pontos": 11.0
+		},
+		{
+			"origem": "Tefé",
+			"destino": "Gurupi",
+			"pontos": 12.0
+		},
+		{
+			"origem": "Barra do Bugres",
+			"destino": "Teresina",
+			"pontos": 12.0
+		},
+		{
+			"origem": "Campo Verde",
+			"destino": "Benevides",
+			"pontos": 12.0
+		},
+		{
+			"origem": "Uruguaiana",
+			"destino": "Nova Xavantina",
+			"pontos": 12.0
+		},
+		{
+			"origem": "Porto Alegre",
+			"destino": "Janaúba",
+			"pontos": 12.0
+		},
+		{
+			"origem": "Boa Vista",
+			"destino": "Brasília",
+			"pontos": 13.0
+		},
+		{
+			"origem": "Manaus",
+			"destino": "Petrolina",
+			"pontos": 13.0
+		},
+		{
+			"origem": "São Paulo",
+			"destino": "Natal",
+			"pontos": 13.0
+		},
+		{
+			"origem": "Sinop",
+			"destino": "Fortaleza",
+			"pontos": 13.0
+		},
+		{
+			"origem": "Humaitá",
+			"destino": "Pato Branco",
+			"pontos": 13.0
+		},
+		{
+			"origem": "Cruzeiro do Sul",
+			"destino": "Nova Xavantina",
+			"pontos": 14.0
+		},
+		{
+			"origem": "Tabatinga",
+			"destino": "Imperatriz",
+			"pontos": 14.0
+		},
+		{
+			"origem": "Santarém",
+			"destino": "Cachoeiro de Itapemirim",
+			"pontos": 14.0
+		},
+		{
+			"origem": "Benevides",
+			"destino": "Rio de Janeiro",
+			"pontos": 14.0
+		},
+		{
+			"origem": "Rio de Janeiro",
+			"destino": "Uberlândia",
+			"pontos": 15.0
+		},
+		{
+			"origem": "Tefé",
+			"destino": "Sertãozinho",
+			"pontos": 15.0
+		},
+		{
+			"origem": "Vilhena",
+			"destino": "Maceió",
+			"pontos": 15.0
+		},
+		{
+			"origem": "Pato Branco",
+			"destino": "Teresina",
+			"pontos": 16.0
+		},
+		{
+			"origem": "Boa Vista",
+			"destino": "Campo Verde",
+			"pontos": 16.0
+		},
+		{
+			"origem": "Ibiporã",
+			"destino": "Fortaleza",
+			"pontos": 16.0
+		},
+		{
+			"origem": "Porto Alegre",
+			"destino": "Petrolina",
+			"pontos": 17.0
+		},
+		{
+			"origem": "Uruguaiana",
+			"destino": "Imperatriz",
+			"pontos": 17.0
+		},
+		{
+			"origem": "Manaus",
+			"destino": "Joinville",
+			"pontos": 17.0
+		},
+		{
+			"origem": "Humaitá",
+			"destino": "Salvador",
+			"pontos": 17.0
+		},
+		{
+			"origem": "Santa Vitória do Palmar",
+			"destino": "Tucumã",
+			"pontos": 18.0
+		},
+		{
+			"origem": "Tabatinga",
+			"destino": "São Paulo",
+			"pontos": 18.0
+		},
+		{
+			"origem": "Tefé",
+			"destino": "Maceió",
+			"pontos": 19.0
+		},
+		{
+			"origem": "Rio Branco",
+			"destino": "Natal",
+			"pontos": 20.0
+		},
+		{
+			"origem": "Cruzeiro do Sul",
+			"destino": "Janaúba",
+			"pontos": 20.0
+		},
+		{
+			"origem": "Uruguaiana",
+			"destino": "Fortaleza",
+			"pontos": 22.0
+		},
+		{
+			"origem": "Boa Vista",
+			"destino": "Porto Alegre",
+			"pontos": 23.0
+		},
+		{
+			"origem": "Tabatinga",
+			"destino": "Santa Vitória do Palmar",
+			"pontos": 24.0
 		}
 	]
 }
