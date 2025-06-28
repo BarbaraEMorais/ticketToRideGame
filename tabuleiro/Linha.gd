@@ -23,7 +23,7 @@ func add_trilho(trilho: Trilho):
 
 
 func claim_route(jogador: Jogador):
-	owner = jogador
+	dono = jogador
 	for t in trilhos:
 		t.claim()
 
