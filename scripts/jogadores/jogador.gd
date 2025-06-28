@@ -6,6 +6,7 @@ var _nome : String
 var _trens : int
 var _pontos : int
 var _destinos: int
+var _cor: String
 @onready var _mao = $Mao
 @onready var _status_card = $"Status Jogador"
 
@@ -26,7 +27,8 @@ static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,
 	var novo = jogador_cena.instantiate()
 	novo._nome = nome
 	novo._trens = 45
-	novo._pontos= 0
+	novo._pontos = 0
+	novo._cor = cor
 	novo.set_card_color(cor)
 	return novo
 
@@ -81,3 +83,5 @@ func soma_pontos(_num: int) -> void:
 	
 func subtrai_trens(_num: int) -> void:
 	_trens -= _num
+func get_cor() -> String:
+	return _cor
