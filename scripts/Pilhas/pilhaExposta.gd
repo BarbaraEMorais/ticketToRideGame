@@ -15,8 +15,6 @@ signal carta_tomada_da_exposta(carta: CartaTrem)
 var _cartas: Array[CartaTrem] 
 var pilha_trem: PilhaTrem
 
-signal carta_tomada_da_exposta(carta: CartaTrem) 
-
 func _ready() -> void:
 	_cartas.clear()
 	if "can_receive_cards" in self:
