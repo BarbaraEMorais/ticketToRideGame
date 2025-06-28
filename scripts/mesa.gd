@@ -1,4 +1,4 @@
-class_name Mesa extends Node2D
+class_name Mesa extends Node
 
 @onready var _pilha_trem: PilhaTrem = $PilhaTrem 
 @onready var _pilha_exposta: PilhaExposta = $PilhaExposta
@@ -21,6 +21,8 @@ var instancia_selecao_destino_ui
 var _card_manager: CardManager
 var jogador_atual : Jogador
 
+signal sel_destino_concluida
+
 func _ready() -> void:
 	call_deferred("conectar_sinais_das_linhas")
 	
@@ -38,7 +40,6 @@ func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 
 # Callback para quando uma carta é tomada da PilhaExposta
 func _on_carta_tomada_da_pilha_exposta(carta: CartaTrem) -> void:
-	
 	jogador_atual.get_mao().add_carta(carta)
 	
 func _on_pilha_destino_selecao_solicitada() -> void:
@@ -130,7 +131,8 @@ func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 				
 			else:
 				print("  - Uma carta escolhida tornou-se inválida antes do processamento.")
-
+	
+	sel_destino_concluida.emit()
 
 	if is_instance_valid(instancia_selecao_destino_ui):
 		
@@ -166,3 +168,6 @@ func set_mesa():
 	#else:
 	#	push_warning("Mesa: Instância de _pilha_destino não é válida. Não foi possível conectar sinal.")
 	
+
+func get_pilha_destino() -> PilhaDestino:
+	return _pilha_destino

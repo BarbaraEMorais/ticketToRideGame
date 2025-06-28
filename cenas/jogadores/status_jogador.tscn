@@ -3,16 +3,29 @@
 [ext_resource type="Texture2D" uid="uid://vmos4i3m7x0e" path="res://assets/Bilhete_vermelho.png" id="2_yduvx"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_u54o8"]
 
-[node name="Status Jogador" type="Node2D"]
-
-[node name="Bilhete" type="Sprite2D" parent="."]
+[node name="Status Jogador" type="TextureRect"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -244.0
+offset_right = 410.0
+grow_vertical = 0
+mouse_filter = 0
 texture = ExtResource("2_yduvx")
 
 [node name="Pontos" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = 112.0
-offset_top = -96.0
+offset_top = -94.0
 offset_right = 178.0
-offset_bottom = -25.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
 theme_override_fonts/font = ExtResource("3_u54o8")
 theme_override_font_sizes/font_size = 60
@@ -21,52 +34,74 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Nome" type="Label" parent="."]
-offset_left = -165.0
-offset_top = -8.0
-offset_right = -32.0
-offset_bottom = 63.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -3.0
+offset_right = 172.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
 theme_override_fonts/font = ExtResource("3_u54o8")
 theme_override_font_sizes/font_size = 60
 text = "joelison"
-vertical_alignment = 1
 uppercase = true
 
 [node name="Qtd_Destinos" type="Label" parent="."]
-offset_left = -130.0
-offset_top = 43.0
-offset_right = -64.0
-offset_bottom = 114.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = 52.0
+offset_right = -71.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
 theme_override_fonts/font = ExtResource("3_u54o8")
 theme_override_font_sizes/font_size = 50
-text = "10
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "10"
 
 [node name="Qtd_Trens" type="Label" parent="."]
-offset_left = -35.0
-offset_top = 43.0
-offset_right = 31.0
-offset_bottom = 114.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = 52.0
+offset_right = 39.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
 theme_override_fonts/font = ExtResource("3_u54o8")
 theme_override_font_sizes/font_size = 50
-text = "10
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "10"
 
 [node name="Qtd_Mao" type="Label" parent="."]
-offset_left = 47.0
-offset_top = 43.0
-offset_right = 113.0
-offset_bottom = 114.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = 53.0
+offset_right = 134.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
 theme_override_fonts/font = ExtResource("3_u54o8")
 theme_override_font_sizes/font_size = 50
-text = "10
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "10"

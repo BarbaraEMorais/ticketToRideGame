@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnebvy10y6od6"
-path="res://.godot/imported/Verde.png-cf18c3bd26a23758d957e06eb613fee0.ctex"
+uid="uid://uvy02yxrfxw6"
+path="res://.godot/imported/Destino Pilha.png-9d4e49172434fd7aebf09a5e2927350d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cartas/Verde.png"
-dest_files=["res://.godot/imported/Verde.png-cf18c3bd26a23758d957e06eb613fee0.ctex"]
+source_file="res://assets/cartas/pilhas/Destino Pilha.png"
+dest_files=["res://.godot/imported/Destino Pilha.png-9d4e49172434fd7aebf09a5e2927350d.ctex"]
 
 [params]
 
