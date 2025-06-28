@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uvy02yxrfxw6"
-path="res://.godot/imported/Destino Pilha.png-e83a6180d1744f62c8731276e5194fd8.ctex"
+uid="uid://cx6xqklsihc2g"
+path="res://.godot/imported/Trens Pilha.png-7a6b0b3dba190b09fbf31a827428cc32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cartas/Destino Pilha.png"
-dest_files=["res://.godot/imported/Destino Pilha.png-e83a6180d1744f62c8731276e5194fd8.ctex"]
+source_file="res://assets/cartas/pilhas/Trens Pilha.png"
+dest_files=["res://.godot/imported/Trens Pilha.png-7a6b0b3dba190b09fbf31a827428cc32.ctex"]
 
 [params]
 

@@ -31,11 +31,6 @@
 			"quantidade": 12.0
 		},
 		{
-			"cor": "branco",
-			"imagem": "res://assets/cartas/Branca.png",
-			"quantidade": 12.0
-		},
-		{
 			"cor": "preto",
 			"imagem": "res://assets/cartas/Preta.png",
 			"quantidade": 12.0
@@ -48,53 +43,53 @@
 	],
 	"PILHA_DESTINO": [
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
 		},
 		{
-			"imagem": "res://assets/TicketPlaceHolder2.png",
+			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
 			"cidade_origem": "RJ",
 			"cidade_destino": "SP"
