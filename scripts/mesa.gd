@@ -111,7 +111,7 @@ func _on_rota_reclamar_solicitada(linha_clicada: Linha):
 		linha_clicada.claim_route(jogador_atual) 
 		jogador_atual.subtrai_trens(linha_clicada.trilhos.size())
 		jogador_atual.soma_pontos(PONTOS_POR_ROTA.get(linha_clicada.trilhos.size()))
-		calcular_pontuacao_final(jogador_atual)
+		verifica_destino(jogador_atual)
 	
 # FUNÇÃO PRINCIPAL DE BUSCA DE CAMINHO
 # Verifica se existe uma conexão contínua de rotas do 'jogador'
@@ -121,7 +121,7 @@ func verificar_conexao_entre_cidades(jogador: Jogador, nome_origem: String, nome
 	print("chegou aqui")
 	var no_origem: Cidade = _encontrar_cidade_por_nome(nome_origem)
 	var no_destino: Cidade = _encontrar_cidade_por_nome(nome_destino)
-
+	print("\n[VERIFICANDO ROTA] De '%s' Para '%s'" % [nome_origem, nome_destino])
 	if not is_instance_valid(no_origem) or not is_instance_valid(no_destino):
 		printerr("Mesa: Não foi possível encontrar a cidade de origem ou destino ('%s', '%s') no mapa." % [nome_origem, nome_destino])
 		return false
@@ -134,7 +134,6 @@ func verificar_conexao_entre_cidades(jogador: Jogador, nome_origem: String, nome
 	while not fila_para_visitar.is_empty():
 		# Pega a próxima cidade da fila para explorar
 		var cidade_atual: Cidade = fila_para_visitar.pop_front()
-		
 		# CONDIÇÃO DE VITÓRIA: Chegamos ao destino?
 		if cidade_atual == no_destino:
 			print("Busca de Caminho: SUCESSO! Conexão encontrada entre '%s' e '%s'." % [nome_origem, nome_destino])
@@ -164,6 +163,32 @@ func _encontrar_cidade_por_nome(nome_cidade: String) -> Cidade:
 	return null
 	
 
+func verifica_destino(jogador_atual: Jogador):
+	if not is_instance_valid(jogador_atual): return
+
+	
+	# Itera sobre todas as cartas na mão do jogador
+	for carta in jogador_atual.get_mao().get_cartas() :
+		# Filtra apenas as Cartas Destino
+		if carta is CartaDestino:
+			var carta_destino = carta as CartaDestino
+			
+			print("Verificando destino: de '%s' para '%s' (vale %s pontos)..." % [carta_destino.cidade_origem, carta_destino.cidade_destino, carta_destino.pontos])
+			
+			# Chama a nossa função principal de busca!
+			var foi_completado = verificar_conexao_entre_cidades(jogador_atual, carta_destino.cidade_origem, carta_destino.cidade_destino)
+			
+			if foi_completado and carta_destino.completado==false:
+				print("  --> DESTINO COMPLETO! +%s pontos." % carta_destino.pontos)
+				jogador_atual.soma_pontos(carta_destino.pontos)
+				carta_destino.completado=true
+				
+
+
+
+
+
+
 # Exemplo de função que seria chamada no final do jogo
 func calcular_pontuacao_final(jogador_atual: Jogador):
 	if not is_instance_valid(jogador_atual): return
@@ -173,7 +198,7 @@ func calcular_pontuacao_final(jogador_atual: Jogador):
 	var mao_do_jogador = jogador_atual.get_mao()
 	
 	# Itera sobre todas as cartas na mão do jogador
-	for carta in mao_do_jogador.get_cartas_na_mao() :
+	for carta in mao_do_jogador.get_cartas() :
 		# Filtra apenas as Cartas Destino
 		if carta is CartaDestino:
 			var carta_destino = carta as CartaDestino
