@@ -44,55 +44,51 @@
 	"PILHA_DESTINO": [
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0
+			"pontos": 7.0,
+			"cidade_origem": "Brasilia",
+			"cidade_destino": "Ituiutaba"
 		},
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
+			"cidade_origem": "Brasilia",
+			"cidade_destino": "Ituiutaba"
 		},
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
+			"cidade_origem": "Brasilia",
+			"cidade_destino": "Ituiutaba"
 		},
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
+			"cidade_origem": "Brasilia",
+			"cidade_destino": "Ituiutaba"
 		},
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
+			"cidade_origem": "Ituiutaba",
+			"cidade_destino": "Brasilia"
 		},
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
+			"cidade_origem": "Ituiutaba",
+			"cidade_destino": "Brasilia"
 		},
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
+			"cidade_origem": "Ituiutaba",
+			"cidade_destino": "Brasilia"
 		},
 		{
 			"imagem": "res://assets/BaseCartaDestino.png",
 			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
-		},
-		{
-			"imagem": "res://assets/BaseCartaDestino.png",
-			"pontos": 7.0,
-			"cidade_origem": "RJ",
-			"cidade_destino": "SP"
+			"cidade_origem": "Ituiutaba",
+			"cidade_destino": "Brasilia"
 		}
 	]
 }

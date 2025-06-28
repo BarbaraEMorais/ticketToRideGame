@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://4iltbehtwuso"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_334rp"]
+size = Vector2(400, 119)
+
+[node name="jogador" type="Node2D"]
+position = Vector2(990, 961)
+
+[node name="Mao" type="Node2D" parent="."]
+position = Vector2(-5, -1)
+scale = Vector2(0.8, 0.8)
+
+[node name="Area2D" type="Area2D" parent="Mao"]
+position = Vector2(0, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mao/Area2D"]
+position = Vector2(2, -2)
+shape = SubResource("RectangleShape2D_334rp")

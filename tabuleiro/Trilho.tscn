@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://hddgpr75emag"]
 
-[ext_resource type="Script" path="res://tabuleiro/trilho.gd" id="1_urd4n"]
+[ext_resource type="Script" uid="uid://bjgjtp1vaa8db" path="res://tabuleiro/trilho.gd" id="1_urd4n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5iq0g"]
 size = Vector2(173, 70)
