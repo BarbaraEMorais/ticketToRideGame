@@ -61,5 +61,3 @@ grow_horizontal = 0
 grow_vertical = 0
 rotation = 1.5708
 scale = Vector2(0.8, 0.8)
-
-[connection signal="gui_input" from="PilhaDestino" to="PilhaDestino" method="_on_gui_input"]

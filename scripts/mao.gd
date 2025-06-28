@@ -11,7 +11,6 @@ var _contagem_por_cor: Dictionary = {
 	"yellow": 0,
 	"black": 0,
 	"pink": 0,
-	"white": 0,
 	"orange": 0,
 	"coringa": 0
 }

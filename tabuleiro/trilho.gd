@@ -21,7 +21,7 @@ var _color_map: Dictionary = {
 	"grey": 10
 }
 
-@export_enum("blue", "orange", "pink", "Red", "green", "black", "yellow", "dark_blue", "white", "grey") var track_color: String = "blue":
+@export_enum("blue", "orange", "pink", "red", "green", "black", "yellow", "dark_blue", "white", "grey") var track_color: String = "blue":
 	set(value):
 		track_color = value
 		_update_sprite()

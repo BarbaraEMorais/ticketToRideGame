@@ -38,6 +38,7 @@ func set_status_param() -> void:
 
 func set_card_color(color: String) -> void:
 	var color_path = "res://assets/Bilhete_" + color + ".png"
+	print(color_path)
 	$"Status Jogador".texture = load(color_path)
 
 func set_status_pos(_pos: Vector2) -> void:
