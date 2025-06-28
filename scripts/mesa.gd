@@ -1,4 +1,4 @@
-class_name Mesa extends Node2D
+class_name Mesa extends Node
 
 @onready var _pilha_trem: PilhaTrem = $PilhaTrem 
 @onready var _pilha_exposta: PilhaExposta = $PilhaExposta

@@ -1,16 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://camg7qk4lwhmy"]
+[gd_scene load_steps=5 format=3 uid="uid://camg7qk4lwhmy"]
 
 [ext_resource type="Script" uid="uid://ufyxfx0h2ix4" path="res://scripts/jogadores/jogador.gd" id="1_legk7"]
 [ext_resource type="PackedScene" uid="uid://74rmg4gi8bs8" path="res://cenas/mao.tscn" id="2_xvymb"]
 [ext_resource type="PackedScene" uid="uid://pu1mgc2vajty" path="res://cenas/jogadores/status_jogador.tscn" id="3_bgvwa"]
-[ext_resource type="Script" path="res://scripts/mao_jogador.gd" id="3_g52np"]
+[ext_resource type="Script" path="res://scripts/mao_jogador.gd" id="4_2ukpb"]
 
-[node name="Jogador" type="Node2D"]
+[node name="JogadorHumano" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_legk7")
 
 [node name="Status Jogador" parent="." instance=ExtResource("3_bgvwa")]
-position = Vector2(192, 990)
+z_index = 1
+layout_mode = 1
+offset_top = -219.6
+offset_bottom = 24.4
 scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 4
 
 [node name="Mao" parent="." instance=ExtResource("2_xvymb")]
-position = Vector2(980, 1015)
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -190.0
+offset_right = 75.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_2ukpb")

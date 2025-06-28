@@ -5,15 +5,15 @@ var completado: bool = false
 var cidade_origem: String
 var cidade_destino: String
 var esta_selecionada: bool
-@onready var visual_sprite: Sprite2D = $Area2D/Sprite2D
-@onready var LabelOrigem = $"Area2D/Sprite2D/Origem"
-@onready var LabelDestino = $"Area2D/Sprite2D/Destino"
-@onready var LabelPontos = $"Area2D/Sprite2D/Pontuação"
+
+@onready var LabelOrigem = $"Origem"
+@onready var LabelDestino = $"Destino"
+@onready var LabelPontos = $"Pontuação"
 
 # Avisa quando o estado de seleção DESTA CARTA muda.
 signal selecao_individual_alterada(carta: CartaDestino, novo_estado_selecao: bool)
 
-func _init(_pontos: int = 0, _img_path: String = "res://assets/exodia.jpeg") -> void:
+func _init(_pontos: int = 0) -> void:
 	pontos = _pontos
 	completado = false
 	esta_selecionada = false
@@ -75,18 +75,18 @@ func deselecionar():
 		alternar_selecao()
 
 # Método para verificar se pode ser clicada 
-func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
-	print("CartaDestino ('%s'): _input_event chamado com evento: %s" % [self.name, event])
-	return false  
+# func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
+# 	print("CartaDestino ('%s'): _input_event chamado com evento: %s" % [self.name, event])
+# 	return false  
 	
 
-func _unhandled_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		var mouse_pos = get_global_mouse_position()
-		var tamanho_da_carta: Vector2 = visual_sprite.texture.get_size() * visual_sprite.scale
-		var carta_rect = Rect2(global_position - tamanho_da_carta/2, tamanho_da_carta) # ajusta dinamicamente ao tamanho da carta
-		#var carta_rect = Rect2(global_position - Vector2(112, 168), Vector2(225, 336)) # hardcoded
-		if carta_rect.has_point(mouse_pos):
-			print("CLIQUE DETECTADO na carta %s!" % name)
-			alternar_selecao()
+# func _unhandled_input(event):
+# 	if event is InputEventMouseButton and event.pressed:
+# 		var mouse_pos = get_global_mouse_position()
+# 		var tamanho_da_carta: Vector2 = visual_sprite.texture.get_size() * visual_sprite.scale
+# 		var carta_rect = Rect2(global_position - tamanho_da_carta/2, tamanho_da_carta) # ajusta dinamicamente ao tamanho da carta
+# 		#var carta_rect = Rect2(global_position - Vector2(112, 168), Vector2(225, 336)) # hardcoded
+# 		if carta_rect.has_point(mouse_pos):
+# 			print("CLIQUE DETECTADO na carta %s!" % name)
+# 			alternar_selecao()
 	

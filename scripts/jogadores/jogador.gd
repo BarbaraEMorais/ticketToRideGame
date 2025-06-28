@@ -1,4 +1,4 @@
-class_name Jogador extends Node2D
+class_name Jogador extends Control
 
 signal turnOver
 
@@ -16,7 +16,7 @@ func _ready() -> void:
 func jogarTurno(mesa : Mesa):
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$"Status Jogador/Pontos".text = str(_pontos)
 	$"Status Jogador/Qtd_Trens".text = str(_trens)
 	$"Status Jogador/Qtd_Destinos".text = str(_destinos)
@@ -38,7 +38,7 @@ func set_status_param() -> void:
 
 func set_card_color(color: String) -> void:
 	var color_path = "res://assets/Bilhete_" + color + ".png"
-	$"Status Jogador/Bilhete".texture = load(color_path)
+	$"Status Jogador".texture = load(color_path)
 
 func set_status_pos(_pos: Vector2) -> void:
 	$"Status Jogador".position = _pos

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnebvy10y6od6"
-path="res://.godot/imported/Verde.png-cf18c3bd26a23758d957e06eb613fee0.ctex"
+uid="uid://dcubluyhxxwfa"
+path="res://.godot/imported/pilha_trens.png-a01864a1d1b5177d237f61b02651a8b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cartas/Verde.png"
-dest_files=["res://.godot/imported/Verde.png-cf18c3bd26a23758d957e06eb613fee0.ctex"]
+source_file="res://assets/cartas/pilha_trens.png"
+dest_files=["res://.godot/imported/pilha_trens.png-a01864a1d1b5177d237f61b02651a8b9.ctex"]
 
 [params]
 

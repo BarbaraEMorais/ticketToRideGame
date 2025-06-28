@@ -92,12 +92,13 @@ static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Ca
 		script_carta_trem.cor = dados_entrada.get("id_tipo_carta", "cor_desconhecida")
 		
 		var caminho_img : String = dados_entrada.get("imagem", "")
-		var sprite_node = script_carta_trem.get_node_or_null("Sprite2D")
-		if sprite_node and sprite_node is Sprite2D:
-			if not caminho_img.is_empty():
-				var tex : Texture2D = load(caminho_img)
-				if tex: (sprite_node as Sprite2D).texture = tex
-				else: printerr("FactoryCarta (Trem): Falha ao carregar textura: ", caminho_img)
+
+		if not caminho_img.is_empty():
+			var tex : Texture2D = load(caminho_img)
+			if tex: 
+				nova_carta_base.texture = tex
+			else: 
+				printerr("FactoryCarta (Trem): Falha ao carregar textura: ", caminho_img)
 		elif not caminho_img.is_empty():
 			printerr("FactoryCarta (Trem): 'SpriteVisual' não encontrado ou não é Sprite2D.")
 
@@ -119,15 +120,15 @@ static func criar_carta(dados_entrada: Dictionary, contexto_pilha: String) -> Ca
 		else:
 			printerr("FactoryCarta (Destino): Script 'CartaDestino' não tem 'configurar_dados(dados)'.")
 		var caminho_img : String = dados_entrada.get("imagem", "")
-		var sprite_node = script_carta_destino.get_node_or_null("Sprite2D")
-		if sprite_node and sprite_node is Sprite2D:
-			if not caminho_img.is_empty():
-				var tex : Texture2D = load(caminho_img)
-				if tex: (sprite_node as Sprite2D).texture = tex
-				else: printerr("FactoryCarta (Destino): Falha ao carregar textura: ", caminho_img)
+		
+		if not caminho_img.is_empty():
+			var tex : Texture2D = load(caminho_img)
+			if tex: 
+				nova_carta_base.texture = tex	
+			else: 
+				printerr("FactoryCarta (Destino): Falha ao carregar textura: ", caminho_img)
 		elif not caminho_img.is_empty():
 			pass
-			#printerr("FactoryCarta (Destino): 'SpriteVisual' não encontrado ou não é Sprite2D.")
 	else:
 		printerr("FactoryCarta: Contexto de pilha desconhecido em criar_carta: ", contexto_pilha)
 		return null

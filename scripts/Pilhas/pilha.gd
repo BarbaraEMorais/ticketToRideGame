@@ -1,17 +1,14 @@
 class_name Pilha extends CardContainer
 
-@export var _cartas: Array[Carta]
-
 signal carta_comprada_da_pilha(carta: Carta) # Sinal emitido quando uma carta é comprada da pilha
 
-func _ready() -> void:    
-	criarpilha_inicial() 
-	if area:
-		area.input_event.connect(_on_click_area_input_event)
-	else:
-		push_warning("Nó Area2D não encontrado em: " + name)
+@export var _cartas: Array[Carta]
 
-func criarpilha_inicial() -> void: # Esta função é intencionalmente deixada para ser implementada por classes filhas, como PilhaTrem.gd ou outras pilhas.
+func _ready() -> void:    
+	criar_pilha_inicial() 
+
+
+func criar_pilha_inicial() -> void: # Esta função é intencionalmente deixada para ser implementada por classes filhas, como PilhaTrem.gd ou outras pilhas.
 	pass
 
 
@@ -26,15 +23,16 @@ func comprar_carta_da_pilha() -> Carta:
 	print("Pilha (%s): Vazia, não pode comprar carta." % name)
 	return null
 
+
 func disable_click_area() -> void:
-	if area:
-		area.input_pickable = false
+	pass
+
 
 func enable_click_area() -> void:
-	if area:
-		area.input_pickable = true
+	pass
 
-func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+
+func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var carta_puxada: Carta = comprar_carta_da_pilha()
 		if carta_puxada:

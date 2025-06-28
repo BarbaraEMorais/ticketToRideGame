@@ -18,7 +18,6 @@ func _ready() -> void:
 	print("SelecaoDestinoUI: _ready() EXECUTADO.") #DEBUG
 
 	if not is_instance_valid(botao_continuar):
-		
 		return
 	
 	botao_continuar.disabled = true
@@ -28,8 +27,8 @@ func _ready() -> void:
 	else:
 		print("SelecaoDestinoUI: Sinal 'pressed' do botao_continuar JÁ ESTAVA conectado.") #DEBUG
 
-func apresentar_cartas_para_selecao(p_cartas_destino_recebidas: Array[CartaDestino]):
 
+func apresentar_cartas_para_selecao(p_cartas_destino_recebidas: Array[CartaDestino]):
 	if p_cartas_destino_recebidas.is_empty():
 		self.queue_free()
 		return
@@ -68,14 +67,14 @@ func apresentar_cartas_para_selecao(p_cartas_destino_recebidas: Array[CartaDesti
 			carta_atual.get_parent().remove_child(carta_atual)
 
 		slot_designado.add_child(carta_atual)
-		carta_atual.position = Vector2.ZERO
+		carta_atual.pivot_offset = carta_atual.size / 2.0
 		carta_atual.visible = true
 		
-		#Garantindo que a carta possa receber input
+		# Garantindo que a carta possa receber input
 		carta_atual.process_mode = Node.PROCESS_MODE_INHERIT
 		carta_atual.z_index = 10 
 		
-		#Desabilitando drag nas cartas de destino durante seleção
+		# Desabilitando drag nas cartas de destino durante seleção
 		if carta_atual.has_method("disable_drag"):
 			carta_atual.disable_drag()
 		
@@ -100,6 +99,7 @@ func apresentar_cartas_para_selecao(p_cartas_destino_recebidas: Array[CartaDesti
 	self.visible = true
 	print("SelecaoDestinoUI: 'apresentar_cartas_para_selecao' concluído. UI visível: %s" % self.visible)
 
+
 func _limpar_slots_anteriores():
 	print("SelecaoDestinoUI: _limpar_slots_anteriores() CHAMADO.") 
 	for slot_node in [slot_carta_1, slot_carta_2, slot_carta_3]:
@@ -108,6 +108,7 @@ func _limpar_slots_anteriores():
 				slot_node.remove_child(child_node_atual)
 				if child_node_atual.has_method("enable_drag"):
 					child_node_atual.enable_drag()
+
 
 func _on_uma_carta_mudou_seu_estado_selecao(carta_que_mudou: CartaDestino, novo_estado_selecao: bool):
 	print("SelecaoDestinoUI (CALLBACK Sinal Carta): Carta '%s-%s' mudou seleção para: %s" % [carta_que_mudou.cidade_origem, carta_que_mudou.cidade_destino, novo_estado_selecao]) # DEBUG
@@ -119,6 +120,7 @@ func _on_uma_carta_mudou_seu_estado_selecao(carta_que_mudou: CartaDestino, novo_
 	
 	_atualizar_logica_botao_continuar()
 
+
 func _atualizar_logica_botao_continuar():
 	var pelo_menos_uma_escolhida = cartas_realmente_selecionadas.size() >= 1
 	
@@ -126,9 +128,8 @@ func _atualizar_logica_botao_continuar():
 		botao_continuar.disabled = not pelo_menos_uma_escolhida
 	print("SelecaoDestinoUI: Botão 'Continuar' habilitado: %s (Total selecionadas: %s)" % [not botao_continuar.disabled if is_instance_valid(botao_continuar) else "BOTÃO INVÁLIDO", cartas_realmente_selecionadas.size()]) #debug
 
+
 func _on_botao_continuar_pressionado():
-	
-	
 	print("Cartas escolhidas para enviar à Mesa:")
 	for carta_escolhida in cartas_realmente_selecionadas:
 		print("  - '%s' (%s-%s)" % [carta_escolhida.name, carta_escolhida.cidade_origem, carta_escolhida.cidade_destino])
