@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bngxd5tcqkbsq" path="res://scripts/Cadastro.gd" id="1_bpb3b"]
 [ext_resource type="StyleBox" uid="uid://cr5ixfy80rlrg" path="res://assets/botao_hover.tres" id="3_6dolb"]
 [ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="3_h6fa5"]
+[ext_resource type="StyleBox" uid="uid://ch0wf6q2xm3xc" path="res://assets/botao_disabled.tres" id="3_wx8rv"]
 [ext_resource type="StyleBox" uid="uid://ctqcwg7be4e4k" path="res://assets/botao_base.tres" id="4_gxpo8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8s1uq"]
@@ -161,18 +162,6 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 shadow_color = Color(0, 0, 0, 0.682353)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js5qb"]
-bg_color = Color(1, 0.729412, 0.145098, 0.501961)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 14
-border_color = Color(0.403922, 0.184314, 0.0470588, 0.501961)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
 
 [node name="CadastroJogador" type="Control"]
 layout_mode = 3
@@ -378,10 +367,11 @@ theme_override_colors/font_hover_color = Color(0.403922, 0.184314, 0.0470588, 1)
 theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
 theme_override_fonts/font = ExtResource("3_h6fa5")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/disabled = SubResource("StyleBoxFlat_js5qb")
+theme_override_styles/disabled = ExtResource("3_wx8rv")
 theme_override_styles/hover = ExtResource("3_6dolb")
 theme_override_styles/pressed = ExtResource("3_6dolb")
 theme_override_styles/normal = ExtResource("4_gxpo8")
+disabled = true
 text = "INICIAR PARTIDA"
 
 [node name="Timer" type="Timer" parent="."]

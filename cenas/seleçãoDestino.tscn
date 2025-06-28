@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://2y7hoampueip"]
+[gd_scene load_steps=7 format=3 uid="uid://2y7hoampueip"]
 
 [ext_resource type="Script" uid="uid://cdoafrphgv6ro" path="res://scripts/selecaoDestino.gd" id="1_g56de"]
+[ext_resource type="FontFile" uid="uid://msafy1nncja1" path="res://assets/fonts/Jomhuria-Regular.ttf" id="2_vj2m4"]
+[ext_resource type="StyleBox" uid="uid://cr5ixfy80rlrg" path="res://assets/botao_hover.tres" id="3_dbh1p"]
+[ext_resource type="StyleBox" uid="uid://ctqcwg7be4e4k" path="res://assets/botao_base.tres" id="4_3u0vh"]
+[ext_resource type="StyleBox" uid="uid://ch0wf6q2xm3xc" path="res://assets/botao_disabled.tres" id="4_dbh1p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj2m4"]
+bg_color = Color(0.403922, 0.184314, 0.0470588, 0.909804)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="SeleçãoDestinoUI" type="CanvasLayer"]
 script = ExtResource("1_g56de")
@@ -12,23 +23,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -366.0
+offset_left = -368.0
 offset_top = -244.0
-offset_right = 366.0
+offset_right = 368.0
 offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_vj2m4")
 
 [node name="Slot1" type="Node2D" parent="Panel"]
-position = Vector2(120.988, 186.004)
+position = Vector2(121.988, 186.004)
 
 [node name="Slot2" type="Node2D" parent="Panel"]
-position = Vector2(365.988, 188.004)
+position = Vector2(366.988, 188.004)
 
 [node name="Slot3" type="Node2D" parent="Panel"]
-position = Vector2(611.988, 192.004)
+position = Vector2(612.988, 192.004)
 
 [node name="botaoContinuar" type="Button" parent="."]
 anchors_preset = 8
@@ -42,7 +54,16 @@ offset_right = 103.5
 offset_bottom = 264.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Selecionar
-"
+theme_override_colors/font_disabled_color = Color(0.403922, 0.184314, 0.0470588, 0.501961)
+theme_override_colors/font_hover_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_colors/font_color = Color(0.403922, 0.184314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("2_vj2m4")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = ExtResource("3_dbh1p")
+theme_override_styles/disabled = ExtResource("4_dbh1p")
+theme_override_styles/hover = ExtResource("3_dbh1p")
+theme_override_styles/normal = ExtResource("4_3u0vh")
+disabled = true
+text = "Selecionar"
 
 [connection signal="pressed" from="botaoContinuar" to="." method="_on_botao_continuar_pressionado"]
