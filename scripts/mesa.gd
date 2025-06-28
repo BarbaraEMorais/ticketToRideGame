@@ -111,9 +111,111 @@ func _on_rota_reclamar_solicitada(linha_clicada: Linha):
 		linha_clicada.claim_route(jogador_atual) 
 		jogador_atual.subtrai_trens(linha_clicada.trilhos.size())
 		jogador_atual.soma_pontos(PONTOS_POR_ROTA.get(linha_clicada.trilhos.size()))
+		verifica_destino(jogador_atual)
+	
+# FUNÇÃO PRINCIPAL DE BUSCA DE CAMINHO
+# Verifica se existe uma conexão contínua de rotas do 'jogador'
+# entre as cidades com os nomes 'nome_origem' e 'nome_destino'.
+func verificar_conexao_entre_cidades(jogador: Jogador, nome_origem: String, nome_destino: String) -> bool:
+	# 1. Encontrar os nós das cidades a partir dos seus nomes
+	print("chegou aqui")
+	var no_origem: Cidade = _encontrar_cidade_por_nome(nome_origem)
+	var no_destino: Cidade = _encontrar_cidade_por_nome(nome_destino)
+	print("\n[VERIFICANDO ROTA] De '%s' Para '%s'" % [nome_origem, nome_destino])
+	if not is_instance_valid(no_origem) or not is_instance_valid(no_destino):
+		printerr("Mesa: Não foi possível encontrar a cidade de origem ou destino ('%s', '%s') no mapa." % [nome_origem, nome_destino])
+		return false
+	
+	# 2. Preparar as listas para a busca
+	var fila_para_visitar: Array[Cidade] = [no_origem] # A "onda" de exploração começa na origem
+	var cidades_ja_visitadas: Array[Cidade] = [no_origem] # Para não nos perdermos em ciclos
+
+	# 3. O Loop de Exploração
+	while not fila_para_visitar.is_empty():
+		# Pega a próxima cidade da fila para explorar
+		var cidade_atual: Cidade = fila_para_visitar.pop_front()
+		# CONDIÇÃO DE VITÓRIA: Chegamos ao destino?
+		if cidade_atual == no_destino:
+			print("Busca de Caminho: SUCESSO! Conexão encontrada entre '%s' e '%s'." % [nome_origem, nome_destino])
+			return true # Destino completado!
+
+		# Pede ao MapManager a lista de vizinhos alcançáveis a partir daqui
+		var vizinhos = tabuleiro_node.get_vizinhos_alcancaveis(cidade_atual, jogador)
 		
+		for vizinho in vizinhos:
+			# Se é um vizinho que ainda não foi visitado...
+			if not vizinho in cidades_ja_visitadas:
+				cidades_ja_visitadas.append(vizinho) # Marque como visitado
+				fila_para_visitar.append(vizinho) # Adicione à fila para explorar a partir dele depois
+
+	# Se o loop terminar e nunca encontramos o destino, não há caminho.
+	print("Busca de Caminho: FALHA! Nenhuma conexão encontrada entre '%s' e '%s'." % [nome_origem, nome_destino])
+	return false
+
+# FUNÇÃO AUXILIAR para encontrar um nó de cidade pelo seu nome
+func _encontrar_cidade_por_nome(nome_cidade: String) -> Cidade:
+	if not is_instance_valid(tabuleiro_node): return null
+	
+	# Itera sobre todos os valores (que são os nós Cidade) no dicionário 'cidades' do MapManager
+	for cidade_node in tabuleiro_node.cidades.values():
+		if cidade_node.cidade_name == nome_cidade:
+			return cidade_node
+	return null
 	
 
+func verifica_destino(jogador_atual: Jogador):
+	if not is_instance_valid(jogador_atual): return
+
+	
+	# Itera sobre todas as cartas na mão do jogador
+	for carta in jogador_atual.get_mao().get_cartas() :
+		# Filtra apenas as Cartas Destino
+		if carta is CartaDestino:
+			var carta_destino = carta as CartaDestino
+			
+			print("Verificando destino: de '%s' para '%s' (vale %s pontos)..." % [carta_destino.cidade_origem, carta_destino.cidade_destino, carta_destino.pontos])
+			
+			# Chama a nossa função principal de busca!
+			var foi_completado = verificar_conexao_entre_cidades(jogador_atual, carta_destino.cidade_origem, carta_destino.cidade_destino)
+			
+			if foi_completado and carta_destino.completado==false:
+				print("  --> DESTINO COMPLETO! +%s pontos." % carta_destino.pontos)
+				jogador_atual.soma_pontos(carta_destino.pontos)
+				carta_destino.completado=true
+				
+
+
+
+
+
+
+# Exemplo de função que seria chamada no final do jogo
+func calcular_pontuacao_final(jogador_atual: Jogador):
+	if not is_instance_valid(jogador_atual): return
+
+	print("\n--- CALCULANDO PONTUAÇÃO FINAL PARA O JOGADOR: %s ---" % jogador_atual.name)
+	
+	var mao_do_jogador = jogador_atual.get_mao()
+	
+	# Itera sobre todas as cartas na mão do jogador
+	for carta in mao_do_jogador.get_cartas() :
+		# Filtra apenas as Cartas Destino
+		if carta is CartaDestino:
+			var carta_destino = carta as CartaDestino
+			
+			print("Verificando destino: de '%s' para '%s' (vale %s pontos)..." % [carta_destino.cidade_origem, carta_destino.cidade_destino, carta_destino.pontos])
+			
+			# Chama a nossa função principal de busca!
+			var foi_completado = verificar_conexao_entre_cidades(jogador_atual, carta_destino.cidade_origem, carta_destino.cidade_destino)
+			
+			if foi_completado:
+				print("  --> DESTINO COMPLETO! +%s pontos." % carta_destino.pontos)
+				jogador_atual.soma_pontos(carta_destino.pontos) # Supondo que você tenha este método no Jogador
+			else:
+				print("  --> DESTINO NÃO COMPLETO! -%s pontos." % carta_destino.pontos)
+				jogador_atual.soma_pontos(-carta_destino.pontos) # Subtrai os pontos
+	
+	print("--- PONTUAÇÃO FINAL DE %s: %s ---" % [jogador_atual.name, jogador_atual._pontos])
 
 
 #método para lidar com o resultado da seleção
@@ -167,7 +269,40 @@ func set_mesa():
 		var err = _pilha_destino.selecao_cartas_destino_solicitada.connect(_on_pilha_destino_selecao_solicitada)
 	#else:
 	#	push_warning("Mesa: Instância de _pilha_destino não é válida. Não foi possível conectar sinal.")
-	
+
+
 
 func get_pilha_destino() -> PilhaDestino:
 	return _pilha_destino
+
+
+	if not is_instance_valid(tabuleiro_node):
+		printerr("DIAGNÓSTICO: Não foi possível printar as linhas, referência ao tabuleiro é inválida.")
+		return
+
+	print("\n--- LISTA DE LINHAS (ROTAS) CARREGADAS NO MAPA ---")
+	
+	if tabuleiro_node.caminhos.is_empty():
+		print("Nenhum caminho (e portanto, nenhuma linha) foi carregado no MapManager.")
+		return
+		
+	# Itera sobre cada 'Caminho' (conexão entre duas cidades) no tabuleiro
+	for caminho in tabuleiro_node.caminhos:
+		if not is_instance_valid(caminho) or not is_instance_valid(caminho.origem) or not is_instance_valid(caminho.destino):
+			print(" - Caminho inválido encontrado.")
+			continue
+			
+		var nome_origem = caminho.origem.cidade_name
+		var nome_destino = caminho.destino.cidade_name
+		
+		# Para cada 'Caminho', itera sobre as 'Linhas' (as rotas coloridas) que ele contém
+		if caminho.linhas.is_empty():
+			print(" - Caminho de '%s' para '%s' não tem linhas." % [nome_origem, nome_destino])
+		else:
+			for linha in caminho.linhas:
+				# Printa os detalhes da linha
+				var cor_linha = linha.color
+				var tamanho_linha = linha.trilhos.size()
+				print(" - Linha [Cor: %s, Tamanho: %s] de '%s' para '%s'" % [cor_linha.capitalize(), tamanho_linha, nome_origem, nome_destino])
+
+	print("--------------------------------------------------\n")

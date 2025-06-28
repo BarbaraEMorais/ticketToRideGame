@@ -19,8 +19,8 @@ func _init(_pontos: int = 0) -> void:
 	esta_selecionada = false
 
 func configurar_dados(dados: Dictionary) -> void:
-	cidade_origem = dados.get("cidade_origem", "desconhecida")
-	cidade_destino = dados.get("cidade_destino", "desconhecida")
+	cidade_origem = dados.get("origem", "desconhecida")
+	cidade_destino = dados.get("destino", "desconhecida")
 	pontos = dados.get("pontos", 0)
 	esta_selecionada = false
 

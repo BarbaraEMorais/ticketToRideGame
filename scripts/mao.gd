@@ -147,6 +147,8 @@ func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
 							cartas_coringa.pop_front()
 			return 0
 
+func get_cartas() -> Array[Carta]:
+	return _cartas
 	
 
 			
