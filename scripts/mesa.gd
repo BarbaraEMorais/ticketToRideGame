@@ -12,8 +12,10 @@ const CENA_SELECAO_DESTINO = preload("res://cenas/seleçãoDestino.tscn")
 var instancia_selecao_destino_ui
 var _card_manager: CardManager
 var jogador_atual : Jogador
+var playerCanInteract : bool = true
 
 signal sel_destino_concluida
+signal pass_player_turn
 
 func _ready() -> void:
 	pass 
@@ -26,21 +28,35 @@ func get_pilha_exposta() -> PilhaExposta:
 
 # Callback para quando uma carta é comprada da PilhaTrem (clique direto na pilha)
 func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
+	if not playerCanInteract:
+		_pilha_trem.add_carta(carta)
+		print("Mesa: Jogador tentou comprar uma carta da pilha de trem fora de turno")
+		return
 	print("Mesa: Jogador comprou a carta '%s' da PilhaTrem." % carta.name)
 	carta.visible=true
 	jogador_atual.get_mao().add_carta(carta)
+	pass_player_turn.emit()
 
 
 # Callback para quando uma carta é tomada da PilhaExposta
 func _on_carta_tomada_da_pilha_exposta(carta: CartaTrem) -> void:
+	if not playerCanInteract:
+		_pilha_exposta.add_carta(carta)
+		print("Mesa: Jogador tentou comprar uma carta da pilha de trem fora de turno")
+		return
 	jogador_atual.get_mao().add_carta(carta)
+	pass_player_turn.emit()
 	
 func _on_pilha_destino_selecao_solicitada() -> void:
+	
 	print("Mesa: Recebida solicitação para seleção de cartas destino.")
 
 	if not is_instance_valid(_pilha_destino):
 		printerr("Mesa: _pilha_destino não é válida ao tentar puxar cartas.")
 		return
+		
+	if not playerCanInteract:
+		print("Mesa: Jogador tentou iniciar seleção de carta de destino fora de turno")
 
 	# Se a tela de seleção já estiver aberta, não faça nada
 	if is_instance_valid(instancia_selecao_destino_ui) and instancia_selecao_destino_ui.is_inside_tree():
@@ -61,6 +77,7 @@ func _on_pilha_destino_selecao_solicitada() -> void:
 
 	add_child(instancia_selecao_destino_ui)
 	print("Mesa: Instância de SelecaoDestinoUI adicionada à cena.")
+	playerCanInteract = false
 
 	# Passando 'cartas_destino_puxadas' para essa telinha. 
 	if instancia_selecao_destino_ui.has_method("apresentar_cartas_para_selecao"):
@@ -81,6 +98,7 @@ func _on_pilha_destino_selecao_solicitada() -> void:
 #método para lidar com o resultado da seleção
 func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 	print("Mesa: Seleção de destinos concluída. Cartas escolhidas:")
+	playerCanInteract = true
 	if cartas_escolhidas.is_empty():
 		print("  Nenhuma carta destino foi mantida.")
 	else:
@@ -109,6 +127,9 @@ func set_card_manager() -> void:
 	_card_manager.name = "CardManager"
 	jogador_atual.get_mao().set_signals_to_manager(_card_manager)
 	add_child(_card_manager)
+
+func set_player_can_interact(value : bool) -> void:
+	playerCanInteract = value
 
 func set_mesa():
 	if not is_instance_valid(_pilha_trem):
