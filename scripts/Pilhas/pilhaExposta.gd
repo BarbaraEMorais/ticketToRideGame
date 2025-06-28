@@ -82,6 +82,9 @@ func _repor_uma_carta_na_exposta() -> void:
 
 
 func _on_carta_exposta_foi_clicada(carta_clicada: CartaTrem) -> void:
+	if not can_player_interact:
+		return
+	
 	if not _cartas.has(carta_clicada):
 		print("PilhaExposta: Carta clicada ('%s') não encontrada na lista interna. Ignorando." % carta_clicada.name)
 		return
@@ -92,7 +95,6 @@ func _on_carta_exposta_foi_clicada(carta_clicada: CartaTrem) -> void:
 	_cartas.erase(carta_clicada)
 	call_deferred("_repor_uma_carta_na_exposta")
 	call_deferred("_atualizar_posicoes_cartas")
-	
 
 func _atualizar_posicoes_cartas() -> void:
 	for i in range(_cartas.size()):

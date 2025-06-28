@@ -11,6 +11,9 @@ func criar_pilha_inicial() -> void:
 		
 
 func comprar_carta_da_pilha() -> Carta: # Sobrescrevendo o método da classe Pilha
+	if not can_player_interact:
+		return
+	
 	if _cartas.size() >= 1:
 		print("PilhaDestino: Clique detectado. Solicitando início da seleção de cartas destino.")
 		emit_signal("selecao_cartas_destino_solicitada")

@@ -87,10 +87,11 @@ func _passar_turno():
 		_indexJogadorAtual = 0
 	
 	update_curr_player_label()
-	if getJogadorAtual() is not JogadorIA:
-		mesa.set_player_can_interact(true)
+	var jog_atual = getJogadorAtual()
+	if jog_atual is JogadorIA:
+		mesa.disable_player_interaction()
 	else:
-		mesa.set_player_can_interact(false)
+		mesa.enable_player_interaction()
 	getJogadorAtual().jogarTurno(mesa)
 
 
