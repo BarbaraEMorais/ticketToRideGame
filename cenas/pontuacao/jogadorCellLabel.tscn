@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ipx6ehv8ua8"]
+
+[ext_resource type="Script" uid="uid://bub6433p27v7" path="res://cenas/pontuacao/jogador_cell_label.gd" id="1_083c4"]
+
+[node name="CellLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+vertical_alignment = 1
+script = ExtResource("1_083c4")

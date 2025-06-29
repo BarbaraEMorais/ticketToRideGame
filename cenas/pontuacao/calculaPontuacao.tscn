@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://tcryc0xkt4jn"]
+
+[ext_resource type="Script" uid="uid://65o7ej2gqybs" path="res://cenas/pontuacao/calcula_pontuacao.gd" id="1_v22jy"]
+
+[node name="CalculaPontuacao" type="Node2D"]
+script = ExtResource("1_v22jy")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1918.0
+offset_bottom = 1077.0
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 314.0
+offset_top = 306.0
+offset_right = 1675.0
+offset_bottom = 906.0
+
+[node name="ContainerJogadores" type="GridContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 29.0
+offset_right = 1339.0
+offset_bottom = 542.0
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 50
+columns = 5
