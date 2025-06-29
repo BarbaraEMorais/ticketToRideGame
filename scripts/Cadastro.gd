@@ -10,7 +10,7 @@ var gerenciadorJogadores
 var listaJogadores : Array[String] = []
 var qtdJogadores = 2  # valor inicial padrão
 var sinal_bloqueado = false
-var cor_atual = "branco"
+var cor_atual = "vermelho"
 var botoes_cor = []
 var nomes_json = carregar_nomes_json("res://assets/json/nomesBots.json")
 
@@ -72,7 +72,7 @@ func _on_start_pressed():
 		feedbackCadastro.text = "Preencha como gostaria de ser chamado!"
 		feedbackCadastro.modulate = Color(1, 0, 0)
 		return
-
+	
 	$"Timer".start()
 	buttonStart.disabled = false
 	gerenciadorJogadores.salvar_usuario(nome)
@@ -86,7 +86,7 @@ func _on_start_pressed():
 	
 	var cena_partida = load("res://cenas/partida.tscn")
 	var partida = cena_partida.instantiate()
-
+	
 	get_tree().current_scene.call_deferred("free")
 	get_tree().root.add_child(partida)
 	get_tree().current_scene = partida

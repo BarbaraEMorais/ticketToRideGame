@@ -30,10 +30,10 @@ func _calcula_posicoes() -> void:
 	var padding = 10
 
 	_posicoes.clear()
-	
+
 	if _cartas.is_empty():
 		return
-	
+
 	var largura_total = (largura_carta + padding) * qtd_cartas
 	var pos_inicial_x = largura_carta/2.0 - largura_total/2.0
 
@@ -55,16 +55,17 @@ func can_receive_card() -> bool:
 func add_carta(carta: Carta) -> void:
 	connect_carta(carta)
 
+	carta.drag_enabled = true
+
 	_cartas.push_front(carta)
 	if is_instance_valid(carta.get_parent()):
 		carta.get_parent().remove_child(carta) #tira o pai anterior (pilha)
 	add_child(carta)
 	if carta is CartaTrem:
 		_contagem_por_cor[carta.cor] += 1
-	if carta is CartaDestino:
-		var escalaNecessaria = largura_carta / carta.size.x
-		carta.scale = Vector2(escalaNecessaria, escalaNecessaria)
-		
+	elif carta is CartaDestino:
+		carta.scale = Vector2(0.85, 0.85)
+
 	_calcula_posicoes()
 	_anima_cartas()
 
@@ -79,14 +80,15 @@ func remove_carta(carta: Carta) -> void:
 	_calcula_posicoes()
 	_anima_cartas()
 
+
 func _anima_cartas() -> void:
 	for i in range(_cartas.size()):
 		var carta = _cartas[i]
 		var tween = create_tween()
 		tween.tween_property(carta, "rotation_degrees", 0,0)
-		tween.tween_property(carta, "position", _posicoes[i], 0.2)
+		tween.tween_property(carta, "position", _posicoes[i] if carta is CartaTrem else _posicoes[i] + Vector2(-20, -30), 0.2)
 
-		
+
 func get_limite():
 	return _limite_cartas
 
@@ -100,7 +102,7 @@ func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
 	var cartas_da_cor: Array[CartaTrem] = []
 	var cartas_coringa: Array[CartaTrem] = []
 	if cor_rota != "grey": # SE A ROTA  NÃO FOR CINZA
-		if (_contagem_por_cor.get(cor_rota) + qtd_coringa >= tamanho_requerido): #VÊ SE TEMOS CARTAS SUFICIENTES PRA REIVINDICAR ROTA	
+		if (_contagem_por_cor.get(cor_rota) + qtd_coringa >= tamanho_requerido): #VÊ SE TEMOS CARTAS SUFICIENTES PRA REIVINDICAR ROTA
 			print("chegou aqui")
 			for carta in _cartas:  #PASSA ARMAZENANDO AS CARTAS DA COR REQUISITADA PARA TIRAR DA MÃO POSTERIORMENTE
 				if carta is CartaTrem:
@@ -108,7 +110,7 @@ func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
 						cartas_da_cor.append(carta)
 					elif carta.cor == "coringa":
 						cartas_coringa.append(carta)
-						
+
 			for i in range (tamanho_requerido):
 				print ("i:", i)
 				if cartas_da_cor.size()>0:
@@ -119,7 +121,7 @@ func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
 					cartas_coringa.pop_front()
 			return 0
 	else: # cor_requerida == "grey"
-		
+
 		var maior_qtd = 0
 		var cor_maior
 		print("coringa:",qtd_coringa)
@@ -129,18 +131,18 @@ func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
 				maior_qtd= _contagem_por_cor[i]
 				cor_maior=i
 		print("maior cor", maior_qtd)
-		if maior_qtd + qtd_coringa >= tamanho_requerido:  #VÊ SE TEMOS CARTAS SUFICIENTES PRA REIVINDICAR ROTA	
+		if maior_qtd + qtd_coringa >= tamanho_requerido:  #VÊ SE TEMOS CARTAS SUFICIENTES PRA REIVINDICAR ROTA
 			for carta in _cartas:
 				if carta is CartaTrem:
 					if carta.cor == cor_maior:
 						cartas_da_cor.append(carta)
 					elif carta.cor == "coringa":
 						cartas_coringa.append(carta)
-						
+
 			for i in range (tamanho_requerido):
 				print ("i:", i)
 				if cartas_da_cor.size()>0:
-					remove_carta(cartas_da_cor[0]) 
+					remove_carta(cartas_da_cor[0])
 					cartas_da_cor.pop_front()
 				else:
 							remove_carta(cartas_coringa[0])
@@ -149,6 +151,3 @@ func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
 
 func get_cartas() -> Array[Carta]:
 	return _cartas
-	
-
-			
