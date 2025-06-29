@@ -16,16 +16,6 @@ func _ready():
 	json_map_parser("res://dados/mapa-brasil.json")
 
 
-func _cria_varias_cidades_exemplo():
-	var cidades_dados = [
-		{ "id": 1, "name": "North Gate", "pos": Vector2(100, 50) },
-		{ "id": 2, "name": "South Market", "pos": Vector2(500, 450) },
-		{ "id": 3, "name": "East Woods", "pos": Vector2(700, 200) }
-	]
-	for dados in cidades_dados:
-		_cria_cidade(dados["id"], dados["name"], dados["pos"])
-
-
 func _cria_cidade(id: int, cidade_name: String, pos: Vector2):
 	if cidade_scene:
 		var cidade_node = cidade_scene.instantiate() as Cidade
@@ -33,7 +23,6 @@ func _cria_cidade(id: int, cidade_name: String, pos: Vector2):
 		cidade_node.scale = Vector2(0.5, 0.5)
 		add_child(cidade_node)
 		cidades[id] = cidade_node
-		# print("Created cidade: ", cidade_node.cidade_name)
 	else:
 		push_warning("MapManager: Cidade scene não setada.")
 

@@ -1,4 +1,5 @@
-class_name Cidade extends Area2D
+class_name Cidade 
+extends Area2D
 
 signal cidade_clicked(cidade_id: int, cidade_name_val: String, node_instance: Area2D)
 

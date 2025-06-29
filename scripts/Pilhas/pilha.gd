@@ -5,26 +5,25 @@ signal carta_comprada_da_pilha(carta: Carta) # Sinal emitido quando uma carta é
 
 @export var _cartas: Array[Carta]
 
-func _ready() -> void:    
-	criar_pilha_inicial() 
+func _ready() -> void:
+	criar_pilha_inicial()
 
 
 func criar_pilha_inicial() -> void: # Esta função é intencionalmente deixada para ser implementada por classes filhas, como PilhaTrem.gd ou outras pilhas.
 	pass
 
 
-func comprar_carta_da_pilha() -> Carta: 
+func comprar_carta_da_pilha() -> Carta:
 
 	if not can_player_interact:
 		return
 
 	if _cartas.size() > 0:
-		var carta: Carta = _cartas.pop_back() 
+		var carta: Carta = _cartas.pop_back()
 		print("Pilha (%s): Carta '%s' compradaaaaaaaa." % [name, carta.name if carta else "NIL"])
-		#remove_child(carta)
-		emit_signal("carta_comprada_da_pilha", carta) 
-		return carta 
-	
+		emit_signal("carta_comprada_da_pilha", carta)
+		return carta
+
 	print("Pilha (%s): Vazia, não pode comprar carta." % name)
 	return null
 
