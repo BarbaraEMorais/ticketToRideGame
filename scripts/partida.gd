@@ -92,7 +92,7 @@ func _passar_turno():
 		mesa.disable_player_interaction()
 	else:
 		mesa.enable_player_interaction()
-	getJogadorAtual().jogarTurno(mesa)
+	getJogadorAtual().jogarTurno(self)
 
 
 # Placeholder para a checagem da vitoria de um jogador

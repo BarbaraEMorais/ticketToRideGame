@@ -5,7 +5,7 @@ var destino: Cidade
 
 var color: String
 var trilhos: Array[Trilho] = []
-var dono: Jogador
+var dono: Jogador = null
 signal rota_reclamar_solicitada(linha_selecionada: Linha)
 func _init(_color: String):
 	color = _color

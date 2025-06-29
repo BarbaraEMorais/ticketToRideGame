@@ -14,7 +14,7 @@ func _ready() -> void:
 	_mao.received_new_card.connect(_on_player_hand_received_card)
 
 # Lógica relacionada ao turno do usuário
-func jogarTurno(mesa : Mesa):
+func jogarTurno(part : Partida):
 	pass
 
 func _process(_delta: float) -> void:
