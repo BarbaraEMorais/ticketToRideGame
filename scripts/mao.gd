@@ -149,5 +149,25 @@ func gerencia_reivindicação(cor_rota: String, tamanho_requerido: int):
 							cartas_coringa.pop_front()
 			return 0
 
+func get_cartas_destino() -> Array[CartaDestino]:
+	var cartas_destino_na_mao: Array[CartaDestino] = []
+	for carta in _cartas:
+		if carta is CartaDestino:
+			cartas_destino_na_mao.append(carta)
+	return cartas_destino_na_mao
+
+func get_qtd_cartas_destino() -> int:
+	var cartasDestino = get_cartas_destino()
+	return cartasDestino.size()
+
+func get_qtd_cartas_trem() -> int:
+	var count = 0
+	for carta in _cartas:
+		if carta is CartaTrem:
+			count += 1
+			
+	print("numero de cartas trem: ",count)
+	return count
+
 func get_cartas() -> Array[Carta]:
 	return _cartas

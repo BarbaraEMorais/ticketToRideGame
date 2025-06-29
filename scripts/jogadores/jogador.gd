@@ -20,7 +20,8 @@ func jogarTurno(mesa : Mesa):
 func _process(_delta: float) -> void:
 	$"Status Jogador/Pontos".text = str(_pontos)
 	$"Status Jogador/Qtd_Trens".text = str(_trens)
-	$"Status Jogador/Qtd_Destinos".text = str(_destinos)
+	$"Status Jogador/Qtd_Destinos".text = str(_mao.get_qtd_cartas_destino())
+	$"Status Jogador/Qtd_Mao".text = str(_mao.get_qtd_cartas_trem())
 
 static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,0), pos_mao: Vector2 = Vector2(0,0)) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorHumano.tscn")
@@ -85,3 +86,15 @@ func subtrai_trens(_num: int) -> void:
 	_trens -= _num
 func get_cor() -> String:
 	return _cor
+
+#func add_rota_reivindicada(rota: Linha) -> void:
+	#if not _rotas_reivindicadas.has(rota): # Evita adicionar a mesma rota múltiplas vezes
+		#_rotas_reivindicadas.append(rota)
+		#print("Jogador %s reivindicou a rota entre %s e %s (cor: %s, tamanho: %s)." % [_nome, rota.caminho.origem.cidade_name, rota.caminho.destino.cidade_name, rota.color, rota.trilhos.size()])
+#
+#func get_rotas_reivindicadas() -> Array[Linha]:
+	#return _rotas_reivindicadas
+#
+#func get_qtd_rotas_reivindicadas() -> int:
+	#var num_rotas_reivindicadas = get_rotas_reivindicadas()
+	#return num_rotas_reivindicadas.size()
