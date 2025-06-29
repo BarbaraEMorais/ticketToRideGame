@@ -5,6 +5,7 @@ var completado: bool = false
 var cidade_origem: String
 var cidade_destino: String
 var esta_selecionada: bool
+var selecionavel: bool
 
 @onready var LabelOrigem = $"Origem"
 @onready var LabelDestino = $"Destino"
@@ -17,6 +18,8 @@ func _init(_pontos: int = 0) -> void:
 	pontos = _pontos
 	completado = false
 	esta_selecionada = false
+	selecionavel = true
+
 
 func configurar_dados(dados: Dictionary) -> void:
 	cidade_origem = dados.get("origem", "desconhecida")
@@ -28,17 +31,17 @@ func configurar_dados(dados: Dictionary) -> void:
 func _ready():
 	# Aguardar um frame para garantir que todos os nós estão prontos
 	await get_tree().process_frame
-	
+
 	LabelOrigem.text = cidade_origem.capitalize()
 	LabelDestino.text = cidade_destino.capitalize()
 	LabelPontos.text = str(pontos)
-	
+
 	# Garantir que a carta possa receber input
 	process_mode = Node.PROCESS_MODE_INHERIT
-	
+
 	drag_enabled = false
 	print("CartaDestino ('%s'): _ready() EXECUTADO." % self.name)
-	
+
 	var callable_proprio_clique = Callable(self, "_on_proprio_clique")
 	if not carta_clicada.is_connected(callable_proprio_clique):
 		var err = carta_clicada.connect(callable_proprio_clique)
@@ -47,17 +50,19 @@ func _ready():
 
 # Callback para o sinal 'carta_clicada' da própria carta
 func _on_proprio_clique(_instancia_da_carta_que_foi_clicada: Carta):
-	print("CartaDestino ('%s'): _on_proprio_clique FOI CHAMADO." % self.name) # debug
-	alternar_selecao()
+	if selecionavel:
+		print("CartaDestino ('%s'): _on_proprio_clique FOI CHAMADO." % self.name) # debug
+		alternar_selecao()
+
 
 func alternar_selecao():
 	print("CartaDestino ('%s'): alternar_selecao() FOI CHAMADO." % self.name) # DEBUG
 	esta_selecionada = not esta_selecionada
 	print("CartaDestino ('%s-%s'): AGORA SELECIONADA: %s" % [self.cidade_origem, self.cidade_destino, esta_selecionada]) # DEBUG
-	
+
 	# VISUAL: Alterar a escala ou cor para indicar seleção
 	_atualizar_visual_selecao()
-	
+
 	emit_signal("selecao_individual_alterada", self, esta_selecionada)
 	print("CartaDestino ('%s'): Sinal 'selecao_individual_alterada' emitido com estado: %s" % [self.name, esta_selecionada]) # DEBUG
 
@@ -74,19 +79,21 @@ func deselecionar():
 	if esta_selecionada:
 		alternar_selecao()
 
-# Método para verificar se pode ser clicada 
-# func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
-# 	print("CartaDestino ('%s'): _input_event chamado com evento: %s" % [self.name, event])
-# 	return false  
-	
 
-# func _unhandled_input(event):
-# 	if event is InputEventMouseButton and event.pressed:
-# 		var mouse_pos = get_global_mouse_position()
-# 		var tamanho_da_carta: Vector2 = visual_sprite.texture.get_size() * visual_sprite.scale
-# 		var carta_rect = Rect2(global_position - tamanho_da_carta/2, tamanho_da_carta) # ajusta dinamicamente ao tamanho da carta
-# 		#var carta_rect = Rect2(global_position - Vector2(112, 168), Vector2(225, 336)) # hardcoded
-# 		if carta_rect.has_point(mouse_pos):
-# 			print("CLIQUE DETECTADO na carta %s!" % name)
-# 			alternar_selecao()
-	
+func desativar_selecionavel():
+	selecionavel = false
+	esta_selecionada = false
+	_atualizar_visual_selecao()
+	z_index = 0
+	base_scale = Vector2.ONE * 0.85
+	pivot_offset *= 0.85
+
+
+func _on_mouse_entered() -> void:
+	super._on_mouse_entered()
+	self.z_index = 2
+
+
+func _on_mouse_exited() -> void:
+	super._on_mouse_exited()
+	self.z_index = 0
