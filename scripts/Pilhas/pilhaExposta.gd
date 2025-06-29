@@ -15,6 +15,8 @@ signal carta_tomada_da_exposta(carta: CartaTrem)
 var _cartas: Array[CartaTrem] 
 var pilha_trem: PilhaTrem
 
+var can_pull_joker = true
+
 func _ready() -> void:
 	_cartas.clear()
 	if "can_receive_cards" in self:
@@ -83,6 +85,10 @@ func _repor_uma_carta_na_exposta() -> void:
 
 func _on_carta_exposta_foi_clicada(carta_clicada: CartaTrem) -> void:
 	if not can_player_interact:
+		return
+
+	if carta_clicada.cor == "coringa" and not can_pull_joker:
+		print("PilhaExposta: Compra de coringa desabilitada")
 		return
 	
 	if not _cartas.has(carta_clicada):

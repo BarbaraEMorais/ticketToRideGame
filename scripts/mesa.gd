@@ -50,15 +50,16 @@ func enable_player_interaction() -> void:
 	_route_interaction_enabled = true
 
 
-
 # Callback para quando uma carta é comprada da PilhaTrem (clique direto na pilha)
 func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 	print("Mesa: Jogador comprou a carta '%s' da PilhaTrem." % carta.name)
 	carta.visible=true
 	_num_train_cards_bought += 1
+	
 	jogador_atual.get_mao().add_carta(carta)
 	if _num_train_cards_bought == 2:
 		_num_train_cards_bought = 0
+		
 		pass_player_turn.emit()
 
 
@@ -66,8 +67,10 @@ func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 func _on_carta_tomada_da_pilha_exposta(carta: CartaTrem) -> void:
 	jogador_atual.get_mao().add_carta(carta)
 	_num_train_cards_bought += 1
-	if _num_train_cards_bought == 2:
+	_pilha_exposta.can_pull_joker = false
+	if _num_train_cards_bought == 2 or carta.cor == "coringa":
 		_num_train_cards_bought = 0
+		_pilha_exposta.can_pull_joker = true
 		pass_player_turn.emit()
 
 func _on_pilha_destino_selecao_solicitada() -> void:
