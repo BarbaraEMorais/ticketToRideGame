@@ -37,15 +37,16 @@ func find_shortest_path(start : String, end : String, map : MapManager) -> Array
 	dist[start_id] = 0
 	
 	while not nodes_to_test.is_empty():
-		var curr_node : int = 0
-
-		for node in dist:
+		var curr_node : int = nodes_to_test[0]
+		for node in nodes_to_test:
 			if dist[node] < dist[curr_node]:
 				curr_node = node
 		
 		if curr_node == end_id:
 			# Finish search
-			return prev[curr_node]
+			var ret  : Array[Caminho]
+			ret.assign(prev[curr_node])
+			return ret
 		nodes_to_test.erase(curr_node)
 
 		var available_paths : Array[Caminho]= map.caminhos.filter(
@@ -72,9 +73,9 @@ func find_shortest_path(start : String, end : String, map : MapManager) -> Array
 			var tam : int = path.tamanho if not player_owns_path(path) else 0
 
 			var alt : int = dist[curr_node] + tam
-			if alt < dist[dest]:
+			if alt <= dist[dest]:
 				dist[dest] = alt
-				var temp = prev[curr_node]
+				var temp = prev[curr_node].duplicate()
 				temp.append(path)
 				prev[dest] = temp
 		
@@ -92,19 +93,19 @@ func compute_best_path(map : MapManager) -> Array[Dictionary]:
 	if dj_result.is_empty():
 		return []
 
-	return dj_result.map(
+	var new_arr = dj_result.map(
 		func (cam : Caminho) -> Dictionary:
 			var res : Dictionary = {}
 			
 			res['caminho'] = cam
 			res['linha'] = cam.linhas[0]
-			res['color'] = ""
+			res['cor'] = ""
 
 			for lin in cam.linhas:
 				if lin.dono != null:
 					continue
-				if lin.color == "grey" or res['color'].is_empty():
-					res['color'] = lin.color
+				if lin.color == "grey" or res['cor'].is_empty():
+					res['cor'] = lin.color
 					res['linha'] = lin
 			
 			
@@ -112,6 +113,9 @@ func compute_best_path(map : MapManager) -> Array[Dictionary]:
 
 			return res
 	)
+	var ret : Array[Dictionary]
+	ret.assign(new_arr)
+	return ret
 
 static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,0), pos_mao: Vector2 = Vector2(0,0)) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorIA.tscn")
@@ -159,7 +163,7 @@ func buy_route(route : Dictionary):
 	var num_tri_need = route['tamanho']
 
 	for card in get_mao().get_cartas():
-		if card is CartaTrem and (card as CartaTrem).cor == route['color']:
+		if (card is CartaTrem and (card as CartaTrem).cor == route['cor']) or (card is CartaTrem and card.cor == 'coringa'):
 			get_mao().remove_carta(card)
 			num_tri_need -= 1
 		
@@ -176,13 +180,36 @@ func exposed_pile_has_card_of_color(part : Partida, color: String) -> bool:
 	return false
 
 
-func can_buy_route(route : Dictionary) -> bool:
-	var num_cards_of_color := 0
-	for carta in get_mao()._cartas:
-		if carta is CartaTrem and carta.cor == route['color']:
-			num_cards_of_color+= 1
+func num_cards_by_color() -> Dictionary:
+	var ret := {}
+	
+	for carta in get_mao().get_cartas():
+		if carta is CartaTrem:
+			if carta.cor not in ret:
+				ret[carta.cor] = 1
+			else:
+				ret[carta.cor] += 1
+	
+	return ret
 
-	return num_cards_of_color >= route['tamanho']
+func can_buy_route(route : Dictionary) -> bool:	
+	
+	
+	var cards_of_color := num_cards_by_color()
+	
+	if route['cor'] == 'grey':
+		for color in cards_of_color:
+			if cards_of_color[color] >= route['tamanho']:
+				return true
+		return false
+
+	if route['cor'] not in cards_of_color:
+		return false
+
+	if 'coringa' in cards_of_color:
+		return cards_of_color[route['cor']] + cards_of_color['coringa'] >= route['tamanho']
+	
+	return cards_of_color[route['cor']] >= route['tamanho']
 
 func is_route_owned(cam : Caminho) -> bool:
 	for linha in cam.linhas:
@@ -209,13 +236,16 @@ func jogarTurno(part : Partida) -> void:
 	#		3.2.2 Se não, compre da pilha de trems	
 
 
+	if not get_mao().can_receive_card():
+		buy_random_route(part)
 
 	
 	# Check if there's destination cards in hand
 	if not has_destination_card():
 		buy_destination_card(part)
-
+		
 		end_turn_timeout()
+		print("IA %s não tem cartas de destino, comprou carta de destino" % name)
 		return
 	
 	# Check if there's a viable path
@@ -223,6 +253,7 @@ func jogarTurno(part : Partida) -> void:
 		var temp : Array[Dictionary] = compute_best_path(part.tabuleiro)
 		if temp.is_empty():
 			buy_destination_card(part)
+			print("IA %s não consegue determinar um caminho viável, comprou carta de destino" % name)
 			end_turn_timeout()
 			return
 		lista_prox_caminho = temp
@@ -239,6 +270,7 @@ func jogarTurno(part : Partida) -> void:
 	for route in lista_prox_caminho:
 		if can_buy_route(route):
 			buy_route(route)
+			print("IA %s encontrou uma rota em seu caminho ideal que pode comprar, reinvidicou rota" % name)
 			end_turn_timeout()
 			return
 		if cheapest_route['tamanho'] > route['tamanho']:
@@ -247,19 +279,21 @@ func jogarTurno(part : Partida) -> void:
 	for i in range(2):
 		if cheapest_route['cor'] == "grey":
 			buy_pile_train(part)
+			print("IA %s quer comprar um caminho cinza, comprou carta da pilha" % name)
 		
 		else:
 			if exposed_pile_has_card_of_color(part, cheapest_route['cor']):
 				buy_exposed_train(part, cheapest_route['cor'])
+				print("IA %s quer comprar carta de uma cor especifica que esta na pilha exposta, comprou carta exposta" % name)
 				if bought_joker:
 					break
 			else:
 				buy_pile_train(part)
-	
+				print("IA %s não encontrou cor especifica na pilha exposta, comprou da pilha de trem" % name)
 
 	num_cards_bought_in_turn = 0
 	bought_joker = false
-	await get_tree().create_timer(2).timeout
+	end_turn_timeout()
 
 func end_turn_timeout():
 	await get_tree().create_timer(2).timeout
