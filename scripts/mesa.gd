@@ -24,6 +24,8 @@ var jogador_atual : Jogador
 signal sel_destino_concluida
 signal pass_player_turn
 
+var _route_interaction_enabled = true
+
 func _ready() -> void:
 	call_deferred("conectar_sinais_das_linhas")
 	
@@ -37,11 +39,13 @@ func disable_player_interaction() -> void:
 	_pilha_destino.can_player_interact = false
 	_pilha_trem.can_player_interact = false
 	_pilha_exposta.can_player_interact = false
+	_route_interaction_enabled = false
 	
 func enable_player_interaction() -> void:
 	_pilha_destino.can_player_interact = true
 	_pilha_exposta.can_player_interact = true
 	_pilha_trem.can_player_interact = true
+	_route_interaction_enabled = true
 	
 
 # Callback para quando uma carta é comprada da PilhaTrem (clique direto na pilha)
@@ -129,12 +133,19 @@ func conectar_sinais_das_linhas(): # CONECTA TODAS AS LINHAS COM A FUNÇÃO QUE 
 
 func _on_rota_reclamar_solicitada(linha_clicada: Linha):
 	print("chegou aqui na parte de reivindicar")
+
+	# Verifica se o jogador pode interagir com a reinvidicação
+	if not _route_interaction_enabled:
+		print("Mesa: Jogador tentou reinvidicar rota fora de turno")
+		return
+
 	#FUNÇÃO DA MÃO QUE VERIFICA SE TEM CARTAS SUFUCIENTES PRA REIVINDICIAR E RETORNA 0 SE FOR POSSIVEL
 	if jogador_atual.get_mao().gerencia_reivindicação(linha_clicada.color, linha_clicada.trilhos.size()) ==0:
 		linha_clicada.claim_route(jogador_atual) 
 		jogador_atual.subtrai_trens(linha_clicada.trilhos.size())
 		jogador_atual.soma_pontos(PONTOS_POR_ROTA.get(linha_clicada.trilhos.size()))
 		verifica_destino(jogador_atual)
+		pass_player_turn.emit()
 	
 # FUNÇÃO PRINCIPAL DE BUSCA DE CAMINHO
 # Verifica se existe uma conexão contínua de rotas do 'jogador'
