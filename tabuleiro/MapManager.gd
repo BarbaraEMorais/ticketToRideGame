@@ -15,7 +15,7 @@ func _ready():
 
 func id_via_nome(nome : String) -> int:
 	for id in cidades:
-		if (cidades[id] as Cidade).name == nome:
+		if (cidades[id] as Cidade).cidade_name == nome:
 			return id
 	return -1
 

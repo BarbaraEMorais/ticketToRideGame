@@ -7,8 +7,12 @@ var bought_joker : bool = false
 
 var lista_prox_caminho : Array[Dictionary] = []
 
-func has_destination_card():
-	for carta in _mao:
+func player_owns_path(cam : Caminho):
+	return cam.linhas.any(func (l : Linha):
+							l.dono == self)
+
+func has_destination_card() -> bool:
+	for carta in get_mao().get_cartas():
 		if carta is CartaDestino:
 			return true
 	
@@ -19,6 +23,8 @@ func find_shortest_path(start : String, end : String, map : MapManager) -> Array
 	var start_id := map.id_via_nome(start)
 	var end_id := map.id_via_nome(end)
 	
+	if start_id == -1 or end_id == -1:
+		return []
 	
 	var dist : Dictionary = {}
 	var prev : Dictionary = {}
@@ -44,12 +50,12 @@ func find_shortest_path(start : String, end : String, map : MapManager) -> Array
 
 		var available_paths : Array[Caminho]= map.caminhos.filter(
 			func(cam : Caminho):
-				if not cam.origem.cidade_id == curr_node or cam.destino.cidade_id == curr_node:
+				if cam.origem.cidade_id != curr_node and cam.destino.cidade_id != curr_node:
 					return false
 				
 				return cam.linhas.all(
 					func(lin: Linha):
-						return lin.dono != null or lin.dono == self
+						return lin.dono == null or lin.dono == self
 				)
 		)
 
@@ -63,12 +69,14 @@ func find_shortest_path(start : String, end : String, map : MapManager) -> Array
 				dest = origin
 				origin = temp
 			
-			var tam : int = path.tamanho if path.dono != self else 0
+			var tam : int = path.tamanho if not player_owns_path(path) else 0
 
 			var alt : int = dist[curr_node] + tam
 			if alt < dist[dest]:
 				dist[dest] = alt
-				prev[dest] = prev[curr_node].append(path)
+				var temp = prev[curr_node]
+				temp.append(path)
+				prev[dest] = temp
 		
 	return prev[end_id]
 
@@ -81,6 +89,8 @@ func compute_best_path(map : MapManager) -> Array[Dictionary]:
 		if carta is CartaDestino and (carta as CartaDestino).pontos > best_points:
 			dj_result = find_shortest_path(carta.cidade_origem, carta.cidade_destino, map)
 
+	if dj_result.is_empty():
+		return []
 
 	return dj_result.map(
 		func (cam : Caminho) -> Dictionary:
@@ -204,7 +214,8 @@ func jogarTurno(part : Partida) -> void:
 	# Check if there's destination cards in hand
 	if not has_destination_card():
 		buy_destination_card(part)
-		turnOver.emit()
+
+		end_turn_timeout()
 		return
 	
 	# Check if there's a viable path
@@ -212,7 +223,7 @@ func jogarTurno(part : Partida) -> void:
 		var temp : Array[Dictionary] = compute_best_path(part.tabuleiro)
 		if temp.is_empty():
 			buy_destination_card(part)
-			turnOver.emit()
+			end_turn_timeout()
 			return
 		lista_prox_caminho = temp
 	
@@ -224,9 +235,11 @@ func jogarTurno(part : Partida) -> void:
 
 	var cheapest_route = lista_prox_caminho[0]
 	# Check if any route in path can be bought
+	# If not, keep track of the cheapest
 	for route in lista_prox_caminho:
 		if can_buy_route(route):
 			buy_route(route)
+			end_turn_timeout()
 			return
 		if cheapest_route['tamanho'] > route['tamanho']:
 			cheapest_route = route
@@ -246,5 +259,8 @@ func jogarTurno(part : Partida) -> void:
 
 	num_cards_bought_in_turn = 0
 	bought_joker = false
+	await get_tree().create_timer(2).timeout
+
+func end_turn_timeout():
 	await get_tree().create_timer(2).timeout
 	turnOver.emit()
