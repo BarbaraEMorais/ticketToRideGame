@@ -10,7 +10,8 @@ const PONTOS_POR_ROTA = {
 	3: 4,
 	4: 7,
 	5: 10,
-	6: 15
+	6: 15,
+	7: 17
 }
 # @onready var jogador_atual: Jogador
 const CENA_SELECAO_DESTINO = preload("res://cenas/seleçãoDestino.tscn")
@@ -57,13 +58,13 @@ func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 	_num_train_cards_bought += 1
 	_pilha_destino.can_player_interact = false
 	_route_interaction_enabled = false
-	
+
 	jogador_atual.get_mao().add_carta(carta)
 	if _num_train_cards_bought == 2:
 		_num_train_cards_bought = 0
 		_pilha_destino.can_player_interact = true
 		_route_interaction_enabled = true
-    
+
 		pass_player_turn.emit()
 
 
