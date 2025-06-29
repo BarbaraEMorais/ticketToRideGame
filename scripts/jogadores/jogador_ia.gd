@@ -2,6 +2,9 @@ class_name JogadorIA extends Jogador
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
+var num_cards_bought_in_turn : int = 0
+var bought_joker : bool = false
+
 var lista_prox_caminho : Array[Dictionary] = []
 
 func has_destination_card():
@@ -118,6 +121,14 @@ func buy_exposed_train(part: Partida, color : String):
 	var exposed_pile : PilhaExposta = part.mesa.get_pilha_exposta()
 
 	for carta in exposed_pile._cartas:
+		if carta.cor == "coringa":
+			if num_cards_bought_in_turn == 0 and rng.randi() % 2 == 0:
+				if get_mao().accepts_card(carta):
+					part.mesa.get_pilha_exposta().remove_carta(carta)
+					get_mao().add_carta(carta)
+					bought_joker = true
+					return
+
 		if carta.cor == color:
 			if get_mao().accepts_card(carta):
 				part.mesa.get_pilha_exposta().remove_carta(carta)
@@ -212,7 +223,13 @@ func jogarTurno(part : Partida) -> void:
 		else:
 			if exposed_pile_has_card_of_color(part, cheapest_route['cor']):
 				buy_exposed_train(part, cheapest_route['cor'])
+				if bought_joker:
+					break
 			else:
 				buy_pile_train(part)
 	
+
+	num_cards_bought_in_turn = 0
+	bought_joker = false
 	await get_tree().create_timer(2).timeout
+	turnOver.emit()
