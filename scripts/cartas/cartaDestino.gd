@@ -50,8 +50,9 @@ func _ready():
 
 # Callback para o sinal 'carta_clicada' da própria carta
 func _on_proprio_clique(_instancia_da_carta_que_foi_clicada: Carta):
-	print("CartaDestino ('%s'): _on_proprio_clique FOI CHAMADO." % self.name) # debug
-	alternar_selecao()
+	if selecionavel:
+		print("CartaDestino ('%s'): _on_proprio_clique FOI CHAMADO." % self.name) # debug
+		alternar_selecao()
 
 
 func alternar_selecao():
@@ -60,8 +61,7 @@ func alternar_selecao():
 	print("CartaDestino ('%s-%s'): AGORA SELECIONADA: %s" % [self.cidade_origem, self.cidade_destino, esta_selecionada]) # DEBUG
 
 	# VISUAL: Alterar a escala ou cor para indicar seleção
-	if selecionavel:
-		_atualizar_visual_selecao()
+	_atualizar_visual_selecao()
 
 	emit_signal("selecao_individual_alterada", self, esta_selecionada)
 	print("CartaDestino ('%s'): Sinal 'selecao_individual_alterada' emitido com estado: %s" % [self.name, esta_selecionada]) # DEBUG
@@ -85,6 +85,8 @@ func desativar_selecionavel():
 	esta_selecionada = false
 	_atualizar_visual_selecao()
 	z_index = 0
+	base_scale = Vector2.ONE * 0.85
+	pivot_offset *= 0.85
 
 
 func _on_mouse_entered() -> void:

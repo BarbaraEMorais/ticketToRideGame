@@ -1,20 +1,17 @@
 class_name Carta extends TextureRect
 
-signal carta_morreu(carta: Carta)
-signal hovered(carta: Carta)
-signal hovered_off(carta: Carta)
-#signal descartada_por(jogador : Jogador)
-
 signal inicia_arrasto(carta: Carta)
 signal fim_do_arrasto(carta: Carta)
 signal carta_clicada(carta: Carta)
 
 var pos_inicial_arrasto = Vector2.ZERO
-var mouse_offset = Vector2.ZERO 
+var mouse_offset = Vector2.ZERO
 var posicao_original = Vector2.ZERO
 var arrastando = false
 var hover_enabled = true
 var animacao_hover: Tween
+
+var base_scale = Vector2.ONE
 
 @export var drag_enabled = true
 @export var cancela_arrasto = false
@@ -27,29 +24,29 @@ func _ready() -> void:
 func _on_mouse_entered() -> void:
 	if arrastando or not hover_enabled:
 		return
-		
+
 	if animacao_hover:
 		animacao_hover.kill()
-	
+
 	animacao_hover = create_tween()
-	animacao_hover.tween_property(self, "scale", Vector2.ONE * 1.3, 0.1)
+	animacao_hover.tween_property(self, "scale", base_scale * 1.3, 0.1)
 
 
 func _on_mouse_exited() -> void:
 	if arrastando:
 		return
-	
+
 	if animacao_hover:
 		animacao_hover.kill()
-	
+
 	animacao_hover = create_tween()
-	animacao_hover.tween_property(self, "scale", Vector2.ONE, 0.1)
+	animacao_hover.tween_property(self, "scale", base_scale, 0.1)
 
 
 func _on_gui_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
-		return 
-		
+		return
+
 	if event.pressed:
 		pos_inicial_arrasto = get_global_mouse_position()
 		mouse_offset = position - pos_inicial_arrasto
@@ -66,13 +63,13 @@ func _on_gui_input(event: InputEvent) -> void:
 		else:
 			print("CARTA ('%s') - Drag_enabled: false. Clique pressionado." % name) # DEBUG
 
-	else: 
+	else:
 		var was_click = (pos_inicial_arrasto - get_global_mouse_position()).length() < 5.0
 
-		if arrastando: 
+		if arrastando:
 			print("CARTA ('%s') - Estava arrastando. Finalizando arrasto." % name) # DEBUG
-			_finaliza_arrastar() 
-		
+			_finaliza_arrastar()
+
 		if was_click:
 			print("CARTA ('%s') - Foi um clique curto. Emitindo carta_clicada." % name) # DEBUG
 			carta_clicada.emit(self)
@@ -81,7 +78,7 @@ func _on_gui_input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	if arrastando and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		_finaliza_arrastar()
-	
+
 	if arrastando:
 		position = get_global_mouse_position() + mouse_offset
 
@@ -90,7 +87,7 @@ func _finaliza_arrastar() -> void:
 	print("CARTA - emit fim_do_arrasto")
 	fim_do_arrasto.emit(self)
 	z_index = 0
-	
+
 	if cancela_arrasto:
 		position = posicao_original
 

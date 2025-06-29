@@ -55,12 +55,16 @@ func can_receive_card() -> bool:
 func add_carta(carta: Carta) -> void:
 	connect_carta(carta)
 
+	carta.drag_enabled = true
+
 	_cartas.push_front(carta)
 	if is_instance_valid(carta.get_parent()):
 		carta.get_parent().remove_child(carta) #tira o pai anterior (pilha)
 	add_child(carta)
 	if carta is CartaTrem:
 		_contagem_por_cor[carta.cor] += 1
+	elif carta is CartaDestino:
+		carta.scale = Vector2(0.85, 0.85)
 
 	_calcula_posicoes()
 	_anima_cartas()
@@ -76,12 +80,13 @@ func remove_carta(carta: Carta) -> void:
 	_calcula_posicoes()
 	_anima_cartas()
 
+
 func _anima_cartas() -> void:
 	for i in range(_cartas.size()):
 		var carta = _cartas[i]
 		var tween = create_tween()
 		tween.tween_property(carta, "rotation_degrees", 0,0)
-		tween.tween_property(carta, "position", _posicoes[i] if carta is CartaTrem else _posicoes[i] + Vector2(0, -30), 0.2)
+		tween.tween_property(carta, "position", _posicoes[i] if carta is CartaTrem else _posicoes[i] + Vector2(-20, -30), 0.2)
 
 
 func get_limite():
