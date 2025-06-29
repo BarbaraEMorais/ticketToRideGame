@@ -9,11 +9,15 @@ class_name MapManager extends Node2D
 var cidades: Dictionary = {}
 var caminhos: Array[Caminho] = []
 
-signal tab_jogador_comprou_rota
-
 func _ready():
 	image_parser.image_saved.connect(_on_image_saved)
 	json_map_parser("res://dados/mapa-brasil.json")
+
+func id_via_nome(nome : String) -> int:
+	for id in cidades:
+		if (cidades[id] as Cidade).cidade_name == nome:
+			return id
+	return -1
 
 
 func _cria_cidade(id: int, cidade_name: String, pos: Vector2):
@@ -79,6 +83,9 @@ func json_map_parser(file_path: String):
 		for line_data in t["lines"]:
 			colors.append(line_data["colour"] as String)
 		_cria_caminho(t["id"], t["start"], t["end"], t["length"], t["lineAmount"], colors, t["curvature"])
+
+
+
 
 # NOVA FUNÇÃO: Retorna uma lista de cidades vizinhas a 'cidade_de_partida'
 # que podem ser alcançadas através de rotas pertencentes ao 'jogador'.

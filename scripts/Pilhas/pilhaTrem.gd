@@ -21,6 +21,16 @@ func puxar_carta_para_exposta() -> CartaTrem:
 	print("PilhaTrem: Vazia, não pode fornecer carta para PilhaExposta.")
 	return null
 
+# Para iteração com a IA
+# Mesma coisa com texto diferente
+func ai_buy_card() -> CartaTrem:
+	if _cartas.size() > 0:
+		var carta: CartaTrem = _cartas.pop_back() 
+		print("PilhaTrem: Fornecendo carta '%s' para jogador IA." % carta.name if carta else "NIL")
+		return carta
+	print("PilhaTrem: Vazia, não pode fornecer carta para jogador IA.")
+	return null
+
 
 func _on_mouse_entered() -> void:
 	super._on_mouse_entered()
