@@ -26,7 +26,7 @@ func claim_route(jogador: Jogador):
 	dono = jogador
 	for t in trilhos:
 		t.claim(dono.get_cor())
-
+	
 
 func _on_trilho_hovered(_trilho: Trilho):
 	highlight_linha()

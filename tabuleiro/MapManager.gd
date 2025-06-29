@@ -9,6 +9,8 @@ class_name MapManager extends Node2D
 var cidades: Dictionary = {}
 var caminhos: Array[Caminho] = []
 
+signal tab_jogador_comprou_rota
+
 func _ready():
 	image_parser.image_saved.connect(_on_image_saved)
 	json_map_parser("res://dados/mapa-brasil.json")

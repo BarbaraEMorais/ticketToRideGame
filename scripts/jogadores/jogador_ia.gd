@@ -29,7 +29,7 @@ func jogarTurno(mesa : Mesa) -> void:
 			if get_mao().accepts_card(carta_sel):
 				mesa.get_pilha_exposta().remove_carta(carta_sel)
 				get_mao().add_carta(carta_sel)
-				turnOver.emit()
+			turnOver.emit()
 			
 	else: # Pegar carta de destino
 		var num_cartas := rng.randi_range(1, 3)

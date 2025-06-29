@@ -7,6 +7,7 @@ signal mouse_over_container(container: CardContainer)
 var can_receive_cards := true
 var show_highlight = false
 
+var can_player_interact := true
 
 func set_signals_to_manager(manager: CardManager) -> void:
 	mouse_left_container.connect(manager.on_mouse_leaving_container)

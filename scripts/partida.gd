@@ -19,7 +19,7 @@ func _ready() -> void:
 	labelJogadorAtual = $UI/NomeJogadorAtual
 
 	# Quando uma carta é tomada da pilha exposta, o turno acaba
-	mesa.get_pilha_exposta().carta_tomada_da_exposta.connect(_on_card_taken)
+	mesa.pass_player_turn.connect(_on_turn_over)
 	# Quando uma carta de destino é comprada, o turno acaba
 	mesa.sel_destino_concluida.connect(_on_dest_cards_taken)
 
@@ -87,6 +87,11 @@ func _passar_turno():
 		_indexJogadorAtual = 0
 	
 	update_curr_player_label()
+	var jog_atual = getJogadorAtual()
+	if jog_atual is JogadorIA:
+		mesa.disable_player_interaction()
+	else:
+		mesa.enable_player_interaction()
 	getJogadorAtual().jogarTurno(mesa)
 
 

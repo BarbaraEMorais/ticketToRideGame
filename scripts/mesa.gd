@@ -22,6 +22,11 @@ var _card_manager: CardManager
 var jogador_atual : Jogador
 
 signal sel_destino_concluida
+signal pass_player_turn
+
+var _route_interaction_enabled = true
+
+var _num_train_cards_bought : int = 0
 
 func _ready() -> void:
 	call_deferred("conectar_sinais_das_linhas")
@@ -31,24 +36,56 @@ func get_trem() -> PilhaTrem:
 
 func get_pilha_exposta() -> PilhaExposta: 
 	return _pilha_exposta
+	
+func disable_player_interaction() -> void:
+	_pilha_destino.can_player_interact = false
+	_pilha_trem.can_player_interact = false
+	_pilha_exposta.can_player_interact = false
+	_route_interaction_enabled = false
+	
+func enable_player_interaction() -> void:
+	_pilha_destino.can_player_interact = true
+	_pilha_exposta.can_player_interact = true
+	_pilha_trem.can_player_interact = true
+	_route_interaction_enabled = true
+
+
 # Callback para quando uma carta é comprada da PilhaTrem (clique direto na pilha)
 func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 	print("Mesa: Jogador comprou a carta '%s' da PilhaTrem." % carta.name)
 	carta.visible=true
+	_num_train_cards_bought += 1
+	
 	jogador_atual.get_mao().add_carta(carta)
+	if _num_train_cards_bought == 2:
+		_num_train_cards_bought = 0
+		
+		pass_player_turn.emit()
 
 
 # Callback para quando uma carta é tomada da PilhaExposta
 func _on_carta_tomada_da_pilha_exposta(carta: CartaTrem) -> void:
 	jogador_atual.get_mao().add_carta(carta)
-	
+	_num_train_cards_bought += 1
+	_pilha_exposta.can_pull_joker = false
+	if _num_train_cards_bought == 2 or carta.cor == "coringa":
+		_num_train_cards_bought = 0
+		_pilha_exposta.can_pull_joker = true
+		pass_player_turn.emit()
+
 func _on_pilha_destino_selecao_solicitada() -> void:
+	
+	
 	print("Mesa: Recebida solicitação para seleção de cartas destino.")
+
+	if not _pilha_destino.can_player_interact or _num_train_cards_bought > 0:
+		print("Mesa: Jogador não pode interagir com a pilha de destino no momento")
+		return
 
 	if not is_instance_valid(_pilha_destino):
 		printerr("Mesa: _pilha_destino não é válida ao tentar puxar cartas.")
 		return
-
+	
 	# Se a tela de seleção já estiver aberta, não faça nada
 	if is_instance_valid(instancia_selecao_destino_ui) and instancia_selecao_destino_ui.is_inside_tree():
 		print("Mesa: Tela de seleção de destinos já está aberta.")
@@ -68,6 +105,8 @@ func _on_pilha_destino_selecao_solicitada() -> void:
 
 	add_child(instancia_selecao_destino_ui)
 	print("Mesa: Instância de SelecaoDestinoUI adicionada à cena.")
+	
+	disable_player_interaction()
 
 	# Passando 'cartas_destino_puxadas' para essa telinha. 
 	if instancia_selecao_destino_ui.has_method("apresentar_cartas_para_selecao"):
@@ -106,12 +145,19 @@ func conectar_sinais_das_linhas(): # CONECTA TODAS AS LINHAS COM A FUNÇÃO QUE 
 
 func _on_rota_reclamar_solicitada(linha_clicada: Linha):
 	print("chegou aqui na parte de reivindicar")
+
+	# Verifica se o jogador pode interagir com a reinvidicação
+	if not _route_interaction_enabled:
+		print("Mesa: Jogador tentou reinvidicar rota fora de turno")
+		return
+
 	#FUNÇÃO DA MÃO QUE VERIFICA SE TEM CARTAS SUFUCIENTES PRA REIVINDICIAR E RETORNA 0 SE FOR POSSIVEL
 	if jogador_atual.get_mao().gerencia_reivindicação(linha_clicada.color, linha_clicada.trilhos.size()) ==0:
 		linha_clicada.claim_route(jogador_atual) 
 		jogador_atual.subtrai_trens(linha_clicada.trilhos.size())
 		jogador_atual.soma_pontos(PONTOS_POR_ROTA.get(linha_clicada.trilhos.size()))
 		verifica_destino(jogador_atual)
+		pass_player_turn.emit()
 	
 # FUNÇÃO PRINCIPAL DE BUSCA DE CAMINHO
 # Verifica se existe uma conexão contínua de rotas do 'jogador'
@@ -221,6 +267,7 @@ func calcular_pontuacao_final(jogador_atual: Jogador):
 #método para lidar com o resultado da seleção
 func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 	print("Mesa: Seleção de destinos concluída. Cartas escolhidas:")
+	
 	if cartas_escolhidas.is_empty():
 		print("  Nenhuma carta destino foi mantida.")
 	else:
@@ -234,10 +281,10 @@ func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 			else:
 				print("  - Uma carta escolhida tornou-se inválida antes do processamento.")
 	
+	enable_player_interaction()
 	sel_destino_concluida.emit()
 
 	if is_instance_valid(instancia_selecao_destino_ui):
-		
 		pass 
 	instancia_selecao_destino_ui = null # Limpa a referência
 

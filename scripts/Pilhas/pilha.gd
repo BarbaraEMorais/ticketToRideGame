@@ -2,6 +2,7 @@ class_name Pilha extends CardContainer
 
 signal carta_comprada_da_pilha(carta: Carta) # Sinal emitido quando uma carta é comprada da pilha
 
+
 @export var _cartas: Array[Carta]
 
 func _ready() -> void:    
@@ -13,6 +14,10 @@ func criar_pilha_inicial() -> void: # Esta função é intencionalmente deixada 
 
 
 func comprar_carta_da_pilha() -> Carta: 
+
+	if not can_player_interact:
+		return
+
 	if _cartas.size() > 0:
 		var carta: Carta = _cartas.pop_back() 
 		print("Pilha (%s): Carta '%s' compradaaaaaaaa." % [name, carta.name if carta else "NIL"])
