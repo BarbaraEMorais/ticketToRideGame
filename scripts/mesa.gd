@@ -26,6 +26,8 @@ signal pass_player_turn
 
 var _route_interaction_enabled = true
 
+var _num_train_cards_bought : int = 0
+
 func _ready() -> void:
 	call_deferred("conectar_sinais_das_linhas")
 	
@@ -46,27 +48,34 @@ func enable_player_interaction() -> void:
 	_pilha_exposta.can_player_interact = true
 	_pilha_trem.can_player_interact = true
 	_route_interaction_enabled = true
-	
+
+
 
 # Callback para quando uma carta é comprada da PilhaTrem (clique direto na pilha)
 func _on_carta_comprada_da_pilha_trem(carta: CartaTrem) -> void:
 	print("Mesa: Jogador comprou a carta '%s' da PilhaTrem." % carta.name)
 	carta.visible=true
+	_num_train_cards_bought += 1
 	jogador_atual.get_mao().add_carta(carta)
-	pass_player_turn.emit()
+	if _num_train_cards_bought == 2:
+		_num_train_cards_bought = 0
+		pass_player_turn.emit()
 
 
 # Callback para quando uma carta é tomada da PilhaExposta
 func _on_carta_tomada_da_pilha_exposta(carta: CartaTrem) -> void:
 	jogador_atual.get_mao().add_carta(carta)
-	pass_player_turn.emit()
-	
+	_num_train_cards_bought += 1
+	if _num_train_cards_bought == 2:
+		_num_train_cards_bought = 0
+		pass_player_turn.emit()
+
 func _on_pilha_destino_selecao_solicitada() -> void:
 	
 	
 	print("Mesa: Recebida solicitação para seleção de cartas destino.")
 
-	if not _pilha_destino.can_player_interact:
+	if not _pilha_destino.can_player_interact or _num_train_cards_bought > 0:
 		print("Mesa: Jogador não pode interagir com a pilha de destino no momento")
 		return
 
