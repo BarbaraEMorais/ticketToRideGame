@@ -1,4 +1,5 @@
-class_name Caminho extends Node2D
+class_name Caminho 
+extends Node2D
 
 @export var trilho_scene: PackedScene
 

@@ -24,6 +24,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="Cidade" type="Area2D"]
 z_index = 1
 script = ExtResource("1_sa4h6")
+metadata/_custom_type_script = "uid://kn0li6ib3c6f"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 3)
