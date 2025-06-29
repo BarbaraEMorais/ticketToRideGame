@@ -11,17 +11,72 @@ func has_destination_card():
 	
 	return false
 
-func a_star(start, end) -> Array[Dictionary]:
+# Basic djikstra algorith implementation. Terminated early once end is reached
+func find_shortest_path(start : String, end : String, map : MapManager) -> Array[Dictionary]:
+	var start_id := map.id_via_nome(start)
+	var end_id := map.id_via_nome(end)
+	
+	
+	var dist : Dictionary = {}
+	var prev : Dictionary = {}
+	var nodes_to_test : Array[int] = []
+	for cidade_id in map.cidades:
+		dist[cidade_id] = 9999
+		prev[cidade_id] = []
+		nodes_to_test.append(cidade_id)
+
+	dist[start_id] = 0
+	
+	while not nodes_to_test.is_empty():
+		var curr_node : int = 0
+
+		for node in dist:
+			if dist[node] < dist[curr_node]:
+				curr_node = node
+		
+		if curr_node == end_id:
+			# Finish search
+			return prev[curr_node]
+		nodes_to_test.erase(curr_node)
+
+		var available_paths : Array[Caminho]= map.caminhos.filter(
+			func(cam : Caminho):
+				if not cam.origem.cidade_id == curr_node or cam.destino.cidade_id == curr_node:
+					return false
+				
+				return cam.linhas.all(
+					func(lin: Linha):
+						return lin.dono != null or lin.dono == self
+				)
+		)
+
+
+		for path in available_paths:
+			var origin := path.origem.cidade_id
+			var dest := path.destino.cidade_id
+
+			if dest == curr_node:
+				var temp := dest
+				dest = origin
+				origin = temp
+			
+			var tam : int = path.tamanho if path.dono != self else 0
+
+			var alt : int = dist[curr_node] + tam
+			if alt < dist[dest]:
+				dist[dest] = alt
+				prev[dest] = prev[curr_node].append(path)
+		
 	return []
 
 
-func compute_best_path() -> Array[Dictionary]:
+func compute_best_path(map : MapManager) -> Array[Dictionary]:
 	var best_path : Array[Dictionary] = []
 	var best_points = 0
 
 	for carta in get_mao().get_cartas():
 		if carta is CartaDestino and (carta as CartaDestino).pontos > best_points:
-			best_path = a_star(carta.cidade_origem, carta.cidade_destino)
+			best_path = find_shortest_path(carta.cidade_origem, carta.cidade_destino, map)
 
 	return best_path
 
@@ -110,7 +165,7 @@ func jogarTurno(part : Partida) -> void:
 	
 	# Check if there's a viable path
 	if lista_prox_caminho.is_empty():
-		var temp : Array[Dictionary] = compute_best_path()
+		var temp : Array[Dictionary] = compute_best_path(part.tabuleiro)
 		if temp.is_empty():
 			buy_destination_card(part)
 			turnOver.emit()
@@ -120,7 +175,7 @@ func jogarTurno(part : Partida) -> void:
 	# Check if there's any owned routes in computed path
 	for route in lista_prox_caminho:
 		if is_route_owned(route['caminho']):
-			compute_best_path()
+			compute_best_path(part.tabuleiro)
 			break
 
 	var cheapest_route = lista_prox_caminho[0]

@@ -13,6 +13,11 @@ func _ready():
 	image_parser.image_saved.connect(_on_image_saved)
 	json_map_parser("res://dados/mapa-brasil.json")
 
+func id_via_nome(nome : String) -> int:
+	for id in cidades:
+		if (cidades[id] as Cidade).name == nome:
+			return id
+	return -1 
 
 func _cria_varias_cidades_exemplo():
 	var cidades_dados = [
