@@ -12,7 +12,7 @@ func has_destination_card():
 	return false
 
 # Basic djikstra algorith implementation. Terminated early once end is reached
-func find_shortest_path(start : String, end : String, map : MapManager) -> Array[Dictionary]:
+func find_shortest_path(start : String, end : String, map : MapManager) -> Array[Caminho]:
 	var start_id := map.id_via_nome(start)
 	var end_id := map.id_via_nome(end)
 	
@@ -67,18 +67,36 @@ func find_shortest_path(start : String, end : String, map : MapManager) -> Array
 				dist[dest] = alt
 				prev[dest] = prev[curr_node].append(path)
 		
-	return []
+	return prev[end_id]
 
 
 func compute_best_path(map : MapManager) -> Array[Dictionary]:
-	var best_path : Array[Dictionary] = []
+	var dj_result : Array[Caminho] = []
 	var best_points = 0
 
 	for carta in get_mao().get_cartas():
 		if carta is CartaDestino and (carta as CartaDestino).pontos > best_points:
-			best_path = find_shortest_path(carta.cidade_origem, carta.cidade_destino, map)
+			dj_result = find_shortest_path(carta.cidade_origem, carta.cidade_destino, map)
 
-	return best_path
+
+	return dj_result.map(
+		func (cam : Caminho) -> Dictionary:
+			var res : Dictionary = {}
+			
+			res['caminho'] = cam
+			
+			var color = ""
+			for lin in cam.linhas:
+				if lin.dono != null:
+					continue
+				if lin.color == "grey" or color.is_empty():
+					color = lin.color
+			
+			res['color'] = color
+			res['tamanho'] = cam.tamanho
+
+			return res
+	)
 
 static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,0), pos_mao: Vector2 = Vector2(0,0)) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorIA.tscn")

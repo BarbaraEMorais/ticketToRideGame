@@ -17,7 +17,8 @@ func id_via_nome(nome : String) -> int:
 	for id in cidades:
 		if (cidades[id] as Cidade).name == nome:
 			return id
-	return -1 
+	return -1
+
 
 func _cria_varias_cidades_exemplo():
 	var cidades_dados = [
@@ -93,6 +94,9 @@ func json_map_parser(file_path: String):
 		for line_data in t["lines"]:
 			colors.append(line_data["colour"] as String)
 		_cria_caminho(t["id"], t["start"], t["end"], t["length"], t["lineAmount"], colors, t["curvature"])
+
+
+
 
 # NOVA FUNÇÃO: Retorna uma lista de cidades vizinhas a 'cidade_de_partida'
 # que podem ser alcançadas através de rotas pertencentes ao 'jogador'.
