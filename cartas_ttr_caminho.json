@@ -17,7 +17,7 @@
 		},
 		{
 			"cor": "orange",
-			"imagem": "res://assets/cartas/laranja.png",
+			"imagem": "res://assets/cartas/Laranja.png",
 			"quantidade": 12.0
 		},
 		{
@@ -43,9 +43,9 @@
 	],
 	"PILHA_DESTINO": [
 		{
-		"origem": "Belém",
-		"destino": "São Luís",
-		"pontos": 4
+			"origem": "Belém",
+			"destino": "São Luís",
+			"pontos": 4
 		},
 		{
 			"origem": "Belém",
