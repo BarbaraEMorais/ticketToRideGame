@@ -2,8 +2,28 @@ class_name JogadorIA extends Jogador
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
+var lista_prox_caminho : Array[Dictionary] = []
+
+func has_destination_card():
+	for carta in _mao:
+		if carta is CartaDestino:
+			return true
+	
+	return false
+
+func a_star(start, end) -> Array[Dictionary]:
+	return []
 
 
+func compute_best_path() -> Array[Dictionary]:
+	var best_path : Array[Dictionary] = []
+	var best_points = 0
+
+	for carta in get_mao().get_cartas():
+		if carta is CartaDestino and (carta as CartaDestino).pontos > best_points:
+			best_path = a_star(carta.cidade_origem, carta.cidade_destino)
+
+	return best_path
 
 static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,0), pos_mao: Vector2 = Vector2(0,0)) -> Jogador:
 	var jogador_cena = load("res://cenas/JogadorIA.tscn")
@@ -14,29 +34,112 @@ static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,
 	novo.set_card_color(cor)
 	return novo
 
-func jogarTurno(mesa : Mesa) -> void:
-	# No momento, as ações do jogador IA não tem nenhuma lógica
-	var action : int = rng.randi()
+func buy_destination_card(part : Partida):
+	var num_cartas := rng.randi_range(1, 3)
+	for i in range(num_cartas):
+		if get_mao().can_receive_card():
+			var carta_dest : CartaDestino = part.mesa.get_pilha_destino().comprar_carta_da_pilha_IA()
+			get_mao().add_carta(carta_dest)
+
+func buy_exposed_train(part: Partida, color : String):
+	var exposed_pile : PilhaExposta = part.mesa.get_pilha_exposta()
+
+	for carta in exposed_pile._cartas:
+		if carta.cor == color:
+			if get_mao().accepts_card(carta):
+				part.mesa.get_pilha_exposta().remove_carta(carta)
+				get_mao().add_carta(carta)
+
+func buy_pile_train(part: Partida):
+	if get_mao().can_receive_card():
+		get_mao().add_carta(part.mesa._pilha_trem.ai_buy_card())
+		
+			
+
+func buy_route(route):
+	pass
+
+func exposed_pile_has_card_of_color(part : Partida, color: String) -> bool:
+	var exposed_pile : PilhaExposta = part.mesa.get_pilha_exposta()
+
+	for carta in exposed_pile._cartas:
+		if carta.cor == color:
+			return true
+	
+	return false
+
+
+func can_buy_route(route : Dictionary) -> bool:
+	var num_cards_of_color := 0
+	for carta in get_mao()._cartas:
+		if carta is CartaTrem and carta.cor == route['color']:
+			num_cards_of_color+= 1
+
+	return num_cards_of_color >= route['tamanho']
+
+func is_route_owned(cam : Caminho) -> bool:
+	for linha in cam.linhas:
+		if linha.dono == null: # Pelo menos uma linha no caminho não tem dono
+			return false
+			
+	return true
+
+func buy_random_cheap_route(part: Partida):
+	pass
+
+func jogarTurno(part : Partida) -> void:
+
+	# Em seu turno o jogador IA:
+	# 1. Checa se há cartas de destino em mão
+	# 	1.1 Se não, compre uma carta
+	# 2. Checa se o caminho ótimo até o destino é possível
+	# 	2.1 Se não, tente calcular uma nova rota
+	#		3.1.1 Se não for possivel, compre uma carta de destino
+	# 3. Verifica se tem cartas o suficiente para comprar o caminho
+	# 	3.1 Se sim, reinvindica rota
+	#	3.2 Se não, compra carta de trem
+	#		3.2.1 Se a pilha exposta possuí carta da cor necessária, compre da pilha exposta
+	#		3.2.2 Se não, compre da pilha de trems	
+
+	
+	# Check if there's destination cards in hand
+	if not has_destination_card():
+		buy_destination_card(part)
+		turnOver.emit()
+		return
+	
+	# Check if there's a viable path
+	if lista_prox_caminho.is_empty():
+		var temp : Array[Dictionary] = compute_best_path()
+		if temp.is_empty():
+			buy_destination_card(part)
+			turnOver.emit()
+			return
+		lista_prox_caminho = temp
+	
+	# Check if there's any owned routes in computed path
+	for route in lista_prox_caminho:
+		if is_route_owned(route['caminho']):
+			compute_best_path()
+			break
+
+	var cheapest_route = lista_prox_caminho[0]
+	# Check if any route in path can be bought
+	for route in lista_prox_caminho:
+		if can_buy_route(route):
+			buy_route(route)
+			return
+		if cheapest_route['tamanho'] > route['tamanho']:
+			cheapest_route = route
+
+	for i in range(2):
+		if cheapest_route['cor'] == "grey":
+			buy_pile_train(part)
+		
+		else:
+			if exposed_pile_has_card_of_color(part, cheapest_route['cor']):
+				buy_exposed_train(part, cheapest_route['cor'])
+			else:
+				buy_pile_train(part)
 	
 	await get_tree().create_timer(2).timeout
-	
-	if action % 2: # Pegar carta de trem
-		
-		# TODO: Lógica para trems arco-íriis
-		for i in range(0, 1):
-			var index_selecao := rng.randi_range(0,  mesa.get_pilha_exposta().getCartas().size() -1)
-			var carta_sel := mesa.get_pilha_exposta().getCartas()[index_selecao]
-			if get_mao().accepts_card(carta_sel):
-				mesa.get_pilha_exposta().remove_carta(carta_sel)
-				get_mao().add_carta(carta_sel)
-			turnOver.emit()
-			
-	else: # Pegar carta de destino
-		var num_cartas := rng.randi_range(1, 3)
-		for i in range(num_cartas):
-			if get_mao().can_receive_card():
-				var carta_dest := mesa.get_pilha_destino().comprar_carta_da_pilha_IA()
-				get_mao().add_carta(carta_dest)
-		
-		turnOver.emit()
-				
