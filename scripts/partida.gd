@@ -36,7 +36,7 @@ func get_jogadores() -> Array[Jogador]:
 	return listaJogadores
 
 func update_curr_player_label():
-	labelJogadorAtual.text = "Turno de: " + get_jogadores()[_indexJogadorAtual].get_nome() 
+	labelJogadorAtual.text = get_jogadores()[_indexJogadorAtual].get_nome() 
 
 func set_partida(nomes: Array[String], player_color: String) -> void:
 	var cores = ["azul_claro", "vermelho", "verde", "preto", "amarelo", "rosa", "laranja"]

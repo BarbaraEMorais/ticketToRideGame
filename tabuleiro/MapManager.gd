@@ -131,3 +131,4 @@ func _on_image_saved(image_path: String):
 	var texture := ImageTexture.create_from_image(img)
 	# 4) apply
 	sprite_2d_node.texture = texture
+	sprite_2d_node.create_background()
