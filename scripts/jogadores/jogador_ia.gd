@@ -87,15 +87,17 @@ func compute_best_path(map : MapManager) -> Array[Dictionary]:
 			var res : Dictionary = {}
 			
 			res['caminho'] = cam
-			
-			var color = ""
+			res['linha'] = cam.linhas[0]
+			res['color'] = ""
+
 			for lin in cam.linhas:
 				if lin.dono != null:
 					continue
-				if lin.color == "grey" or color.is_empty():
-					color = lin.color
+				if lin.color == "grey" or res['color'].is_empty():
+					res['color'] = lin.color
+					res['linha'] = lin
 			
-			res['color'] = color
+			
 			res['tamanho'] = cam.tamanho
 
 			return res
@@ -140,8 +142,19 @@ func buy_pile_train(part: Partida):
 		
 			
 
-func buy_route(route):
-	pass
+func buy_route(route : Dictionary):
+	var linha : Linha = route['linha']
+	linha.claim_route(self)
+
+	var num_tri_need = route['tamanho']
+
+	for card in get_mao().get_cartas():
+		if card is CartaTrem and (card as CartaTrem).cor == route['color']:
+			get_mao().remove_carta(card)
+			num_tri_need -= 1
+		
+		if num_tri_need == 0:
+			break
 
 func exposed_pile_has_card_of_color(part : Partida, color: String) -> bool:
 	var exposed_pile : PilhaExposta = part.mesa.get_pilha_exposta()
@@ -168,7 +181,7 @@ func is_route_owned(cam : Caminho) -> bool:
 			
 	return true
 
-func buy_random_cheap_route(part: Partida):
+func buy_random_route(part: Partida):
 	pass
 
 func jogarTurno(part : Partida) -> void:
@@ -184,6 +197,8 @@ func jogarTurno(part : Partida) -> void:
 	#	3.2 Se não, compra carta de trem
 	#		3.2.1 Se a pilha exposta possuí carta da cor necessária, compre da pilha exposta
 	#		3.2.2 Se não, compre da pilha de trems	
+
+
 
 	
 	# Check if there's destination cards in hand
