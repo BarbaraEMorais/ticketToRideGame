@@ -11,14 +11,29 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -112.5
-offset_top = -168.0
+offset_top = -169.0
 offset_right = 112.5
-offset_bottom = 168.0
+offset_bottom = 169.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-texture = ExtResource("2_y7ut4")
+mouse_filter = 0
 script = ExtResource("1_ef62c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -188.0
+offset_right = 133.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y7ut4")
 
 [node name="Origem" type="Label" parent="."]
 layout_mode = 1
@@ -28,16 +43,15 @@ anchor_top = 0.526596
 anchor_right = 0.539623
 anchor_bottom = 0.539894
 offset_left = -62.0
-offset_top = -164.0
+offset_top = -161.0
 offset_right = 264.0
-offset_bottom = -118.0
+offset_bottom = -114.495
 rotation = 1.5708
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_hc1gv")
 theme_override_font_sizes/font_size = 50
 text = "Placeholder"
 vertical_alignment = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Destino" type="Label" parent="."]
 layout_mode = 1
@@ -47,9 +61,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 53.0
-offset_top = 145.5
+offset_top = 148.5
 offset_right = 379.0
-offset_bottom = 196.5
+offset_bottom = 199.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
@@ -67,16 +81,15 @@ anchor_top = 0.476064
 anchor_right = 0.508
 anchor_bottom = 0.489
 offset_left = -27.0
-offset_top = -31.0
-offset_right = 29.3799
-offset_bottom = 129.136
+offset_top = -28.0
+offset_right = 29.7754
+offset_bottom = 132.628
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_hc1gv")
 theme_override_font_sizes/font_size = 80
 text = "99
 "
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
