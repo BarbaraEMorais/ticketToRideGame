@@ -165,8 +165,7 @@ func get_qtd_cartas_trem() -> int:
 	for carta in _cartas:
 		if carta is CartaTrem:
 			count += 1
-			
-	print("numero de cartas trem: ",count)
+
 	return count
 
 func get_cartas() -> Array[Carta]:
