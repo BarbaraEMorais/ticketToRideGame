@@ -25,8 +25,6 @@ func _ready() -> void:
 	# Quando uma carta de destino é comprada, o turno acaba
 	mesa.sel_destino_concluida.connect(_on_dest_cards_taken)
 	
-	_estado = FINALIZAR
-	
 	
 func _process(_delta: float) -> void:
 	if _estado == FINALIZAR or _estado == ULTIMO_TURNO:
@@ -99,20 +97,9 @@ func _passar_turno():
 		mesa.enable_player_interaction()
 	getJogadorAtual().jogarTurno(self)
 
-
-# Placeholder para a checagem da vitoria de um jogador
 # Checa se a partida foi finalizada
 func checar_fim_partida() -> bool:
 	return false
-
-#func determinarVitoria() -> void:
-	 ##mesa.calcular_pontuacao_final(listaJogadores)
-	 ##var vencedor = listaJogadores[0]
-	 ##for j in listaJogadores:
-		 ##if j.get_pontos() > vencedor.get_pontos():
-			 ##vencedor = j
-	 ##print("Vencedor: ", vencedor.get_nome())
-	#pass
 
 func finalizar_partida():
 	if _estado != FINALIZAR:
@@ -121,8 +108,6 @@ func finalizar_partida():
 	var tela_pontuacao = calcula_pontuacao_scene.instantiate()
 	
 	ui.add_child(tela_pontuacao) 
-	# Ou se você quiser que ela seja uma tela separada do UI:
-	#get_tree().get_root().add_child(tela_pontuacao)
 	tela_pontuacao.set_mesa(mesa)
 	tela_pontuacao.set_partida_node(get_jogadores()) 
 
