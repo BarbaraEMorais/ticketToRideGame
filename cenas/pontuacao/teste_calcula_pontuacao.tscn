@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://da4vhpjm0avvo"]
+
+[ext_resource type="Script" uid="uid://b6tutry3pfopj" path="res://cenas/pontuacao/teste_calcula_pontuacao.gd" id="1_06845"]
+[ext_resource type="PackedScene" uid="uid://tcryc0xkt4jn" path="res://cenas/pontuacao/calculaPontuacao.tscn" id="2_6m4lk"]
+
+[node name="TesteCalculaPontuacao" type="Node2D"]
+script = ExtResource("1_06845")
+
+[node name="CalculaPontuacao" parent="." instance=ExtResource("2_6m4lk")]
+position = Vector2(-68, -65)
