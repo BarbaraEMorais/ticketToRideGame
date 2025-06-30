@@ -167,6 +167,7 @@ func _on_rota_reclamar_solicitada(linha_clicada: Linha):
 		jogador_atual.soma_pontos(PONTOS_POR_ROTA.get(linha_clicada.trilhos.size()))
 		verifica_destino(jogador_atual)
 		pass_player_turn.emit()
+	
 
 # FUNÇÃO PRINCIPAL DE BUSCA DE CAMINHO
 # Verifica se existe uma conexão contínua de rotas do 'jogador'

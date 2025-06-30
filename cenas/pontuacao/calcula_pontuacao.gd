@@ -6,26 +6,25 @@ extends Node2D
 
 var _mesa_mock: Node = null # Variável para armazenar o mock da Mesa em modo de teste
 var _partida_referencia: Node = null
-var jogadores: Array[Jogador] # <--- Permanece Array[Jogador]! Seus mocks agora herdam de Jogador.
+var jogadores: Array[Jogador] 
 var jogador_cell_label_scene = preload("res://cenas/pontuacao/jogadorCellLabel.tscn")
 
 func _ready() -> void:
 	adicionar_cabecalho("Nome", "Rotas Reivindicadas", "Rotas Não Reivindicadas", "Pontuação Final")
 
+func set_mesa(mesa: Mesa):
+	_mesa_mock = mesa
+	
 # Este método é para uso em produção, quando a PartidaManager injeta a Partida real
-func set_partida_node(partida_node: Node):
-	_partida_referencia = partida_node
-	_mesa_mock = _mesa_real 
-
-	if is_instance_valid(_partida_referencia):
-
-		jogadores = _partida_referencia.get_jogadores()
-		if jogadores.is_empty():
-			push_warning("calculaPontuacao: Nenhum jogador encontrado através da Partida referenciada.")
-			return
-		atualizar_tabela_de_pontuacao_final()
-	else:
-		printerr("calculaPontuacao: Referência de Partida inválida recebida.")
+func set_partida_node(_jogadores: Array[Jogador]):
+	
+	jogadores = _jogadores
+	if jogadores.is_empty():
+		push_warning("calculaPontuacao: Nenhum jogador encontrado através da Partida referenciada.")
+		return
+	atualizar_tabela_de_pontuacao_final()
+	#else:
+		#printerr("calculaPontuacao: Referência de Partida inválida recebida.")
 
 func _set_test_data(test_jogadores: Array[Jogador], test_mesa_mock: Node):
 	self.jogadores = test_jogadores
@@ -65,7 +64,7 @@ func atualizar_tabela_de_pontuacao_final():
 	print("calculaPontuacao: Tabela de pontuação final atualizada com sucesso.")
 
 func _sort_jogadores_por_pontuacao(jogador_a: Jogador, jogador_b: Jogador) -> bool:
-	return jogador_a.get_pontuacao_atual() > jogador_b.get_pontuacao_atual()
+	return jogador_a.get_pontos() > jogador_b.get_pontos()
 
 func _limpar_linhas_de_jogadores():
 	

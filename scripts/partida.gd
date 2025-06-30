@@ -12,6 +12,8 @@ var labelJogadorAtual : Label
 enum {EM_ANDAMENTO, ULTIMO_TURNO, FINALIZAR}
 var _estado = EM_ANDAMENTO
 
+var calcula_pontuacao_scene = preload("res://cenas/pontuacao/calculaPontuacao.tscn")
+
 func _ready() -> void:
 	mesa = $"UI/Mesa"
 	ui = $"UI"
@@ -22,10 +24,13 @@ func _ready() -> void:
 	mesa.pass_player_turn.connect(_on_turn_over)
 	# Quando uma carta de destino é comprada, o turno acaba
 	mesa.sel_destino_concluida.connect(_on_dest_cards_taken)
-
+	
+	_estado = FINALIZAR
+	
 	
 func _process(_delta: float) -> void:
-	pass
+	if _estado == FINALIZAR or _estado == ULTIMO_TURNO:
+		finalizar_partida()
 
 func add_player(jogador : Jogador) -> void:
 	listaJogadores.append(jogador)
@@ -61,7 +66,7 @@ func set_partida(nomes: Array[String], player_color: String) -> void:
 
 func proximo_turno():
 	# por segurança
-	if _estado == FINALIZAR: determinarVitoria()
+	if _estado == FINALIZAR: finalizar_partida()
 	else:
 		_passar_turno()
 
@@ -70,7 +75,7 @@ func getJogadorAtual() -> Jogador:
 
 func _passar_turno():
 	if _estado == FINALIZAR:
-		# Implementar lógica de fim de partida
+		finalizar_partida()
 		return
 	
 	if _indexJogadorAtual == _indexJogadorUltimoTurno and _estado == ULTIMO_TURNO:
@@ -100,8 +105,32 @@ func _passar_turno():
 func checar_fim_partida() -> bool:
 	return false
 
-func determinarVitoria() -> void:
-	pass
+#func determinarVitoria() -> void:
+	 ##mesa.calcular_pontuacao_final(listaJogadores)
+	 ##var vencedor = listaJogadores[0]
+	 ##for j in listaJogadores:
+		 ##if j.get_pontos() > vencedor.get_pontos():
+			 ##vencedor = j
+	 ##print("Vencedor: ", vencedor.get_nome())
+	#pass
+
+func finalizar_partida():
+	if _estado != FINALIZAR:
+		_estado = FINALIZAR 
+
+	var tela_pontuacao = calcula_pontuacao_scene.instantiate()
+	
+	ui.add_child(tela_pontuacao) 
+	# Ou se você quiser que ela seja uma tela separada do UI:
+	#get_tree().get_root().add_child(tela_pontuacao)
+	tela_pontuacao.set_mesa(mesa)
+	tela_pontuacao.set_partida_node(get_jogadores()) 
+
+	mesa.disable_player_interaction()
+	tabuleiro.set_process_mode(Node.PROCESS_MODE_DISABLED) # Exemplo: Pausa o tabuleiro
+	get_tree().paused = true # Pausa o jogo inteiro, se for o caso
+	
+	print("Tela de pontuação exibida.")
 
 # Essa função deve ser conectada à um sinal emitido por jogador
 func _handle_end_game_signal():
