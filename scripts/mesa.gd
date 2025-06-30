@@ -239,40 +239,20 @@ func verifica_destino(jogador_atual: Jogador):
 				carta_destino.completado=true
 
 
-
-
-
-
-
 # Exemplo de função que seria chamada no final do jogo
-func calcular_pontuacao_final(jogador_atual: Jogador):
-	if not is_instance_valid(jogador_atual): return
-
-	print("\n--- CALCULANDO PONTUAÇÃO FINAL PARA O JOGADOR: %s ---" % jogador_atual.name)
-
-	var mao_do_jogador = jogador_atual.get_mao()
-
-	# Itera sobre todas as cartas na mão do jogador
-	for carta in mao_do_jogador.get_cartas() :
-		# Filtra apenas as Cartas Destino
-		if carta is CartaDestino:
-			var carta_destino = carta as CartaDestino
-
-			print("Verificando destino: de '%s' para '%s' (vale %s pontos)..." % [carta_destino.cidade_origem, carta_destino.cidade_destino, carta_destino.pontos])
-
-			# Chama a nossa função principal de busca!
-			var foi_completado = verificar_conexao_entre_cidades(jogador_atual, carta_destino.cidade_origem, carta_destino.cidade_destino)
-
-			if foi_completado:
-				print("  --> DESTINO COMPLETO! +%s pontos." % carta_destino.pontos)
-				jogador_atual.soma_pontos(carta_destino.pontos) # Supondo que você tenha este método no Jogador
-			else:
-				print("  --> DESTINO NÃO COMPLETO! -%s pontos." % carta_destino.pontos)
-				jogador_atual.soma_pontos(-carta_destino.pontos) # Subtrai os pontos
-
-	print("--- PONTUAÇÃO FINAL DE %s: %s ---" % [jogador_atual.name, jogador_atual._pontos])
-
-
+func calcular_pontuacao_final(jogadores: Array[Jogador]):
+	
+	for jogador in jogadores:
+		for carta in jogador.get_mao().get_cartas_destino():
+			
+			if carta is CartaDestino:
+				if carta.esta_selecionada == false:
+					jogador.soma_pontos(-carta.pontos)
+				else:
+					if carta.pontos >= 18: #caminho longo
+						jogador.soma_pontos(10) # valor setado
+					jogador.soma_pontos(carta.pontos)
+	
 #método para lidar com o resultado da seleção
 func _on_selecao_de_destinos_concluida(cartas_escolhidas: Array[CartaDestino]):
 	print("Mesa: Seleção de destinos concluída. Cartas escolhidas:")

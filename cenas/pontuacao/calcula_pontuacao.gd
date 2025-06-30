@@ -1,66 +1,96 @@
+# cenas/pontuacao/calculaPontuacao.gd
 extends Node2D
 
-@onready var jogadores_container = $Panel/ContainerJogadores # AGORA É UM GridContainer
+@onready var jogadores_container = $Panel/ContainerJogadores
+@onready var _mesa_real = $"Mesa" # Referência para a Mesa real, usada em tempo de jogo
 
+var _mesa_mock: Node = null # Variável para armazenar o mock da Mesa em modo de teste
+var _partida_referencia: Node = null
+var jogadores: Array[Jogador] # <--- Permanece Array[Jogador]! Seus mocks agora herdam de Jogador.
+var jogador_cell_label_scene = preload("res://cenas/pontuacao/jogadorCellLabel.tscn")
 
-# Pré-carrega a nova cena do Label da célula
-var jogador_cell_label_scene = preload("res://cenas/pontuacao/jogadorCellLabel.tscn") # Caminho para a nova cena Label
+func _ready() -> void:
+	adicionar_cabecalho("Nome", "Rotas Reivindicadas", "Rotas Não Reivindicadas", "Pontuação Final")
 
-func _ready():
-	adicionar_cabecalho("Nome", "Reivindicada", "Não Reivindicada", "Pontos", "Total")
+# Este método é para uso em produção, quando a PartidaManager injeta a Partida real
+func set_partida_node(partida_node: Node):
+	_partida_referencia = partida_node
+	_mesa_mock = _mesa_real 
 
-	adicionar_jogador("Ana", 5, 1, 100, 106)
-	adicionar_jogador("Bruno", 3, 3, 90, 96)
-	adicionar_jogador("Carlos", 7, 0, 120, 127) # Adicionando mais para demonstrar o grid
-	adicionar_jogador("Ana", 5, 1, 100, 106)
-	adicionar_jogador("Bruno", 3, 3, 90, 96)
+	if is_instance_valid(_partida_referencia):
 
-func adicionar_cabecalho(h_nome, h_reivindicada, h_nao_reivindicada, h_pontos, h_total):
-	var header_label_scene = preload("res://cenas/pontuacao/jogadorCellLabel.tscn") # Usar a mesma cena de Label
+		jogadores = _partida_referencia.get_jogadores()
+		if jogadores.is_empty():
+			push_warning("calculaPontuacao: Nenhum jogador encontrado através da Partida referenciada.")
+			return
+		atualizar_tabela_de_pontuacao_final()
+	else:
+		printerr("calculaPontuacao: Referência de Partida inválida recebida.")
 
-	var l_nome = header_label_scene.instantiate()
-	l_nome.set_text_data(h_nome)
-	jogadores_container.add_child(l_nome)
-	#l_nome.add_theme_font_size_override("font_size", 20) # Para deixar maior
-	#l_nome.add_theme_color_override("font_color", Color.YELLOW) # Para mudar cor
+func _set_test_data(test_jogadores: Array[Jogador], test_mesa_mock: Node):
+	self.jogadores = test_jogadores
+	self._mesa_mock = test_mesa_mock 
 
-	var l_reivindicada = header_label_scene.instantiate()
-	l_reivindicada.set_text_data(h_reivindicada)
-	jogadores_container.add_child(l_reivindicada)
+func atualizar_tabela_de_pontuacao_final():
 
-	var l_nao_reivindicada = header_label_scene.instantiate()
-	l_nao_reivindicada.set_text_data(h_nao_reivindicada)
-	jogadores_container.add_child(l_nao_reivindicada)
+	var mesa_para_usar = _mesa_mock if _mesa_mock else _mesa_real
 
-	var l_pontos = header_label_scene.instantiate()
-	l_pontos.set_text_data(h_pontos)
-	jogadores_container.add_child(l_pontos)
+	if not is_instance_valid(mesa_para_usar):
+		printerr("calculaPontuacao: Referência à Mesa (real ou mock) é inválida. Não é possível calcular pontuações.")
+		return
+	if jogadores.is_empty():
+		push_warning("calculaPontuacao: Sem jogadores para calcular pontuações finais.")
+		return
 
-	var l_total = header_label_scene.instantiate()
-	l_total.set_text_data(h_total)
-	jogadores_container.add_child(l_total)
+	# Chama calcular_pontuacao_final na Mesa (será o mock durante o teste)
+	mesa_para_usar.calcular_pontuacao_final(jogadores)
 
-func adicionar_jogador(nome, rota_reivindicada, rota_nao_reivindicada, pontos, total):
-	# Criar e adicionar os Labels para cada dado do jogador
+	_limpar_linhas_de_jogadores()
+
+	jogadores.sort_custom(_sort_jogadores_por_pontuacao)
+
+	for jogador in jogadores:
+		
+		var nome = jogador.get_nome()
+		var rotas_reivindicadas = jogador.get_qtd_rotas_reivindicadas()
+		var rotas_nao_reivindicadas = jogador.get_qtd_rotas_nao_reivindicadas()
+		var pontos = jogador.get_pontos()
+
+		_adicionar_linha_jogador(
+			nome,
+			rotas_reivindicadas,
+			rotas_nao_reivindicadas,
+			pontos,
+		)
+	print("calculaPontuacao: Tabela de pontuação final atualizada com sucesso.")
+
+func _sort_jogadores_por_pontuacao(jogador_a: Jogador, jogador_b: Jogador) -> bool:
+	return jogador_a.get_pontuacao_atual() > jogador_b.get_pontuacao_atual()
+
+func _limpar_linhas_de_jogadores():
 	
-	var label_nome = jogador_cell_label_scene.instantiate()
-	label_nome.set_text_data(nome)
-	jogadores_container.add_child(label_nome)
+	for i in range(jogadores_container.get_child_count() - 1, 3, -1):
+		var child = jogadores_container.get_child(i)
+		if is_instance_valid(child):
+			child.queue_free()
 
-	var label_rota_reivindicada = jogador_cell_label_scene.instantiate()
-	label_rota_reivindicada.set_text_data(str(rota_reivindicada))
-	jogadores_container.add_child(label_rota_reivindicada)
+func adicionar_cabecalho(h_nome, h_reivindicada, h_nao_reivindicada, h_total_final):
+	
+	for i in range(min(4, jogadores_container.get_child_count())):
+		var child = jogadores_container.get_child(i)
+		if is_instance_valid(child):
+			child.queue_free()
 
-	var label_rota_nao_reivindicada = jogador_cell_label_scene.instantiate()
-	label_rota_nao_reivindicada.set_text_data(str(rota_nao_reivindicada))
-	jogadores_container.add_child(label_rota_nao_reivindicada)
+	var labels_cabecalho = [h_nome, h_reivindicada, h_nao_reivindicada, h_total_final]
+	for text in labels_cabecalho:
+		var l = jogador_cell_label_scene.instantiate()
+		l.set_text_data(text) 
+		jogadores_container.add_child(l)
 
-	var label_pontos = jogador_cell_label_scene.instantiate()
-	label_pontos.set_text_data(str(pontos))
-	jogadores_container.add_child(label_pontos)
+func _adicionar_linha_jogador(nome, rota_reivindicada, rota_nao_reivindicada, total_final):
+	var data_labels = [nome, str(rota_reivindicada), str(rota_nao_reivindicada), str(total_final)]
 
-	var label_total = jogador_cell_label_scene.instantiate()
-	label_total.set_text_data(str(total))
-	jogadores_container.add_child(label_total)
-
-	print("Jogador ", nome, " adicionado ao grid. Total de filhos no GridContainer: ", jogadores_container.get_child_count())
+	for data in data_labels:
+		var label = jogador_cell_label_scene.instantiate()
+		label.set_text_data(data)
+		jogadores_container.add_child(label)

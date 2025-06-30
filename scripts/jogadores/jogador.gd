@@ -7,6 +7,9 @@ var _trens : int
 var _pontos : int
 var _destinos: int
 var _cor: String
+var _destino_cumprido: int
+var _destino_nao_cumprido: int
+
 @onready var _mao = $Mao
 @onready var _status_card = $"Status Jogador"
 
@@ -92,9 +95,16 @@ func get_cor() -> String:
 		#_rotas_reivindicadas.append(rota)
 		#print("Jogador %s reivindicou a rota entre %s e %s (cor: %s, tamanho: %s)." % [_nome, rota.caminho.origem.cidade_name, rota.caminho.destino.cidade_name, rota.color, rota.trilhos.size()])
 #
-#func get_rotas_reivindicadas() -> Array[Linha]:
-	#return _rotas_reivindicadas
-#
+func soma_rota_reivindicada(value):
+	_destino_cumprido +=value
+	
+func get_qtd_rotas_reivindicadas():
+	return _destino_cumprido
+
+func get_qtd_rotas_nao_reivindicadas():
+	_destino_nao_cumprido = _destinos - get_qtd_rotas_reivindicadas()
+	return _destino_nao_cumprido
+	
 #func get_qtd_rotas_reivindicadas() -> int:
 	#var num_rotas_reivindicadas = get_rotas_reivindicadas()
 	#return num_rotas_reivindicadas.size()

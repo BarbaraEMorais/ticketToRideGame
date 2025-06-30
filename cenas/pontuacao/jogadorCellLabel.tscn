@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0ipx6ehv8ua8"]
 
-[ext_resource type="Script" uid="uid://bub6433p27v7" path="res://cenas/pontuacao/jogador_cell_label.gd" id="1_083c4"]
+[ext_resource type="Script" uid="uid://cwfyn1syn0od1" path="res://cenas/pontuacao/jogador_cell_label.gd" id="1_083c4"]
 
 [node name="CellLabel" type="Label"]
 offset_right = 40.0
