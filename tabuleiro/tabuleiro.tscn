@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dp0f62jdb5ue1" path="res://tabuleiro/camera_2d.gd" id="2_8nmvd"]
 [ext_resource type="PackedScene" uid="uid://tjvwsgh5scsr" path="res://tabuleiro/Cidade.tscn" id="3_8nmvd"]
 [ext_resource type="PackedScene" uid="uid://c2wjntvd0s02n" path="res://tabuleiro/Caminho.tscn" id="3_rpm0h"]
-[ext_resource type="Script" uid="uid://dor4pajmqgsy1" path="res://tabuleiro/map_outline.gd" id="5_72fkg"]
+[ext_resource type="Script" path="res://tabuleiro/map_outline.gd" id="5_72fkg"]
 [ext_resource type="Script" uid="uid://5krdva6s5jwd" path="res://utils/ImageParser.gd" id="6_72fkg"]
 
 [node name="Tabuleiro" type="Node2D"]

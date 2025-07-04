@@ -124,14 +124,16 @@ static func create(nome : String, cor : String, pos_status: Vector2 = Vector2(0,
 	novo._trens = 45
 	novo._pontos= 0
 	novo.set_card_color(cor)
+	novo._cor=(cor)
 	return novo
 
 func buy_destination_card(part : Partida):
 	var num_cartas := rng.randi_range(1, 3)
 	for i in range(num_cartas):
 		if get_mao().can_receive_card():
-			var carta_dest : CartaDestino = part.mesa.get_pilha_destino().comprar_carta_da_pilha_IA()
-			get_mao().add_carta(carta_dest)
+			if part.mesa.get_pilha_destino().get_quantidade() >0:
+				var carta_dest : CartaDestino = part.mesa.get_pilha_destino().comprar_carta_da_pilha_IA()
+				get_mao().add_carta(carta_dest)
 
 func buy_exposed_train(part: Partida, color : String):
 	var exposed_pile : PilhaExposta = part.mesa.get_pilha_exposta()
@@ -156,10 +158,13 @@ func buy_pile_train(part: Partida):
 		
 			
 
-func buy_route(route : Dictionary):
+func buy_route(route : Dictionary, part: Partida):
 	var linha : Linha = route['linha']
+	print("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", self.get_cor())
+	
 	linha.claim_route(self)
-
+	self.subtrai_trens(linha.trilhos.size())
+	self.soma_pontos(part.mesa.PONTOS_POR_ROTA.get(linha.trilhos.size()))
 	var num_tri_need = route['tamanho']
 
 	for card in get_mao().get_cartas():
@@ -269,7 +274,7 @@ func jogarTurno(part : Partida) -> void:
 	# If not, keep track of the cheapest
 	for route in lista_prox_caminho:
 		if can_buy_route(route):
-			buy_route(route)
+			buy_route(route, part)
 			print("IA %s encontrou uma rota em seu caminho ideal que pode comprar, reinvidicou rota" % name)
 			end_turn_timeout()
 			return

@@ -20,7 +20,7 @@ signal received_new_card
 func _ready() -> void:
 	super._ready()
 	_cartas = []
-	_limite_cartas = 6
+	_limite_cartas = 12000
 	_calcula_posicoes()
 	print("INSTANCIADA")
 

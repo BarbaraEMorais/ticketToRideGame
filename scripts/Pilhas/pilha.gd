@@ -43,3 +43,6 @@ func _on_gui_input(event:InputEvent) -> void:
 			print("Pilha (%s): Evento de clique processado, carta '%s' comprada e sinal emitido." % [name, carta_puxada.name if carta_puxada else "NIL"])
 		else:
 			print("Pilha (%s): Tentativa de compra por clique falhou (pilha vazia?)." % name)
+			
+func get_quantidade () -> int:
+	return _cartas.size() 
